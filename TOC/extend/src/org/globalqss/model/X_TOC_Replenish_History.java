@@ -50,6 +50,7 @@ public class X_TOC_Replenish_History extends PO implements I_TOC_Replenish_Histo
 			setM_Product_ID (0);
 			setM_Warehouse_ID (0);
 			setQtyOnHand (Env.ZERO);
+			setQtyOrdered (Env.ZERO);
 			setQtyReserved (Env.ZERO);
 			setTOC_Replenish_History_ID (0);
         } */
@@ -249,6 +250,28 @@ public class X_TOC_Replenish_History extends PO implements I_TOC_Replenish_Histo
 	public BigDecimal getQtyOnHand () 
 	{
 		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_QtyOnHand);
+		if (bd == null)
+			 return Env.ZERO;
+		return bd;
+	}
+
+	/** Set Ordered Quantity.
+		@param QtyOrdered 
+		Ordered Quantity
+	  */
+	public void setQtyOrdered (BigDecimal QtyOrdered)
+	{
+		if (QtyOrdered == null)
+			throw new IllegalArgumentException ("QtyOrdered is mandatory.");
+		set_Value (COLUMNNAME_QtyOrdered, QtyOrdered);
+	}
+
+	/** Get Ordered Quantity.
+		@return Ordered Quantity
+	  */
+	public BigDecimal getQtyOrdered () 
+	{
+		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_QtyOrdered);
 		if (bd == null)
 			 return Env.ZERO;
 		return bd;
