@@ -418,3 +418,47 @@ INSERT INTO t_alter_column values('toc_replenish_history','DateTrx','TIMESTAMP',
 INSERT INTO t_alter_column values('toc_replenish_history','DateTrx',null,'NOT NULL',null)
 ;
 
+-- 11-dic-2010 23:18:37 COT
+INSERT INTO AD_Column (AD_Client_ID,AD_Column_ID,AD_Element_ID,AD_Org_ID,AD_Reference_ID,AD_Table_ID,AD_Val_Rule_ID,ColumnName,Created,CreatedBy,Description,EntityType,FieldLength,Help,IsActive,IsAlwaysUpdateable,IsEncrypted,IsIdentifier,IsKey,IsMandatory,IsParent,IsSelectionColumn,IsSyncDatabase,IsTranslated,IsUpdateable,Name,SeqNo,Updated,UpdatedBy,Version) VALUES (0,60281,531,0,29,53301,127,'QtyOrdered',TO_TIMESTAMP('2010-12-11 23:18:35','YYYY-MM-DD HH24:MI:SS'),100,'Ordered Quantity','TOC',22,'The Ordered Quantity indicates the quantity of a product that was ordered.','Y','N','N','N','N','Y','N','N','N','N','Y','Ordered Quantity',0,TO_TIMESTAMP('2010-12-11 23:18:35','YYYY-MM-DD HH24:MI:SS'),100,0)
+;
+
+-- 11-dic-2010 23:18:37 COT
+INSERT INTO AD_Column_Trl (AD_Language,AD_Column_ID, Name, IsTranslated,AD_Client_ID,AD_Org_ID,Created,Createdby,Updated,UpdatedBy) SELECT l.AD_Language,t.AD_Column_ID, t.Name, 'N',t.AD_Client_ID,t.AD_Org_ID,t.Created,t.Createdby,t.Updated,t.UpdatedBy FROM AD_Language l, AD_Column t WHERE l.IsActive='Y' AND l.IsSystemLanguage='Y' AND l.IsBaseLanguage='N' AND t.AD_Column_ID=60281 AND EXISTS (SELECT * FROM AD_Column_Trl tt WHERE tt.AD_Language!=l.AD_Language OR tt.AD_Column_ID!=t.AD_Column_ID)
+;
+
+-- 11-dic-2010 23:18:40 COT
+ALTER TABLE TOC_Replenish_History ADD COLUMN QtyOrdered NUMERIC NOT NULL
+;
+
+-- 11-dic-2010 23:19:48 COT
+INSERT INTO AD_Field (AD_Client_ID,AD_Column_ID,AD_Field_ID,AD_Org_ID,AD_Tab_ID,Created,CreatedBy,Description,DisplayLength,EntityType,Help,IsActive,IsCentrallyMaintained,IsDisplayed,IsEncrypted,IsFieldOnly,IsHeading,IsReadOnly,IsSameLine,Name,SeqNo,SortNo,Updated,UpdatedBy) VALUES (0,60281,61004,0,53378,TO_TIMESTAMP('2010-12-11 23:19:47','YYYY-MM-DD HH24:MI:SS'),100,'Ordered Quantity',10,'TOC','The Ordered Quantity indicates the quantity of a product that was ordered.','Y','Y','Y','N','N','N','N','N','Ordered Quantity',110,0,TO_TIMESTAMP('2010-12-11 23:19:47','YYYY-MM-DD HH24:MI:SS'),100)
+;
+
+-- 11-dic-2010 23:19:48 COT
+INSERT INTO AD_Field_Trl (AD_Language,AD_Field_ID, Description,Help,Name, IsTranslated,AD_Client_ID,AD_Org_ID,Created,Createdby,Updated,UpdatedBy) SELECT l.AD_Language,t.AD_Field_ID, t.Description,t.Help,t.Name, 'N',t.AD_Client_ID,t.AD_Org_ID,t.Created,t.Createdby,t.Updated,t.UpdatedBy FROM AD_Language l, AD_Field t WHERE l.IsActive='Y' AND l.IsSystemLanguage='Y' AND l.IsBaseLanguage='N' AND t.AD_Field_ID=61004 AND EXISTS (SELECT * FROM AD_Field_Trl tt WHERE tt.AD_Language!=l.AD_Language OR tt.AD_Field_ID!=t.AD_Field_ID)
+;
+
+-- 11-dic-2010 23:19:58 COT
+UPDATE AD_Field SET SeqNo=80,IsDisplayed='Y' WHERE AD_Field_ID=61004
+;
+
+-- 11-dic-2010 23:19:58 COT
+UPDATE AD_Field SET SeqNo=90,IsDisplayed='Y' WHERE AD_Field_ID=60995
+;
+
+-- 11-dic-2010 23:19:58 COT
+UPDATE AD_Field SET SeqNo=100,IsDisplayed='Y' WHERE AD_Field_ID=60998
+;
+
+-- 11-dic-2010 23:19:58 COT
+UPDATE AD_Field SET SeqNo=110,IsDisplayed='Y' WHERE AD_Field_ID=60993
+;
+
+-- 11-dic-2010 23:20:08 COT
+UPDATE AD_Field SET IsSameLine='N',Updated=TO_TIMESTAMP('2010-12-11 23:20:08','YYYY-MM-DD HH24:MI:SS'),UpdatedBy=100 WHERE AD_Field_ID=61001
+;
+
+-- 11-dic-2010 23:20:10 COT
+UPDATE AD_Field SET IsSameLine='Y',Updated=TO_TIMESTAMP('2010-12-11 23:20:10','YYYY-MM-DD HH24:MI:SS'),UpdatedBy=100 WHERE AD_Field_ID=61004
+;
+

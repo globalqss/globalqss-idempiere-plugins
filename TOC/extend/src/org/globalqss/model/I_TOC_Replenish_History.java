@@ -140,6 +140,19 @@ public interface I_TOC_Replenish_History
 	  */
 	public BigDecimal getQtyOnHand();
 
+    /** Column name QtyOrdered */
+    public static final String COLUMNNAME_QtyOrdered = "QtyOrdered";
+
+	/** Set Ordered Quantity.
+	  * Ordered Quantity
+	  */
+	public void setQtyOrdered (BigDecimal QtyOrdered);
+
+	/** Get Ordered Quantity.
+	  * Ordered Quantity
+	  */
+	public BigDecimal getQtyOrdered();
+
     /** Column name QtyReserved */
     public static final String COLUMNNAME_QtyReserved = "QtyReserved";
 
