@@ -32,7 +32,6 @@ import org.compiere.model.MProduct;
 import org.compiere.model.MSequence;
 import org.compiere.model.MUser;
 import org.compiere.model.MWarehouse;
-import org.compiere.model.X_AD_PInstance_Log;
 import org.compiere.model.X_T_Replenish;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
@@ -77,6 +76,7 @@ public class TOC_BufferManagement implements ReplenishInterface {
 
 		MPInstance pi = new MPInstance(ctx, replenish.getAD_PInstance_ID(), trxName);
 
+		// 1 - RED ALERT
 		// Validate red level and raise alert
 		// red level is when qty on hand is less or equal than one third of the max level
 		if (qtyOnHand.compareTo(redLevel) <= 0) {
@@ -116,8 +116,8 @@ public class TOC_BufferManagement implements ReplenishInterface {
 			if (qtyToOrder.signum() < 0)
 				qtyToOrder = Env.ZERO;
 		}
-		
-		// Create or update the Replenish History record
+
+		// 2 - Create or update the Replenish History record
 		// just when the process is ran on working days
 		Timestamp today = new Timestamp(System.currentTimeMillis());
 		boolean isWorkingDay = true;
@@ -131,15 +131,17 @@ public class TOC_BufferManagement implements ReplenishInterface {
 			if (nbid > 0)
 				isWorkingDay = false;
 		}
-		
+
 		if (isWorkingDay) {
 			int rh_id = DB.getSQLValue(trxName,
 					"SELECT TOC_Replenish_History_ID FROM TOC_Replenish_History WHERE M_Warehouse_ID=? AND M_Product_ID=? AND TRUNC(DateTrx)=TRUNC(SYSDATE) AND IsActive='Y'",
 					wh.getM_Warehouse_ID(), replenish.getM_Product_ID());
+			boolean alreadyExecutedToday = false;
 			X_TOC_Replenish_History rh = null;
-			if (rh_id > 0)  // It was already executed today
+			if (rh_id > 0) { // It was already executed today
 				rh = new X_TOC_Replenish_History(ctx, rh_id, trxName);
-			if (rh == null) {
+				alreadyExecutedToday = true;
+			} else {
 				rh = new X_TOC_Replenish_History(ctx, 0, trxName);
 				rh.setM_Product_ID(replenish.getM_Product_ID());
 				rh.setM_Warehouse_ID(wh.getM_Warehouse_ID());
@@ -163,76 +165,78 @@ public class TOC_BufferManagement implements ReplenishInterface {
 				rh.setAD_PrintColor_ID(COLOR_White);
 			rh.saveEx();
 			
-			// Recalculate Level Max if needed
+			// 3 - Recalculate Level Max if needed (just on working days, and just once per day)
 			// this subprocess is ran just when the count of records in replenish history is multiple of the deliveryTime
-			int deliveryTime = DB.getSQLValue(trxName,
-					"SELECT DeliveryTime_Promised FROM M_Product_PO WHERE M_Product_ID=? AND IsCurrentVendor='Y' AND IsActive='Y' ORDER BY Created",
-					replenish.getM_Product_ID());
-			if (deliveryTime <= 0) {
-				deliveryTime = DB.getSQLValue(trxName,
-						"SELECT MAX(DeliveryTime_Promised) FROM M_Product_PO WHERE M_Product_ID=? AND IsActive='Y'",
+			if (! alreadyExecutedToday) {
+				int deliveryTime = DB.getSQLValue(trxName,
+						"SELECT DeliveryTime_Promised FROM M_Product_PO WHERE M_Product_ID=? AND IsCurrentVendor='Y' AND IsActive='Y' ORDER BY Created",
 						replenish.getM_Product_ID());
-			}
-			if (deliveryTime <= 0) {
-				addLog(pi, "Product [" + product.getName() + "] requires delivery time promised configured");
-			} else {
-				int cnt = DB.getSQLValue(trxName,
-						"SELECT COUNT(*) FROM TOC_Replenish_History WHERE M_Warehouse_ID=? AND M_Product_ID=? AND TRUNC(DateTrx)<TRUNC(SYSDATE) AND IsActive='Y'",
-						wh.getM_Warehouse_ID(), replenish.getM_Product_ID());
-				if ((cnt % deliveryTime) == 0) {
-					// count the number of green, yellow, red in the last [deliveryTime] days
-					int numGreenWhite = 0;
-					int numYellow = 0;
-					int numRedBlack = 0;
-					String sql = "SELECT * FROM TOC_Replenish_History WHERE M_Warehouse_ID=? AND M_Product_ID=? AND TRUNC(DateTrx)<TRUNC(SYSDATE) AND IsActive='Y' ORDER BY DateTrx DESC";
-					PreparedStatement pstmt = null;
-					ResultSet rs = null;
-					try
-					{
-						pstmt = DB.prepareStatement (sql, replenish.get_TrxName());
-						pstmt.setInt (1, wh.getM_Warehouse_ID());
-						pstmt.setInt (2, replenish.getM_Product_ID());
-						rs = pstmt.executeQuery ();
-						while (rs.next ()) {
-							X_TOC_Replenish_History rhh = new X_TOC_Replenish_History(ctx, rs, trxName);
-							int pcid = rhh.getAD_PrintColor_ID();
-							if (pcid == COLOR_Green || pcid == COLOR_White)
-								numGreenWhite++;
-							else if (pcid == COLOR_Yellow)
-								numYellow++;
-							else
-								numRedBlack++;
-							double percentRed = (double) numRedBlack / (double) deliveryTime;
-							double percentGreen = (double) numGreenWhite / (double) deliveryTime;
-							BigDecimal newLevelMax = Env.ZERO;
-							if (percentRed > TWOTHIRDS) {
-								// increase level max by 1/3
-								newLevelMax = replenish.getLevel_Max().add(replenish.getLevel_Max().divide(THREE, 0, BigDecimal.ROUND_HALF_UP));
-								addLog(pi, "Increainsg buffer for Product [" + product.getName() + "] from " + replenish.getLevel_Max() + " to " + newLevelMax);
-								
-							} else if (percentGreen > TWOTHIRDS) {
-								// decrease level max by 1/3
-								newLevelMax = replenish.getLevel_Max().subtract(replenish.getLevel_Max().divide(THREE, 0, BigDecimal.ROUND_HALF_UP));
-								addLog(pi, "Decreainsg buffer for Product [" + product.getName() + "] from " + replenish.getLevel_Max() + " to " + newLevelMax);
-							}
-							if (newLevelMax.signum() > 0) {
-								int upd = DB.executeUpdate("UPDATE M_Replenish SET Level_Max=? WHERE M_Warehouse_ID=? AND M_Product_ID=?", 
-										new Object[] {newLevelMax, wh.getM_Warehouse_ID(), replenish.getM_Product_ID()},
-										false,
-										trxName);
+				if (deliveryTime <= 0) {
+					deliveryTime = DB.getSQLValue(trxName,
+							"SELECT MAX(DeliveryTime_Promised) FROM M_Product_PO WHERE M_Product_ID=? AND IsActive='Y'",
+							replenish.getM_Product_ID());
+				}
+				if (deliveryTime <= 0) {
+					addLog(pi, "Product [" + product.getName() + "] requires delivery time promised configured");
+				} else {
+					int cnt = DB.getSQLValue(trxName,
+							"SELECT COUNT(*) FROM TOC_Replenish_History WHERE M_Warehouse_ID=? AND M_Product_ID=? AND TRUNC(DateTrx)<TRUNC(SYSDATE) AND IsActive='Y'",
+							wh.getM_Warehouse_ID(), replenish.getM_Product_ID());
+					if ((cnt % deliveryTime) == 0) {
+						// count the number of green, yellow, red in the last [deliveryTime] days
+						int numGreenWhite = 0;
+						int numYellow = 0;
+						int numRedBlack = 0;
+						String sql = "SELECT * FROM TOC_Replenish_History WHERE M_Warehouse_ID=? AND M_Product_ID=? AND TRUNC(DateTrx)<TRUNC(SYSDATE) AND IsActive='Y' ORDER BY DateTrx DESC";
+						PreparedStatement pstmt = null;
+						ResultSet rs = null;
+						try
+						{
+							pstmt = DB.prepareStatement (sql, replenish.get_TrxName());
+							pstmt.setInt (1, wh.getM_Warehouse_ID());
+							pstmt.setInt (2, replenish.getM_Product_ID());
+							rs = pstmt.executeQuery ();
+							while (rs.next ()) {
+								X_TOC_Replenish_History rhh = new X_TOC_Replenish_History(ctx, rs, trxName);
+								int pcid = rhh.getAD_PrintColor_ID();
+								if (pcid == COLOR_Green || pcid == COLOR_White)
+									numGreenWhite++;
+								else if (pcid == COLOR_Yellow)
+									numYellow++;
+								else
+									numRedBlack++;
+								double percentRed = (double) numRedBlack / (double) deliveryTime;
+								double percentGreen = (double) numGreenWhite / (double) deliveryTime;
+								BigDecimal newLevelMax = Env.ZERO;
+								if (percentRed > TWOTHIRDS) {
+									// increase level max by 1/3
+									newLevelMax = replenish.getLevel_Max().add(replenish.getLevel_Max().divide(THREE, 0, BigDecimal.ROUND_HALF_UP));
+									addLog(pi, "Increainsg buffer for Product [" + product.getName() + "] from " + replenish.getLevel_Max() + " to " + newLevelMax);
+									
+								} else if (percentGreen > TWOTHIRDS) {
+									// decrease level max by 1/3
+									newLevelMax = replenish.getLevel_Max().subtract(replenish.getLevel_Max().divide(THREE, 0, BigDecimal.ROUND_HALF_UP));
+									addLog(pi, "Decreainsg buffer for Product [" + product.getName() + "] from " + replenish.getLevel_Max() + " to " + newLevelMax);
+								}
+								if (newLevelMax.signum() > 0) {
+									int upd = DB.executeUpdate("UPDATE M_Replenish SET Level_Max=? WHERE M_Warehouse_ID=? AND M_Product_ID=?", 
+											new Object[] {newLevelMax, wh.getM_Warehouse_ID(), replenish.getM_Product_ID()},
+											false,
+											trxName);
+								}
 							}
 						}
+						catch (Exception e)
+						{
+							addLog(pi, e.getLocalizedMessage());
+						}
+						finally
+						{
+							DB.close(rs, pstmt);
+							rs = null; pstmt = null;
+						}
+						
 					}
-					catch (Exception e)
-					{
-						addLog(pi, e.getLocalizedMessage());
-					}
-					finally
-					{
-						DB.close(rs, pstmt);
-						rs = null; pstmt = null;
-					}
-					
 				}
 			}
 		}
