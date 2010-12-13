@@ -187,6 +187,7 @@ public class TOC_BufferManagement implements ReplenishInterface {
 						int numGreenWhite = 0;
 						int numYellow = 0;
 						int numRedBlack = 0;
+						int numRecords = 0;
 						String sql = "SELECT * FROM TOC_Replenish_History WHERE M_Warehouse_ID=? AND M_Product_ID=? AND TRUNC(DateTrx)<TRUNC(SYSDATE) AND IsActive='Y' ORDER BY DateTrx DESC";
 						PreparedStatement pstmt = null;
 						ResultSet rs = null;
@@ -205,25 +206,28 @@ public class TOC_BufferManagement implements ReplenishInterface {
 									numYellow++;
 								else
 									numRedBlack++;
-								double percentRed = (double) numRedBlack / (double) deliveryTime;
-								double percentGreen = (double) numGreenWhite / (double) deliveryTime;
-								BigDecimal newLevelMax = Env.ZERO;
-								if (percentRed > TWOTHIRDS) {
-									// increase level max by 1/3
-									newLevelMax = replenish.getLevel_Max().add(replenish.getLevel_Max().divide(THREE, 0, BigDecimal.ROUND_HALF_UP));
-									addLog(pi, "Increainsg buffer for Product [" + product.getName() + "] from " + replenish.getLevel_Max() + " to " + newLevelMax);
-									
-								} else if (percentGreen > TWOTHIRDS) {
-									// decrease level max by 1/3
-									newLevelMax = replenish.getLevel_Max().subtract(replenish.getLevel_Max().divide(THREE, 0, BigDecimal.ROUND_HALF_UP));
-									addLog(pi, "Decreainsg buffer for Product [" + product.getName() + "] from " + replenish.getLevel_Max() + " to " + newLevelMax);
-								}
-								if (newLevelMax.signum() > 0) {
-									int upd = DB.executeUpdate("UPDATE M_Replenish SET Level_Max=? WHERE M_Warehouse_ID=? AND M_Product_ID=?", 
-											new Object[] {newLevelMax, wh.getM_Warehouse_ID(), replenish.getM_Product_ID()},
-											false,
-											trxName);
-								}
+								numRecords++;
+								if (numRecords == deliveryTime)
+									break;
+							}
+							double percentRed = (double) numRedBlack / (double) deliveryTime;
+							double percentGreen = (double) numGreenWhite / (double) deliveryTime;
+							BigDecimal newLevelMax = Env.ZERO;
+							if (percentRed > TWOTHIRDS) {
+								// increase level max by 1/3
+								newLevelMax = replenish.getLevel_Max().add(replenish.getLevel_Max().divide(THREE, 0, BigDecimal.ROUND_HALF_UP));
+								addLog(pi, "Increainsg buffer for Product [" + product.getName() + "] from " + replenish.getLevel_Max() + " to " + newLevelMax);
+
+							} else if (percentGreen > TWOTHIRDS) {
+								// decrease level max by 1/3
+								newLevelMax = replenish.getLevel_Max().subtract(replenish.getLevel_Max().divide(THREE, 0, BigDecimal.ROUND_HALF_UP));
+								addLog(pi, "Decreainsg buffer for Product [" + product.getName() + "] from " + replenish.getLevel_Max() + " to " + newLevelMax);
+							}
+							if (newLevelMax.signum() > 0) {
+								int upd = DB.executeUpdate("UPDATE M_Replenish SET Level_Max=?, Level_Min=CASE WHEN Level_Min>=? THEN ? ELSE Level_Min END WHERE M_Warehouse_ID=? AND M_Product_ID=?", 
+										new Object[] {newLevelMax, newLevelMax, newLevelMax, wh.getM_Warehouse_ID(), replenish.getM_Product_ID()},
+										false,
+										trxName);
 							}
 						}
 						catch (Exception e)
