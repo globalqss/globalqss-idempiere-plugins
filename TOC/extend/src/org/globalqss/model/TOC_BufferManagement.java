@@ -29,6 +29,7 @@ import org.compiere.model.MNote;
 import org.compiere.model.MOrgInfo;
 import org.compiere.model.MPInstance;
 import org.compiere.model.MProduct;
+import org.compiere.model.MProductCategory;
 import org.compiere.model.MSequence;
 import org.compiere.model.MUser;
 import org.compiere.model.MWarehouse;
@@ -58,8 +59,6 @@ public class TOC_BufferManagement implements ReplenishInterface {
 	private static final BigDecimal TWO		= BigDecimal.valueOf(2.0);
 	private static final BigDecimal THREE	= BigDecimal.valueOf(3.0);
 	
-	private static double TWOTHIRDS			= (double) 2 / (double) 3;
-
 	public BigDecimal getQtyToOrder(MWarehouse wh, X_T_Replenish replenish) {
 		BigDecimal qtyToOrder = Env.ZERO;
 		if (replenish.getLevel_Max().signum() <= 0)
@@ -73,6 +72,27 @@ public class TOC_BufferManagement implements ReplenishInterface {
 		String trxName = replenish.get_TrxName();
 
 		MProduct product = MProduct.get(ctx, replenish.getM_Product_ID());
+		MProductCategory productCategory = MProductCategory.get(ctx, product.getM_Product_Category_ID());
+		int purchaseAdjustDays = 0;
+		Integer purchaseAdjustDaysI = (Integer) productCategory.get_Value("TOC_PurchaseAdjustDays");
+		if (purchaseAdjustDaysI != null)
+			purchaseAdjustDays = purchaseAdjustDaysI.intValue();
+		int freqAdjustDays = 0;
+		Integer freqAdjustDaysI = (Integer) productCategory.get_Value("TOC_FreqAdjustDays");
+		if (freqAdjustDaysI != null)
+			freqAdjustDays = freqAdjustDaysI.intValue();
+		BigDecimal pctRedDaysToIncrease = (BigDecimal) productCategory.get_Value("TOC_PctRedDaysToIncrease");
+		if (pctRedDaysToIncrease == null)
+			pctRedDaysToIncrease = Env.ZERO;
+		BigDecimal pctGreenDaysToDecrease = (BigDecimal) productCategory.get_Value("TOC_PctGreenDaysToDecrease");
+		if (pctGreenDaysToDecrease == null)
+			pctGreenDaysToDecrease = Env.ZERO;
+		BigDecimal pctToDecrease = (BigDecimal) productCategory.get_Value("TOC_PctToDecrease");
+		if (pctToDecrease == null)
+			pctToDecrease = Env.ZERO;
+		BigDecimal pctToIncrease = (BigDecimal) productCategory.get_Value("TOC_PctToIncrease");
+		if (pctToIncrease == null)
+			pctToIncrease = Env.ZERO;
 
 		MPInstance pi = new MPInstance(ctx, replenish.getAD_PInstance_ID(), trxName);
 
@@ -165,25 +185,18 @@ public class TOC_BufferManagement implements ReplenishInterface {
 				rh.setAD_PrintColor_ID(COLOR_White);
 			rh.saveEx();
 			
+			int cntreplenishrecords = DB.getSQLValue(trxName,
+					"SELECT COUNT(*) FROM TOC_Replenish_History WHERE M_Warehouse_ID=? AND M_Product_ID=? AND TRUNC(DateTrx)<TRUNC(SYSDATE) AND IsActive='Y'",
+					wh.getM_Warehouse_ID(), replenish.getM_Product_ID());
+			
 			// 3 - Recalculate Level Max if needed (just on working days, and just once per day)
-			// this subprocess is ran just when the count of records in replenish history is multiple of the deliveryTime
+			// this subprocess is ran just when the count of records in replenish history is multiple of the freqAdjustDays
 			if (! alreadyExecutedToday) {
-				int deliveryTime = DB.getSQLValue(trxName,
-						"SELECT DeliveryTime_Promised FROM M_Product_PO WHERE M_Product_ID=? AND IsCurrentVendor='Y' AND IsActive='Y' ORDER BY Created",
-						replenish.getM_Product_ID());
-				if (deliveryTime <= 0) {
-					deliveryTime = DB.getSQLValue(trxName,
-							"SELECT MAX(DeliveryTime_Promised) FROM M_Product_PO WHERE M_Product_ID=? AND IsActive='Y'",
-							replenish.getM_Product_ID());
-				}
-				if (deliveryTime <= 0) {
-					addLog(pi, "Product [" + product.getName() + "] requires delivery time promised configured");
+				if (freqAdjustDays <= 0) {
+					addLog(pi, "Product [" + product.getName() + "] requires frequency adjust days configured in category");
 				} else {
-					int cnt = DB.getSQLValue(trxName,
-							"SELECT COUNT(*) FROM TOC_Replenish_History WHERE M_Warehouse_ID=? AND M_Product_ID=? AND TRUNC(DateTrx)<TRUNC(SYSDATE) AND IsActive='Y'",
-							wh.getM_Warehouse_ID(), replenish.getM_Product_ID());
-					if ((cnt % deliveryTime) == 0) {
-						// count the number of green, yellow, red in the last [deliveryTime] days
+					if ((cntreplenishrecords % freqAdjustDays) == 0) {
+						// count the number of green, yellow, red in the last [freqAdjustDays] days
 						int numGreenWhite = 0;
 						int numYellow = 0;
 						int numRedBlack = 0;
@@ -207,21 +220,26 @@ public class TOC_BufferManagement implements ReplenishInterface {
 								else
 									numRedBlack++;
 								numRecords++;
-								if (numRecords == deliveryTime)
+								if (numRecords == freqAdjustDays)
 									break;
 							}
-							double percentRed = (double) numRedBlack / (double) deliveryTime;
-							double percentGreen = (double) numGreenWhite / (double) deliveryTime;
+							double percentRed = (double) numRedBlack * (double) 100 / (double) freqAdjustDays;
+							double percentGreen = (double) numGreenWhite * (double) 100 / (double) freqAdjustDays;
 							BigDecimal newLevelMax = Env.ZERO;
-							if (percentRed > TWOTHIRDS) {
+							if (percentRed > pctRedDaysToIncrease.doubleValue()) {
 								// increase level max by 1/3
-								newLevelMax = replenish.getLevel_Max().add(replenish.getLevel_Max().divide(THREE, 0, BigDecimal.ROUND_HALF_UP));
-								addLog(pi, "Increainsg buffer for Product [" + product.getName() + "] from " + replenish.getLevel_Max() + " to " + newLevelMax);
-
-							} else if (percentGreen > TWOTHIRDS) {
+								BigDecimal increment = replenish.getLevel_Max()
+								    .multiply(pctToIncrease)
+								    .divide(Env.ONEHUNDRED, 0, BigDecimal.ROUND_HALF_UP);
+								newLevelMax = replenish.getLevel_Max().add(increment);
+								addLog(pi, "Increasing buffer for Product [" + product.getName() + "] from " + replenish.getLevel_Max() + " to " + newLevelMax);
+							} else if (percentGreen > pctGreenDaysToDecrease.doubleValue()) {
 								// decrease level max by 1/3
-								newLevelMax = replenish.getLevel_Max().subtract(replenish.getLevel_Max().divide(THREE, 0, BigDecimal.ROUND_HALF_UP));
-								addLog(pi, "Decreainsg buffer for Product [" + product.getName() + "] from " + replenish.getLevel_Max() + " to " + newLevelMax);
+								BigDecimal decrement = replenish.getLevel_Max()
+							        .multiply(pctToDecrease)
+							        .divide(Env.ONEHUNDRED, 0, BigDecimal.ROUND_HALF_UP);
+								newLevelMax = replenish.getLevel_Max().subtract(decrement);
+								addLog(pi, "Decreasing buffer for Product [" + product.getName() + "] from " + replenish.getLevel_Max() + " to " + newLevelMax);
 							}
 							if (newLevelMax.signum() > 0) {
 								int upd = DB.executeUpdate("UPDATE M_Replenish SET Level_Max=?, Level_Min=CASE WHEN Level_Min>=? THEN ? ELSE Level_Min END WHERE M_Warehouse_ID=? AND M_Product_ID=?", 
@@ -240,6 +258,19 @@ public class TOC_BufferManagement implements ReplenishInterface {
 							rs = null; pstmt = null;
 						}
 						
+					}
+				}
+			}
+			
+			// 4 - Just reorder if it's on the frequency purchase days
+			// this subprocess is ran just when the count of records in replenish history is multiple of the purchaseAdjustDays
+			if (! alreadyExecutedToday) {
+				if (purchaseAdjustDays <= 0) {
+					addLog(pi, "Product [" + product.getName() + "] requires purchase adjust days configured in category");
+				} else {
+					if ((cntreplenishrecords % freqAdjustDays) != 0) {
+						// don't return QtyToOrder to calling process as it's not day to purchase
+						qtyToOrder = Env.ZERO;
 					}
 				}
 			}
