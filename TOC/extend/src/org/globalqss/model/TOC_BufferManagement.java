@@ -58,14 +58,15 @@ public class TOC_BufferManagement implements ReplenishInterface {
 	
 	private static final BigDecimal TWO		= BigDecimal.valueOf(2.0);
 	private static final BigDecimal THREE	= BigDecimal.valueOf(3.0);
-	
+
 	public BigDecimal getQtyToOrder(MWarehouse wh, X_T_Replenish replenish) {
 		BigDecimal qtyToOrder = Env.ZERO;
 		if (replenish.getLevel_Max().signum() <= 0)
 			return qtyToOrder;
-		
-		BigDecimal redLevel = replenish.getLevel_Max().divide(THREE, SCALE_FOR_LEVELS, BigDecimal.ROUND_DOWN);
-		BigDecimal yellowLevel = replenish.getLevel_Max().multiply(TWO).divide(THREE, SCALE_FOR_LEVELS, BigDecimal.ROUND_DOWN);
+
+		BigDecimal range = replenish.getLevel_Max().subtract(replenish.getLevel_Min());
+		BigDecimal redLevel = range.divide(THREE, SCALE_FOR_LEVELS, BigDecimal.ROUND_DOWN).add(replenish.getLevel_Min());
+		BigDecimal yellowLevel = range.multiply(TWO).divide(THREE, SCALE_FOR_LEVELS, BigDecimal.ROUND_DOWN).add(replenish.getLevel_Min());
 		BigDecimal qtyOnHand = replenish.getQtyOnHand();
 
 		Properties ctx = replenish.getCtx();
@@ -95,26 +96,39 @@ public class TOC_BufferManagement implements ReplenishInterface {
 			pctToIncrease = Env.ZERO;
 
 		MPInstance pi = new MPInstance(ctx, replenish.getAD_PInstance_ID(), trxName);
-
+		int supervisor_id = MOrgInfo.get(ctx, wh.getAD_Org_ID()).getSupervisor_ID();
+		MUser notifyFrom = MUser.get(ctx, pi.getAD_User_ID());
+		MUser notifyTo = MUser.get(ctx, supervisor_id);
+		MClient client = MClient.get(ctx, replenish.getAD_Client_ID());
+		
+		// Replenish to the max level
+		BigDecimal qtyTheoretical = qtyOnHand.add(replenish.getQtyOrdered()).subtract(replenish.getQtyReserved());
+		qtyToOrder = replenish.getLevel_Max().subtract(qtyTheoretical);
+		if (qtyToOrder.signum() < 0)
+			qtyToOrder = Env.ZERO;
+		
 		// 1 - RED ALERT
 		// Validate red level and raise alert
 		// red level is when qty on hand is less or equal than one third of the max level
 		if (qtyOnHand.compareTo(redLevel) <= 0) {
-			addLog(pi, "Product [" + product.getName() + "] IN RED LEVEL!!!  Replenish immediately!");
-			int supervisor_id = MOrgInfo.get(ctx, wh.getAD_Org_ID()).getSupervisor_ID();
+			String msgred = "Nivel Rojo - Producto [" + product.getValue() + "]";
+			addLog(pi, msgred, product.getM_Product_ID(), qtyOnHand);
 			if (supervisor_id <= 0) {
-				addLog(pi, "Org " + wh.getAD_Org_ID() + " doesn't have supervisor configured");
+				addLog(pi, "Error Org - " + wh.getAD_Org_ID() + " doesn't have supervisor configured", null, null);
 			} else {
-				MUser from = MUser.get(ctx, pi.getAD_User_ID());
-				MUser user = MUser.get(ctx, supervisor_id);
-				boolean email = user.isNotificationEMail();
-				boolean notice = user.isNotificationNote();
-				String subject = "TOC Buffer Management - red level for Product [" + product.getName() + "]";
-				String text = "Product [" + product.getValue()+"-"+product.getName() + "] IN RED LEVEL!!!  Replenish immediately!";
+				String subject = "BM - " + msgred;
+				String text = "Producto [" + product.getValue() + "] en nivel rojo" +
+						"\nCantidad en Existencia="+qtyOnHand+
+						"\nCantidad Ordenada     ="+replenish.getQtyOrdered()+
+						"\nCantidad Reservada    ="+replenish.getQtyReserved()+
+						"\nStock Maximo          ="+replenish.getLevel_Max()+
+						"\nStock Minimo          ="+replenish.getLevel_Min()+
+						"\nSugerido              ="+qtyToOrder;
+				boolean email = notifyTo.isNotificationEMail();
+				boolean notice = notifyTo.isNotificationNote();
 				if (email)
 				{
-					MClient client = MClient.get(ctx, replenish.getAD_Client_ID());
-					client.sendEMail(from, user, subject, text, null);
+					client.sendEMail(notifyFrom, notifyTo, subject, text, null);
 				}
 				if (notice) {
 					int AD_Message_ID = 793; // HARDCODED Replenishment
@@ -129,16 +143,8 @@ public class TOC_BufferManagement implements ReplenishInterface {
 			
 			// do not replenish, just raise the alert
 			qtyToOrder = Env.ZERO;
-		} else {
-			// Replenish to the max level
-			BigDecimal qtyOnHandPlusOrdered = qtyOnHand.add(replenish.getQtyOrdered());
-			qtyToOrder = replenish.getLevel_Max().subtract(qtyOnHandPlusOrdered);
-			if (qtyToOrder.signum() < 0)
-				qtyToOrder = Env.ZERO;
 		}
 
-		// 2 - Create or update the Replenish History record
-		// just when the process is ran on working days
 		Timestamp today = new Timestamp(System.currentTimeMillis());
 		boolean isWorkingDay = true;
 		if (today.getDay() == 0 /* Sunday */ || today.getDay() == 6 /* Saturday */) {
@@ -152,20 +158,18 @@ public class TOC_BufferManagement implements ReplenishInterface {
 				isWorkingDay = false;
 		}
 
-		if (isWorkingDay) {
-			int rh_id = DB.getSQLValue(trxName,
-					"SELECT TOC_Replenish_History_ID FROM TOC_Replenish_History WHERE M_Warehouse_ID=? AND M_Product_ID=? AND TRUNC(DateTrx)=TRUNC(SYSDATE) AND IsActive='Y'",
-					wh.getM_Warehouse_ID(), replenish.getM_Product_ID());
-			boolean alreadyExecutedToday = false;
+		int rh_id = DB.getSQLValue(trxName,
+				"SELECT TOC_Replenish_History_ID FROM TOC_Replenish_History WHERE M_Warehouse_ID=? AND M_Product_ID=? AND TRUNC(DateTrx)=TRUNC(SYSDATE) AND IsActive='Y'",
+				wh.getM_Warehouse_ID(), replenish.getM_Product_ID());
+		boolean alreadyExecutedToday = (rh_id > 0); // It was already executed today
+
+		if (isWorkingDay && ! alreadyExecutedToday) {
+			// 2 - Create the Replenish History record
+			// just when the process is ran on working days
 			X_TOC_Replenish_History rh = null;
-			if (rh_id > 0) { // It was already executed today
-				rh = new X_TOC_Replenish_History(ctx, rh_id, trxName);
-				alreadyExecutedToday = true;
-			} else {
-				rh = new X_TOC_Replenish_History(ctx, 0, trxName);
-				rh.setM_Product_ID(replenish.getM_Product_ID());
-				rh.setM_Warehouse_ID(wh.getM_Warehouse_ID());
-			}
+			rh = new X_TOC_Replenish_History(ctx, 0, trxName);
+			rh.setM_Product_ID(replenish.getM_Product_ID());
+			rh.setM_Warehouse_ID(wh.getM_Warehouse_ID());
 			rh.setAD_Org_ID(wh.getAD_Org_ID());
 			rh.setDateTrx(today);
 			rh.setQtyOnHand(qtyOnHand);
@@ -173,7 +177,7 @@ public class TOC_BufferManagement implements ReplenishInterface {
 			rh.setQtyReserved(replenish.getQtyReserved());
 			rh.setLevel_Max(replenish.getLevel_Max());
 			// Assign color
-			if (qtyOnHand.compareTo(Env.ZERO) <= 0)
+			if (qtyOnHand.compareTo(replenish.getLevel_Min()) <= 0)
 				rh.setAD_PrintColor_ID(COLOR_Black);
 			else if (qtyOnHand.compareTo(redLevel) <= 0)
 				rh.setAD_PrintColor_ID(COLOR_Red);
@@ -184,104 +188,133 @@ public class TOC_BufferManagement implements ReplenishInterface {
 			else
 				rh.setAD_PrintColor_ID(COLOR_White);
 			rh.saveEx();
-			
+
 			int cntreplenishrecords = DB.getSQLValue(trxName,
-					"SELECT COUNT(*) FROM TOC_Replenish_History WHERE M_Warehouse_ID=? AND M_Product_ID=? AND TRUNC(DateTrx)<TRUNC(SYSDATE) AND IsActive='Y'",
+					"SELECT COUNT(*) FROM TOC_Replenish_History WHERE M_Warehouse_ID=? AND M_Product_ID=? AND TRUNC(DateTrx)<=TRUNC(SYSDATE) AND IsActive='Y'",
 					wh.getM_Warehouse_ID(), replenish.getM_Product_ID());
-			
+
 			// 3 - Recalculate Level Max if needed (just on working days, and just once per day)
 			// this subprocess is ran just when the count of records in replenish history is multiple of the freqAdjustDays
-			if (! alreadyExecutedToday) {
-				if (freqAdjustDays <= 0) {
-					addLog(pi, "Product [" + product.getName() + "] requires frequency adjust days configured in category");
-				} else {
-					if ((cntreplenishrecords % freqAdjustDays) == 0) {
-						// count the number of green, yellow, red in the last [freqAdjustDays] days
-						int numGreenWhite = 0;
-						int numYellow = 0;
-						int numRedBlack = 0;
-						int numRecords = 0;
-						String sql = "SELECT * FROM TOC_Replenish_History WHERE M_Warehouse_ID=? AND M_Product_ID=? AND TRUNC(DateTrx)<TRUNC(SYSDATE) AND IsActive='Y' ORDER BY DateTrx DESC";
-						PreparedStatement pstmt = null;
-						ResultSet rs = null;
-						try
-						{
-							pstmt = DB.prepareStatement (sql, replenish.get_TrxName());
-							pstmt.setInt (1, wh.getM_Warehouse_ID());
-							pstmt.setInt (2, replenish.getM_Product_ID());
-							rs = pstmt.executeQuery ();
-							while (rs.next ()) {
-								X_TOC_Replenish_History rhh = new X_TOC_Replenish_History(ctx, rs, trxName);
-								int pcid = rhh.getAD_PrintColor_ID();
-								if (pcid == COLOR_Green || pcid == COLOR_White)
-									numGreenWhite++;
-								else if (pcid == COLOR_Yellow)
-									numYellow++;
-								else
-									numRedBlack++;
-								numRecords++;
-								if (numRecords == freqAdjustDays)
-									break;
-							}
-							double percentRed = (double) numRedBlack * (double) 100 / (double) freqAdjustDays;
-							double percentGreen = (double) numGreenWhite * (double) 100 / (double) freqAdjustDays;
-							BigDecimal newLevelMax = Env.ZERO;
-							if (percentRed > pctRedDaysToIncrease.doubleValue()) {
-								// increase level max by 1/3
-								BigDecimal increment = replenish.getLevel_Max()
-								    .multiply(pctToIncrease)
-								    .divide(Env.ONEHUNDRED, 0, BigDecimal.ROUND_HALF_UP);
-								newLevelMax = replenish.getLevel_Max().add(increment);
-								addLog(pi, "Increasing buffer for Product [" + product.getName() + "] from " + replenish.getLevel_Max() + " to " + newLevelMax);
-							} else if (percentGreen > pctGreenDaysToDecrease.doubleValue()) {
-								// decrease level max by 1/3
-								BigDecimal decrement = replenish.getLevel_Max()
-							        .multiply(pctToDecrease)
-							        .divide(Env.ONEHUNDRED, 0, BigDecimal.ROUND_HALF_UP);
-								newLevelMax = replenish.getLevel_Max().subtract(decrement);
-								addLog(pi, "Decreasing buffer for Product [" + product.getName() + "] from " + replenish.getLevel_Max() + " to " + newLevelMax);
-							}
-							if (newLevelMax.signum() > 0) {
-								int upd = DB.executeUpdate("UPDATE M_Replenish SET Level_Max=?, Level_Min=CASE WHEN Level_Min>=? THEN ? ELSE Level_Min END WHERE M_Warehouse_ID=? AND M_Product_ID=?", 
-										new Object[] {newLevelMax, newLevelMax, newLevelMax, wh.getM_Warehouse_ID(), replenish.getM_Product_ID()},
-										false,
-										trxName);
-							}
+			if (freqAdjustDays <= 0) {
+				addLog(pi, "Error Prod - Producto [" + product.getValue() + "] no se ha configurado frecuencia ajuste", product.getM_Product_ID(), null);
+			} else {
+				if ((cntreplenishrecords % freqAdjustDays) == 0) {
+					// count the number of green, yellow, red in the last [freqAdjustDays] days
+					int numGreenWhite = 0;
+					int numYellow = 0;
+					int numRedBlack = 0;
+					int numRecords = 0;
+					String sql = "SELECT * FROM TOC_Replenish_History WHERE M_Warehouse_ID=? AND M_Product_ID=? AND TRUNC(DateTrx)<=TRUNC(SYSDATE) AND IsActive='Y' ORDER BY DateTrx DESC";
+					PreparedStatement pstmt = null;
+					ResultSet rs = null;
+					try
+					{
+						pstmt = DB.prepareStatement (sql, replenish.get_TrxName());
+						pstmt.setInt (1, wh.getM_Warehouse_ID());
+						pstmt.setInt (2, replenish.getM_Product_ID());
+						rs = pstmt.executeQuery ();
+						while (rs.next ()) {
+							X_TOC_Replenish_History rhh = new X_TOC_Replenish_History(ctx, rs, trxName);
+							int pcid = rhh.getAD_PrintColor_ID();
+							if (pcid == COLOR_Green || pcid == COLOR_White)
+								numGreenWhite++;
+							else if (pcid == COLOR_Yellow)
+								numYellow++;
+							else
+								numRedBlack++;
+							numRecords++;
+							if (numRecords >= freqAdjustDays)
+								break;
 						}
-						catch (Exception e)
-						{
-							addLog(pi, e.getLocalizedMessage());
+						double percentRed = (double) numRedBlack * (double) 100 / (double) freqAdjustDays;
+						double percentGreen = (double) numGreenWhite * (double) 100 / (double) freqAdjustDays;
+						BigDecimal newLevelMax = Env.ZERO;
+						if (percentRed > pctRedDaysToIncrease.doubleValue()) {
+							// increase level max by 1/3
+							BigDecimal increment = range.multiply(pctToIncrease).divide(Env.ONEHUNDRED, 0, BigDecimal.ROUND_HALF_UP);
+							newLevelMax = replenish.getLevel_Max().add(increment);
+						} else if (percentGreen > pctGreenDaysToDecrease.doubleValue()) {
+							// decrease level max by 1/3
+							BigDecimal decrement = range.multiply(pctToDecrease).divide(Env.ONEHUNDRED, 0, BigDecimal.ROUND_HALF_UP);
+							newLevelMax = replenish.getLevel_Max().subtract(decrement);
 						}
-						finally
-						{
-							DB.close(rs, pstmt);
-							rs = null; pstmt = null;
+
+						if (newLevelMax.signum() > 0 && newLevelMax.compareTo(replenish.getLevel_Min()) > 0) {
+							String msg;
+							if (newLevelMax.compareTo(replenish.getLevel_Max()) > 0)
+								msg = "Incremento - ";
+							else
+								msg = "Decremento - ";
+								
+							String msgprd = msg + "Producto [" + product.getValue() + "]";
+							String msglog = msgprd + " Anterior=" + replenish.getLevel_Max() + ", Nuevo=" + newLevelMax;
+							addLog(pi, msglog, product.getM_Product_ID(), newLevelMax);
+
+							int upd = DB.executeUpdate("UPDATE M_Replenish SET Level_Max=? WHERE M_Warehouse_ID=? AND M_Product_ID=?", 
+									new Object[] {newLevelMax, wh.getM_Warehouse_ID(), replenish.getM_Product_ID()},
+									false,
+									trxName);
+							
+							String subject = "BM - " + msgprd;
+							String text = "Producto [" + product.getValue() + "] se ha cambiado el valor del amortiguador" +
+									"\nStock Maximo Anterior ="+replenish.getLevel_Max()+
+									"\nStock Maximo Actual   ="+newLevelMax;
+							boolean email = notifyTo.isNotificationEMail();
+							boolean notice = notifyTo.isNotificationNote();
+							if (email)
+							{
+								client.sendEMail(notifyFrom, notifyTo, subject, text, null);
+							}
+							if (notice) {
+								int AD_Message_ID = 793; // HARDCODED Replenishment
+								MNote note = new MNote(ctx, AD_Message_ID, supervisor_id, null);
+								note.setClientOrg(replenish.getAD_Client_ID(), wh.getAD_Org_ID());
+								note.setDescription(subject);
+								note.setTextMsg(text);
+								note.setRecord(MPInstance.Table_ID, pi.getAD_PInstance_ID());
+								note.save();
+							}
 						}
 						
 					}
+					catch (Exception e)
+					{
+						addLog(pi, e.getLocalizedMessage(), null, null);
+					}
+					finally
+					{
+						DB.close(rs, pstmt);
+						rs = null; pstmt = null;
+					}
+
 				}
 			}
-			
+
 			// 4 - Just reorder if it's on the frequency purchase days
 			// this subprocess is ran just when the count of records in replenish history is multiple of the purchaseAdjustDays
-			if (! alreadyExecutedToday) {
-				if (purchaseAdjustDays <= 0) {
-					addLog(pi, "Product [" + product.getName() + "] requires purchase adjust days configured in category");
-				} else {
-					if ((cntreplenishrecords % freqAdjustDays) != 0) {
-						// don't return QtyToOrder to calling process as it's not day to purchase
-						qtyToOrder = Env.ZERO;
-					}
+			if (purchaseAdjustDays <= 0) {
+				addLog(pi, "Error Prod - Producto [" + product.getValue() + "] no configurado ajuste compra", product.getM_Product_ID(), null);
+			} else {
+				if ((cntreplenishrecords % purchaseAdjustDays) != 0) {
+					// don't return QtyToOrder to calling process as it's not day to purchase
+					qtyToOrder = Env.ZERO;
 				}
 			}
+		}
+		
+		if (alreadyExecutedToday)
+			qtyToOrder = Env.ZERO;
+		
+		if (qtyToOrder.compareTo(Env.ZERO) > 0) {
+			addLog(pi, "Abastecer - Producto [" + product.getValue() + "] Cantidad=" + qtyToOrder, product.getM_Product_ID(), qtyToOrder);
 		}
 		
 		return qtyToOrder;
 	}
 
-	private void addLog(MPInstance pi, String message) {
-		DB.executeUpdate("INSERT INTO AD_PInstance_Log (ad_pinstance_id,log_id,p_date,p_msg) VALUES (?,?,SYSDATE,?)", 
-				new Object[] {pi.getAD_PInstance_ID(), MSequence.getNextID(pi.getAD_Client_ID(), "AD_PInstance_Log"), message}, 
+	private void addLog(MPInstance pi, String message, Integer p_id, BigDecimal p_number) {
+		DB.executeUpdate("INSERT INTO AD_PInstance_Log (ad_pinstance_id,log_id,p_date,p_msg,p_id,p_number) VALUES (?,?,SYSDATE,?,?,?)", 
+				new Object[] {pi.getAD_PInstance_ID(), MSequence.getNextID(pi.getAD_Client_ID(), "AD_PInstance_Log"), message, p_id, p_number}, 
 				false,
 				pi.get_TrxName());
 	}
