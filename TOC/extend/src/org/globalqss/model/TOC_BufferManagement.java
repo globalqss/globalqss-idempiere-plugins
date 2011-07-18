@@ -306,6 +306,20 @@ public class TOC_BufferManagement implements ReplenishInterface {
 			qtyToOrder = Env.ZERO;
 		
 		if (qtyToOrder.compareTo(Env.ZERO) > 0) {
+			
+			//	Minimum Order Quantity
+			BigDecimal ordermin = DB.getSQLValueBD(null, "SELECT Order_Min FROM M_Product_PO WHERE AD_Client_ID = ? AND M_Product_ID = ? AND IsCurrentVendor = 'Y'", product.getAD_Client_ID(), product.getM_Product_ID());
+			if (ordermin != null && ordermin.compareTo(qtyToOrder) > 0 )
+				qtyToOrder = ordermin;
+			
+			//	Even dividable by Pack
+			BigDecimal orderpack = DB.getSQLValueBD(null, "SELECT Order_Pack FROM M_Product_PO WHERE AD_Client_ID = ? AND M_Product_ID = ? AND IsCurrentVendor = 'Y'", product.getAD_Client_ID(), product.getM_Product_ID());
+			if (orderpack != null && qtyToOrder.remainder(orderpack).compareTo(Env.ZERO) > 0 )
+				qtyToOrder = qtyToOrder.subtract(qtyToOrder.remainder(orderpack)).add(orderpack);
+							
+		}
+		
+		if (qtyToOrder.compareTo(Env.ZERO) > 0) {
 			addLog(pi, "Abastecer - Producto [" + product.getValue() + "] Cantidad=" + qtyToOrder, product.getM_Product_ID(), qtyToOrder);
 		}
 		
