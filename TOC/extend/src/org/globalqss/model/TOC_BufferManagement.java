@@ -102,25 +102,40 @@ public class TOC_BufferManagement implements ReplenishInterface {
 		MClient client = MClient.get(ctx, replenish.getAD_Client_ID());
 		
 		// Replenish to the max level
-		BigDecimal qtyTheoretical = qtyOnHand.add(replenish.getQtyOrdered()).subtract(replenish.getQtyReserved());
+		
+		// Resets negative qtyreserved
+		BigDecimal qtyreserved = replenish.getQtyReserved();
+		if (qtyreserved.signum() < 0)
+			qtyreserved = Env.ZERO;
+		
+		BigDecimal qtyTheoretical = qtyOnHand.add(replenish.getQtyOrdered()).subtract(qtyreserved);
 		qtyToOrder = replenish.getLevel_Max().subtract(qtyTheoretical);
 		if (qtyToOrder.signum() < 0)
 			qtyToOrder = Env.ZERO;
+		
+		if (qtyToOrder.compareTo(Env.ZERO) > 0)
+			qtyToOrder = minimumOrderQuantity (product, qtyToOrder, trxName);
 		
 		// 1 - RED ALERT
 		// Validate red level and raise alert
 		// red level is when qty on hand is less or equal than one third of the max level
 		if (qtyOnHand.compareTo(redLevel) <= 0) {
-			String msgred = "Nivel Rojo - Producto [" + product.getValue() + "]";
+			//String msgred = "Nivel Rojo - Producto [" + product.getValue() + "]";
+			String msgred;
+			if (qtyOnHand.compareTo(replenish.getLevel_Min()) <= 0)
+			   msgred = "Nivel Negro - Producto [" + product.getValue() + "]";
+			else
+			  msgred = "Nivel Rojo - Producto [" + product.getValue() + "]";
 			addLog(pi, msgred, product.getM_Product_ID(), qtyOnHand);
 			if (supervisor_id <= 0) {
 				addLog(pi, "Error Org - " + wh.getAD_Org_ID() + " doesn't have supervisor configured", null, null);
 			} else {
 				String subject = "BM - " + msgred;
 				String text = "Producto [" + product.getValue() + "] en nivel rojo" +
+						"\nBodega                ="+wh.getName()+
 						"\nCantidad en Existencia="+qtyOnHand+
 						"\nCantidad Ordenada     ="+replenish.getQtyOrdered()+
-						"\nCantidad Reservada    ="+replenish.getQtyReserved()+
+						"\nCantidad Reservada    ="+qtyreserved+
 						"\nStock Maximo          ="+replenish.getLevel_Max()+
 						"\nStock Minimo          ="+replenish.getLevel_Min()+
 						"\nSugerido              ="+qtyToOrder;
@@ -174,7 +189,7 @@ public class TOC_BufferManagement implements ReplenishInterface {
 			rh.setDateTrx(today);
 			rh.setQtyOnHand(qtyOnHand);
 			rh.setQtyOrdered(replenish.getQtyOrdered());
-			rh.setQtyReserved(replenish.getQtyReserved());
+			rh.setQtyReserved(qtyreserved);
 			rh.setLevel_Max(replenish.getLevel_Max());
 			// Assign color
 			if (qtyOnHand.compareTo(replenish.getLevel_Min()) <= 0)
@@ -305,20 +320,9 @@ public class TOC_BufferManagement implements ReplenishInterface {
 		if (alreadyExecutedToday)
 			qtyToOrder = Env.ZERO;
 		
-		if (qtyToOrder.compareTo(Env.ZERO) > 0) {
+		if (qtyToOrder.compareTo(Env.ZERO) > 0)
+			qtyToOrder = minimumOrderQuantity (product, qtyToOrder, trxName);
 			
-			//	Minimum Order Quantity
-			BigDecimal ordermin = DB.getSQLValueBD(trxName, "SELECT Order_Min FROM M_Product_PO WHERE AD_Client_ID = ? AND M_Product_ID = ? AND IsCurrentVendor = 'Y'", product.getAD_Client_ID(), product.getM_Product_ID());
-			if (ordermin != null && ordermin.compareTo(qtyToOrder) > 0 )
-				qtyToOrder = ordermin;
-			
-			//	Even dividable by Pack
-			BigDecimal orderpack = DB.getSQLValueBD(trxName, "SELECT Order_Pack FROM M_Product_PO WHERE AD_Client_ID = ? AND M_Product_ID = ? AND IsCurrentVendor = 'Y'", product.getAD_Client_ID(), product.getM_Product_ID());
-			if (orderpack != null && qtyToOrder.remainder(orderpack).compareTo(Env.ZERO) > 0 )
-				qtyToOrder = qtyToOrder.subtract(qtyToOrder.remainder(orderpack)).add(orderpack);
-							
-		}
-		
 		if (qtyToOrder.compareTo(Env.ZERO) > 0) {
 			addLog(pi, "Abastecer - Producto [" + product.getValue() + "] Cantidad=" + qtyToOrder, product.getM_Product_ID(), qtyToOrder);
 		}
@@ -332,5 +336,21 @@ public class TOC_BufferManagement implements ReplenishInterface {
 				false,
 				pi.get_TrxName());
 	}
+	
+	public BigDecimal minimumOrderQuantity (MProduct product, BigDecimal qtytoorder, String trxname)
+	{
+		// Minimum Order Quantity
+		BigDecimal ordermin = DB.getSQLValueBD(trxname, "SELECT Order_Min FROM M_Product_PO WHERE AD_Client_ID = ? AND M_Product_ID = ? AND IsCurrentVendor = 'Y'", product.getAD_Client_ID(), product.getM_Product_ID());
+		if (ordermin != null && ordermin.compareTo(qtytoorder) > 0 )
+			qtytoorder = ordermin;
+		
+		// Even dividable by Pack
+		BigDecimal orderpack = DB.getSQLValueBD(trxname, "SELECT Order_Pack FROM M_Product_PO WHERE AD_Client_ID = ? AND M_Product_ID = ? AND IsCurrentVendor = 'Y'", product.getAD_Client_ID(), product.getM_Product_ID());
+		if (orderpack != null && qtytoorder.remainder(orderpack).compareTo(Env.ZERO) > 0 )
+			qtytoorder = qtytoorder.subtract(qtytoorder.remainder(orderpack)).add(orderpack);
+						
+		
+		return qtytoorder;
+	}	//	minimumOrderQuantity
 
 }
