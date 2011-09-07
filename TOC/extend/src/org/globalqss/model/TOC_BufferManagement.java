@@ -131,7 +131,7 @@ public class TOC_BufferManagement implements ReplenishInterface {
 				addLog(pi, "Error Org - " + wh.getAD_Org_ID() + " doesn't have supervisor configured", null, null);
 			} else {
 				String subject = "BM - " + msgred;
-				String text = "Producto [" + product.getValue() + "] en nivel rojo" +
+				String text = "Producto [" + product.getValue() + "] en " + msgred +
 						"\nBodega                ="+wh.getName()+
 						"\nCantidad en Existencia="+qtyOnHand+
 						"\nCantidad Ordenada     ="+replenish.getQtyOrdered()+
@@ -272,6 +272,7 @@ public class TOC_BufferManagement implements ReplenishInterface {
 							
 							String subject = "BM - " + msgprd;
 							String text = "Producto [" + product.getValue() + "] se ha cambiado el valor del amortiguador" +
+									"\nBodega                ="+wh.getName()+
 									"\nStock Maximo Anterior ="+replenish.getLevel_Max()+
 									"\nStock Maximo Actual   ="+newLevelMax;
 							boolean email = notifyTo.isNotificationEMail();
