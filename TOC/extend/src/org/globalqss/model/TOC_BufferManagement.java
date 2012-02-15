@@ -57,7 +57,7 @@ public class TOC_BufferManagement implements ReplenishInterface {
 	private static final int SCALE_FOR_LEVELS = 10;
 	
 	private static final BigDecimal TWO		= BigDecimal.valueOf(2.0);
-	private static final BigDecimal THREE	= BigDecimal.valueOf(3.0);
+	private static final BigDecimal THREE	= BigDecimal.valueOf(3.3333);
 
 	public BigDecimal getQtyToOrder(MWarehouse wh, X_T_Replenish replenish) {
 		BigDecimal qtyToOrder = Env.ZERO;
@@ -231,7 +231,7 @@ public class TOC_BufferManagement implements ReplenishInterface {
 						while (rs.next ()) {
 							X_TOC_Replenish_History rhh = new X_TOC_Replenish_History(ctx, rs, trxName);
 							int pcid = rhh.getAD_PrintColor_ID();
-							if (pcid == COLOR_Green || pcid == COLOR_White)
+							if (pcid == COLOR_Green)
 								numGreenWhite++;
 							else if (pcid == COLOR_Yellow)
 								numYellow++;
