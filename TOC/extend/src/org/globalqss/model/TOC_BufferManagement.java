@@ -57,7 +57,7 @@ public class TOC_BufferManagement implements ReplenishInterface {
 	private static final int SCALE_FOR_LEVELS = 10;
 	
 	private static final BigDecimal TWO		= BigDecimal.valueOf(2.0);
-	private static final BigDecimal THREE	= BigDecimal.valueOf(3.3333);
+	private static final BigDecimal THREE	= BigDecimal.valueOf(3.0);
 
 	public BigDecimal getQtyToOrder(MWarehouse wh, X_T_Replenish replenish) {
 		BigDecimal qtyToOrder = Env.ZERO;
@@ -215,7 +215,7 @@ public class TOC_BufferManagement implements ReplenishInterface {
 			} else {
 				if ((cntreplenishrecords % freqAdjustDays) == 0) {
 					// count the number of green, yellow, red in the last [freqAdjustDays] days
-					int numGreenWhite = 0;
+					int numGreen = 0;
 					int numYellow = 0;
 					int numRedBlack = 0;
 					int numRecords = 0;
@@ -232,7 +232,7 @@ public class TOC_BufferManagement implements ReplenishInterface {
 							X_TOC_Replenish_History rhh = new X_TOC_Replenish_History(ctx, rs, trxName);
 							int pcid = rhh.getAD_PrintColor_ID();
 							if (pcid == COLOR_Green)
-								numGreenWhite++;
+								numGreen++;
 							else if (pcid == COLOR_Yellow)
 								numYellow++;
 							else
@@ -242,7 +242,7 @@ public class TOC_BufferManagement implements ReplenishInterface {
 								break;
 						}
 						double percentRed = (double) numRedBlack * (double) 100 / (double) freqAdjustDays;
-						double percentGreen = (double) numGreenWhite * (double) 100 / (double) freqAdjustDays;
+						double percentGreen = (double) numGreen * (double) 100 / (double) freqAdjustDays;
 						BigDecimal newLevelMax = Env.ZERO;
 						if (percentRed > pctRedDaysToIncrease.doubleValue()) {
 							// increase level max by 1/3
