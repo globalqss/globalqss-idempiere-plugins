@@ -233,7 +233,7 @@ public class TOC_BufferManagement implements ReplenishInterface {
 							int pcid = rhh.getAD_PrintColor_ID();
 							if (pcid == COLOR_White)
 								;
-							if (pcid == COLOR_Green)
+							else if (pcid == COLOR_Green)
 								numGreen++;
 							else if (pcid == COLOR_Yellow)
 								numYellow++;
