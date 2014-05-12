@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idempiere Name="org.globalqss.idempiere.ManualGenerator" Version="2.0.0" idempiereVersion="" DataBaseVersion="" Description="Manual Generator on ODT format" Author="" AuthorEmail="info@globalqss.com" CreatedDate="2014-05-11 10:48:23.044" UpdatedDate="2014-05-11 10:48:23.044" PackOutVersion="100" UpdateDictionary="false" Client="0-SYSTEM-System" AD_Client_UU="11237b53-9592-4af1-b3c5-afd216514b5d">
+    <AD_EntityType type="table">
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <AD_EntityType_UU>f1e67385-3ced-4e45-a152-c7237f4f1de2</AD_EntityType_UU>
+        <Classpath/>
+        <Description/>
+        <EntityType>QSS_Util</EntityType>
+        <Help/>
+        <IsActive>true</IsActive>
+        <ModelPackage>org.globalqss.model</ModelPackage>
+        <Name>GlobalQSS Utilities</Name>
+        <Processing>false</Processing>
+        <Version/>
+    </AD_EntityType>
+    <AD_Menu type="table">
+        <SeqNo>16</SeqNo>
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <Action/>
+        <AD_Form_ID reference="id"/>
+        <AD_InfoWindow_ID reference="id"/>
+        <AD_Menu_UU>a6911630-995f-4e7d-bb64-36b51d5b85d4</AD_Menu_UU>
+        <AD_Process_ID reference="id"/>
+        <AD_Task_ID reference="id"/>
+        <AD_Window_ID reference="id"/>
+        <AD_Workflow_ID reference="id"/>
+        <Description/>
+        <EntityType>QSS_Util</EntityType>
+        <IsActive>true</IsActive>
+        <IsCentrallyMaintained>false</IsCentrallyMaintained>
+        <IsReadOnly>false</IsReadOnly>
+        <IsSOTrx>false</IsSOTrx>
+        <IsSummary>true</IsSummary>
+        <Name>GlobalQSS Utilities</Name>
+        <AD_Menu_Trl type="translation">
+            <Description/>
+            <Name>GlobalQSS Utilities</Name>
+            <AD_Language>es_CO</AD_Language>
+            <IsActive>true</IsActive>
+            <IsTranslated>false</IsTranslated>
+        </AD_Menu_Trl>
+        <AD_Menu type="table">
+            <Parent_ID reference="uuid" reference-key="AD_Menu">a6911630-995f-4e7d-bb64-36b51d5b85d4</Parent_ID>
+            <SeqNo>0</SeqNo>
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <Action>P</Action>
+            <AD_Form_ID reference="id"/>
+            <AD_InfoWindow_ID reference="id"/>
+            <AD_Menu_UU>c71adf9c-0932-4e86-a867-aaf2c188a772</AD_Menu_UU>
+            <AD_Process_ID reference="uuid" reference-key="AD_Process">27795682-d58e-47e9-aa9e-e2f036b56175</AD_Process_ID>
+            <AD_Task_ID reference="id"/>
+            <AD_Window_ID reference="id"/>
+            <AD_Workflow_ID reference="id"/>
+            <Description/>
+            <EntityType>QSS_Util</EntityType>
+            <IsActive>true</IsActive>
+            <IsCentrallyMaintained>true</IsCentrallyMaintained>
+            <IsReadOnly>false</IsReadOnly>
+            <IsSOTrx>false</IsSOTrx>
+            <IsSummary>false</IsSummary>
+            <Name>Manual Generator</Name>
+            <AD_Process type="table">
+                <AD_Client_ID>0</AD_Client_ID>
+                <AD_Org_ID>0</AD_Org_ID>
+                <AccessLevel>7</AccessLevel>
+                <AD_CtxHelp_ID reference="id"/>
+                <AD_Form_ID reference="id"/>
+                <AD_PrintFormat_ID reference="id"/>
+                <AD_Process_UU>27795682-d58e-47e9-aa9e-e2f036b56175</AD_Process_UU>
+                <AD_ReportView_ID reference="id"/>
+                <AD_Workflow_ID reference="id"/>
+                <Classname>org.globalqss.process.GenerateManual</Classname>
+                <CopyFromProcess>N</CopyFromProcess>
+                <Description/>
+                <EntityType>QSS_Util</EntityType>
+                <Help/>
+                <IsActive>true</IsActive>
+                <IsBetaFunctionality>false</IsBetaFunctionality>
+                <IsDirectPrint>false</IsDirectPrint>
+                <IsReport>false</IsReport>
+                <IsServerProcess>false</IsServerProcess>
+                <JasperReport/>
+                <Name>Manual Generator</Name>
+                <ProcedureName/>
+                <ShowHelp>Y</ShowHelp>
+                <Statistic_Count>0</Statistic_Count>
+                <Statistic_Seconds>0</Statistic_Seconds>
+                <Value>QSS_ManualGenerator</Value>
+                <WorkflowValue/>
+                <AD_Process_Trl type="translation">
+                    <Description/>
+                    <Help/>
+                    <Name>Manual Generator</Name>
+                    <AD_Language>es_CO</AD_Language>
+                    <IsActive>true</IsActive>
+                    <IsTranslated>false</IsTranslated>
+                </AD_Process_Trl>
+            </AD_Process>
+        </AD_Menu>
+    </AD_Menu>
+</idempiere>
