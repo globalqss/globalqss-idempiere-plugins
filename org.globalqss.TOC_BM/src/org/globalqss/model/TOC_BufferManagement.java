@@ -1,19 +1,27 @@
-/******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2006 ComPiere, Inc. All Rights Reserved.                *
- * This program is free software; you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY; without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program; if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
- *****************************************************************************/
+/**********************************************************************
+* This file is part of iDempiere ERP Open Source                      *
+* http://www.idempiere.org                                            *
+*                                                                     *
+* Copyright (C) Contributors                                          *
+*                                                                     *
+* This program is free software; you can redistribute it and/or       *
+* modify it under the terms of the GNU General Public License         *
+* as published by the Free Software Foundation; either version 2      *
+* of the License, or (at your option) any later version.              *
+*                                                                     *
+* This program is distributed in the hope that it will be useful,     *
+* but WITHOUT ANY WARRANTY; without even the implied warranty of      *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the        *
+* GNU General Public License for more details.                        *
+*                                                                     *
+* You should have received a copy of the GNU General Public License   *
+* along with this program; if not, write to the Free Software         *
+* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,          *
+* MA 02110-1301, USA.                                                 *
+*                                                                     *
+* Contributors:                                                       *
+* - Carlos Ruiz - globalqss                                           *
+**********************************************************************/
 
 package org.globalqss.model;
 
@@ -21,6 +29,7 @@ import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Properties;
 
 import org.compiere.model.MClient;
@@ -33,6 +42,7 @@ import org.compiere.model.MProductCategory;
 import org.compiere.model.MSequence;
 import org.compiere.model.MUser;
 import org.compiere.model.MWarehouse;
+import org.compiere.model.X_AD_PInstance_Log;
 import org.compiere.model.X_T_Replenish;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
@@ -96,7 +106,7 @@ public class TOC_BufferManagement implements ReplenishInterface {
 			pctToIncrease = Env.ZERO;
 
 		MPInstance pi = new MPInstance(ctx, replenish.getAD_PInstance_ID(), trxName);
-		int supervisor_id = MOrgInfo.get(ctx, wh.getAD_Org_ID()).getSupervisor_ID();
+		int supervisor_id = MOrgInfo.get(ctx, wh.getAD_Org_ID(), null).getSupervisor_ID();
 		MUser notifyFrom = MUser.get(ctx, pi.getAD_User_ID());
 		MUser notifyTo = MUser.get(ctx, supervisor_id);
 		MClient client = MClient.get(ctx, replenish.getAD_Client_ID());
@@ -152,7 +162,7 @@ public class TOC_BufferManagement implements ReplenishInterface {
 					note.setDescription(subject);
 					note.setTextMsg(text);
 					note.setRecord(MPInstance.Table_ID, pi.getAD_PInstance_ID());
-					note.save();
+					note.saveEx();
 				}
 			}
 			
@@ -160,9 +170,11 @@ public class TOC_BufferManagement implements ReplenishInterface {
 			qtyToOrder = Env.ZERO;
 		}
 
-		Timestamp today = new Timestamp(System.currentTimeMillis());
+		Calendar cal = Calendar.getInstance();
+		cal.setTimeInMillis(System.currentTimeMillis());
+		int weekday = cal.get(Calendar.DAY_OF_WEEK);
 		boolean isWorkingDay = true;
-		if (today.getDay() == 0 /* Sunday */ || today.getDay() == 6 /* Saturday */) {
+		if (weekday == Calendar.SUNDAY || weekday == Calendar.SATURDAY) {
 			isWorkingDay = false;
 		} else {
 			int defaultCalendarID = MClientInfo.get(ctx, replenish.getAD_Client_ID()).getC_Calendar_ID();
@@ -186,7 +198,7 @@ public class TOC_BufferManagement implements ReplenishInterface {
 			rh.setM_Product_ID(replenish.getM_Product_ID());
 			rh.setM_Warehouse_ID(wh.getM_Warehouse_ID());
 			rh.setAD_Org_ID(wh.getAD_Org_ID());
-			rh.setDateTrx(today);
+			rh.setDateTrx(new Timestamp(cal.getTimeInMillis()));
 			rh.setQtyOnHand(qtyOnHand);
 			rh.setQtyOrdered(replenish.getQtyOrdered());
 			rh.setQtyReserved(qtyreserved);
@@ -216,6 +228,7 @@ public class TOC_BufferManagement implements ReplenishInterface {
 				if ((cntreplenishrecords % freqAdjustDays) == 0) {
 					// count the number of green, yellow, red in the last [freqAdjustDays] days
 					int numGreen = 0;
+					@SuppressWarnings("unused")
 					int numYellow = 0;
 					int numRedBlack = 0;
 					int numRecords = 0;
@@ -267,6 +280,7 @@ public class TOC_BufferManagement implements ReplenishInterface {
 							String msglog = msgprd + " Anterior=" + replenish.getLevel_Max() + ", Nuevo=" + newLevelMax;
 							addLog(pi, msglog, product.getM_Product_ID(), newLevelMax);
 
+							@SuppressWarnings("unused")
 							int upd = DB.executeUpdate("UPDATE M_Replenish SET Level_Max=? WHERE M_Warehouse_ID=? AND M_Product_ID=?", 
 									new Object[] {newLevelMax, wh.getM_Warehouse_ID(), replenish.getM_Product_ID()},
 									false,
@@ -290,7 +304,7 @@ public class TOC_BufferManagement implements ReplenishInterface {
 								note.setDescription(subject);
 								note.setTextMsg(text);
 								note.setRecord(MPInstance.Table_ID, pi.getAD_PInstance_ID());
-								note.save();
+								note.saveEx();
 							}
 						}
 						
@@ -334,8 +348,9 @@ public class TOC_BufferManagement implements ReplenishInterface {
 	}
 
 	private void addLog(MPInstance pi, String message, Integer p_id, BigDecimal p_number) {
+		MSequence seq = MSequence.get(Env.getCtx(), X_AD_PInstance_Log.Table_Name);
 		DB.executeUpdate("INSERT INTO AD_PInstance_Log (ad_pinstance_id,log_id,p_date,p_msg,p_id,p_number) VALUES (?,?,SYSDATE,?,?,?)", 
-				new Object[] {pi.getAD_PInstance_ID(), MSequence.getNextID(pi.getAD_Client_ID(), "AD_PInstance_Log"), message, p_id, p_number}, 
+				new Object[] {pi.getAD_PInstance_ID(), seq.getNextID(), message, p_id, p_number}, 
 				false,
 				pi.get_TrxName());
 	}

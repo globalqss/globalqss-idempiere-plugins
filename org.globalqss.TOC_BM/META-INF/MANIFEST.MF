@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: TOC Buffer Management
+Bundle-SymbolicName: org.globalqss.TOC_BM
+Bundle-Version: 2.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Fragment-Host: org.adempiere.base.process;bundle-version="2.0.0"
