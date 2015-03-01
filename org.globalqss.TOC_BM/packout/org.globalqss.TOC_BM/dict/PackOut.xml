@@ -1,0 +1,2724 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idempiere Name="org.globalqss.TOC_BM" Version="1.0" idempiereVersion="" DataBaseVersion="" Description="" Author="" AuthorEmail="" CreatedDate="2015-02-23 18:56:00.633" UpdatedDate="2015-02-23 18:56:00.633" PackOutVersion="100" UpdateDictionary="false" Client="0-SYSTEM-System" AD_Client_UU="11237b53-9592-4af1-b3c5-afd216514b5d">
+    <AD_EntityType type="table">
+        <AD_EntityType_ID>50011</AD_EntityType_ID>
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <EntityType>TOC</EntityType>
+        <AD_EntityType_ID>50011</AD_EntityType_ID>
+        <IsActive>true</IsActive>
+        <Name>Theory of Constraints</Name>
+        <Description/>
+        <Help/>
+        <Version/>
+        <ModelPackage>org.globalqss.model</ModelPackage>
+        <Classpath/>
+        <Processing>false</Processing>
+    </AD_EntityType>
+    <AD_Element type="table">
+        <AD_Element_ID>55176</AD_Element_ID>
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <AD_Element_ID>55176</AD_Element_ID>
+        <IsActive>true</IsActive>
+        <ColumnName>TOC_FreqAdjustDays</ColumnName>
+        <Name>Frequency Adjustment</Name>
+        <Description>Number of days where buffer management adjust the stock maximum</Description>
+        <Help/>
+        <PrintName>Frequency Adjustment</PrintName>
+        <PO_Description/>
+        <PO_Help/>
+        <PO_Name/>
+        <PO_PrintName/>
+        <EntityType>TOC</EntityType>
+        <AD_Element_Trl type="translation">
+            <Help/>
+            <PO_Description/>
+            <PO_Help/>
+            <Name>Frecuencia de Ajuste</Name>
+            <Description>Número de días donde el administrador del amortiguador ajusta las existencias máximas</Description>
+            <PrintName>Frecuencia de Ajuste</PrintName>
+            <PO_Name/>
+            <PO_PrintName/>
+            <AD_Language>es_CO</AD_Language>
+            <IsActive>true</IsActive>
+            <IsTranslated>true</IsTranslated>
+        </AD_Element_Trl>
+    </AD_Element>
+    <AD_Column type="table">
+        <AD_Column_ID>61510</AD_Column_ID>
+        <IsSyncDatabase>Y</IsSyncDatabase>
+        <AD_Table_ID reference="id">209</AD_Table_ID>
+        <AD_Reference_Value_ID reference="id"/>
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <AD_Column_ID>61510</AD_Column_ID>
+        <Version>0</Version>
+        <Name>Frequency Adjustment</Name>
+        <Description>Number of days where buffer management adjust the stock maximum</Description>
+        <Help/>
+        <AD_Val_Rule_ID reference="id"/>
+        <ColumnName>TOC_FreqAdjustDays</ColumnName>
+        <DefaultValue/>
+        <FieldLength>10</FieldLength>
+        <IsKey>false</IsKey>
+        <IsParent>false</IsParent>
+        <IsMandatory>false</IsMandatory>
+        <IsTranslated>false</IsTranslated>
+        <IsIdentifier>false</IsIdentifier>
+        <SeqNo>0</SeqNo>
+        <IsEncrypted>N</IsEncrypted>
+        <AD_Reference_ID reference="id">11</AD_Reference_ID>
+        <IsActive>true</IsActive>
+        <VFormat/>
+        <Callout/>
+        <AD_Element_ID reference="id">55176</AD_Element_ID>
+        <IsUpdateable>true</IsUpdateable>
+        <AD_Process_ID reference="id"/>
+        <ValueMin/>
+        <ValueMax/>
+        <IsSelectionColumn>false</IsSelectionColumn>
+        <ReadOnlyLogic/>
+        <EntityType>TOC</EntityType>
+        <IsAlwaysUpdateable>false</IsAlwaysUpdateable>
+        <ColumnSQL/>
+        <MandatoryLogic/>
+        <IsAutocomplete>false</IsAutocomplete>
+        <IsAllowLogging>true</IsAllowLogging>
+        <FormatPattern/>
+        <AD_Chart_ID reference="id"/>
+        <IsAllowCopy>true</IsAllowCopy>
+        <SeqNoSelection/>
+        <IsToolbarButton>Y</IsToolbarButton>
+        <IsSecure>false</IsSecure>
+        <FKConstraintName/>
+        <FKConstraintType>N</FKConstraintType>
+    </AD_Column>
+    <AD_Element type="table">
+        <AD_Element_ID>55175</AD_Element_ID>
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <AD_Element_ID>55175</AD_Element_ID>
+        <IsActive>true</IsActive>
+        <ColumnName>TOC_PurchaseAdjustDays</ColumnName>
+        <Name>Purchase Adjustment</Name>
+        <Description>Number of days where buffer management process suggest a purchase</Description>
+        <Help/>
+        <PrintName>Purchase Adjustment</PrintName>
+        <PO_Description/>
+        <PO_Help/>
+        <PO_Name/>
+        <PO_PrintName/>
+        <EntityType>TOC</EntityType>
+        <AD_Element_Trl type="translation">
+            <Help/>
+            <PO_Description/>
+            <PO_Help/>
+            <Name>Ajuste de Compra</Name>
+            <Description>Número de días donde el administrador del amortiguador sugiere una compra</Description>
+            <PrintName>Ajuste de Compra</PrintName>
+            <PO_Name/>
+            <PO_PrintName/>
+            <AD_Language>es_CO</AD_Language>
+            <IsActive>true</IsActive>
+            <IsTranslated>true</IsTranslated>
+        </AD_Element_Trl>
+    </AD_Element>
+    <AD_Column type="table">
+        <AD_Column_ID>61511</AD_Column_ID>
+        <IsSyncDatabase>Y</IsSyncDatabase>
+        <AD_Table_ID reference="id">209</AD_Table_ID>
+        <AD_Reference_Value_ID reference="id"/>
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <AD_Column_ID>61511</AD_Column_ID>
+        <Version>0</Version>
+        <Name>Purchase Adjustment</Name>
+        <Description>Number of days where buffer management process suggest a purchase</Description>
+        <Help/>
+        <AD_Val_Rule_ID reference="id"/>
+        <ColumnName>TOC_PurchaseAdjustDays</ColumnName>
+        <DefaultValue/>
+        <FieldLength>10</FieldLength>
+        <IsKey>false</IsKey>
+        <IsParent>false</IsParent>
+        <IsMandatory>false</IsMandatory>
+        <IsTranslated>false</IsTranslated>
+        <IsIdentifier>false</IsIdentifier>
+        <SeqNo>0</SeqNo>
+        <IsEncrypted>N</IsEncrypted>
+        <AD_Reference_ID reference="id">11</AD_Reference_ID>
+        <IsActive>true</IsActive>
+        <VFormat/>
+        <Callout/>
+        <AD_Element_ID reference="id">55175</AD_Element_ID>
+        <IsUpdateable>true</IsUpdateable>
+        <AD_Process_ID reference="id"/>
+        <ValueMin/>
+        <ValueMax/>
+        <IsSelectionColumn>false</IsSelectionColumn>
+        <ReadOnlyLogic/>
+        <EntityType>TOC</EntityType>
+        <IsAlwaysUpdateable>false</IsAlwaysUpdateable>
+        <ColumnSQL/>
+        <MandatoryLogic/>
+        <IsAutocomplete>false</IsAutocomplete>
+        <IsAllowLogging>true</IsAllowLogging>
+        <FormatPattern/>
+        <AD_Chart_ID reference="id"/>
+        <IsAllowCopy>true</IsAllowCopy>
+        <SeqNoSelection/>
+        <IsToolbarButton>Y</IsToolbarButton>
+        <IsSecure>false</IsSecure>
+        <FKConstraintName/>
+        <FKConstraintType>N</FKConstraintType>
+    </AD_Column>
+    <AD_Element type="table">
+        <AD_Element_ID>55177</AD_Element_ID>
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <AD_Element_ID>55177</AD_Element_ID>
+        <IsActive>true</IsActive>
+        <ColumnName>TOC_PctRedDaysToIncrease</ColumnName>
+        <Name>% Red Days to Increase</Name>
+        <Description>Percent of days that must be in red in order Buffer Management increase the stock maximum</Description>
+        <Help/>
+        <PrintName>% Red Days to Increase</PrintName>
+        <PO_Description/>
+        <PO_Help/>
+        <PO_Name/>
+        <PO_PrintName/>
+        <EntityType>TOC</EntityType>
+        <AD_Element_Trl type="translation">
+            <Help/>
+            <PO_Description/>
+            <PO_Help/>
+            <Name>% Días Rojos a Incrementar</Name>
+            <Description>Porcentaje de días que deben estar en rojo para que el administrador del amortiguador aumente las existencias máximas</Description>
+            <PrintName>% Días Rojos a Incrementar</PrintName>
+            <PO_Name/>
+            <PO_PrintName/>
+            <AD_Language>es_CO</AD_Language>
+            <IsActive>true</IsActive>
+            <IsTranslated>true</IsTranslated>
+        </AD_Element_Trl>
+    </AD_Element>
+    <AD_Column type="table">
+        <AD_Column_ID>61512</AD_Column_ID>
+        <IsSyncDatabase>Y</IsSyncDatabase>
+        <AD_Table_ID reference="id">209</AD_Table_ID>
+        <AD_Reference_Value_ID reference="id"/>
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <AD_Column_ID>61512</AD_Column_ID>
+        <Version>0</Version>
+        <Name>% Red Days to Increase</Name>
+        <Description>Percent of days that must be in red in order Buffer Management increase the stock maximum</Description>
+        <Help/>
+        <AD_Val_Rule_ID reference="id"/>
+        <ColumnName>TOC_PctRedDaysToIncrease</ColumnName>
+        <DefaultValue/>
+        <FieldLength>10</FieldLength>
+        <IsKey>false</IsKey>
+        <IsParent>false</IsParent>
+        <IsMandatory>false</IsMandatory>
+        <IsTranslated>false</IsTranslated>
+        <IsIdentifier>false</IsIdentifier>
+        <SeqNo>0</SeqNo>
+        <IsEncrypted>N</IsEncrypted>
+        <AD_Reference_ID reference="id">22</AD_Reference_ID>
+        <IsActive>true</IsActive>
+        <VFormat/>
+        <Callout/>
+        <AD_Element_ID reference="id">55177</AD_Element_ID>
+        <IsUpdateable>true</IsUpdateable>
+        <AD_Process_ID reference="id"/>
+        <ValueMin/>
+        <ValueMax/>
+        <IsSelectionColumn>false</IsSelectionColumn>
+        <ReadOnlyLogic/>
+        <EntityType>TOC</EntityType>
+        <IsAlwaysUpdateable>false</IsAlwaysUpdateable>
+        <ColumnSQL/>
+        <MandatoryLogic/>
+        <IsAutocomplete>false</IsAutocomplete>
+        <IsAllowLogging>true</IsAllowLogging>
+        <FormatPattern/>
+        <AD_Chart_ID reference="id"/>
+        <IsAllowCopy>true</IsAllowCopy>
+        <SeqNoSelection/>
+        <IsToolbarButton>Y</IsToolbarButton>
+        <IsSecure>false</IsSecure>
+        <FKConstraintName/>
+        <FKConstraintType>N</FKConstraintType>
+    </AD_Column>
+    <AD_Element type="table">
+        <AD_Element_ID>55178</AD_Element_ID>
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <AD_Element_ID>55178</AD_Element_ID>
+        <IsActive>true</IsActive>
+        <ColumnName>TOC_PctGreenDaysToDecrease</ColumnName>
+        <Name>% Green Days to Decrease</Name>
+        <Description>Percent of days that must be in green in order Buffer Management decrease the stock maximum</Description>
+        <Help/>
+        <PrintName>% Green Days to Decrease</PrintName>
+        <PO_Description/>
+        <PO_Help/>
+        <PO_Name/>
+        <PO_PrintName/>
+        <EntityType>TOC</EntityType>
+        <AD_Element_Trl type="translation">
+            <Help/>
+            <PO_Description/>
+            <PO_Help/>
+            <Name>% Días Verdes a Disminuir</Name>
+            <Description>Porcentaje de días que deben estar en verde para que el administrador del amortiguador disminuya las existencias máximas</Description>
+            <PrintName>% Días Verdes a Disminuir</PrintName>
+            <PO_Name/>
+            <PO_PrintName/>
+            <AD_Language>es_CO</AD_Language>
+            <IsActive>true</IsActive>
+            <IsTranslated>true</IsTranslated>
+        </AD_Element_Trl>
+    </AD_Element>
+    <AD_Column type="table">
+        <AD_Column_ID>61513</AD_Column_ID>
+        <IsSyncDatabase>Y</IsSyncDatabase>
+        <AD_Table_ID reference="id">209</AD_Table_ID>
+        <AD_Reference_Value_ID reference="id"/>
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <AD_Column_ID>61513</AD_Column_ID>
+        <Version>0</Version>
+        <Name>% Green Days to Decrease</Name>
+        <Description>Percent of days that must be in green in order Buffer Management decrease the stock maximum</Description>
+        <Help/>
+        <AD_Val_Rule_ID reference="id"/>
+        <ColumnName>TOC_PctGreenDaysToDecrease</ColumnName>
+        <DefaultValue/>
+        <FieldLength>10</FieldLength>
+        <IsKey>false</IsKey>
+        <IsParent>false</IsParent>
+        <IsMandatory>false</IsMandatory>
+        <IsTranslated>false</IsTranslated>
+        <IsIdentifier>false</IsIdentifier>
+        <SeqNo>0</SeqNo>
+        <IsEncrypted>N</IsEncrypted>
+        <AD_Reference_ID reference="id">22</AD_Reference_ID>
+        <IsActive>true</IsActive>
+        <VFormat/>
+        <Callout/>
+        <AD_Element_ID reference="id">55178</AD_Element_ID>
+        <IsUpdateable>true</IsUpdateable>
+        <AD_Process_ID reference="id"/>
+        <ValueMin/>
+        <ValueMax/>
+        <IsSelectionColumn>false</IsSelectionColumn>
+        <ReadOnlyLogic/>
+        <EntityType>TOC</EntityType>
+        <IsAlwaysUpdateable>false</IsAlwaysUpdateable>
+        <ColumnSQL/>
+        <MandatoryLogic/>
+        <IsAutocomplete>false</IsAutocomplete>
+        <IsAllowLogging>true</IsAllowLogging>
+        <FormatPattern/>
+        <AD_Chart_ID reference="id"/>
+        <IsAllowCopy>true</IsAllowCopy>
+        <SeqNoSelection/>
+        <IsToolbarButton>Y</IsToolbarButton>
+        <IsSecure>false</IsSecure>
+        <FKConstraintName/>
+        <FKConstraintType>N</FKConstraintType>
+    </AD_Column>
+    <AD_Element type="table">
+        <AD_Element_ID>55179</AD_Element_ID>
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <AD_Element_ID>55179</AD_Element_ID>
+        <IsActive>true</IsActive>
+        <ColumnName>TOC_PctToDecrease</ColumnName>
+        <Name>% to Decrease</Name>
+        <Description>Percent to decrease the stock maximum by Buffer Management</Description>
+        <Help/>
+        <PrintName>% to Decrease</PrintName>
+        <PO_Description/>
+        <PO_Help/>
+        <PO_Name/>
+        <PO_PrintName/>
+        <EntityType>TOC</EntityType>
+        <AD_Element_Trl type="translation">
+            <Help/>
+            <PO_Description/>
+            <PO_Help/>
+            <Name>% De Decremento</Name>
+            <Description>Porcentaje a disminuir las existencias máximas por el administrador del amortiguador</Description>
+            <PrintName>% De Decremento</PrintName>
+            <PO_Name/>
+            <PO_PrintName/>
+            <AD_Language>es_CO</AD_Language>
+            <IsActive>true</IsActive>
+            <IsTranslated>true</IsTranslated>
+        </AD_Element_Trl>
+    </AD_Element>
+    <AD_Column type="table">
+        <AD_Column_ID>61514</AD_Column_ID>
+        <IsSyncDatabase>Y</IsSyncDatabase>
+        <AD_Table_ID reference="id">209</AD_Table_ID>
+        <AD_Reference_Value_ID reference="id"/>
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <AD_Column_ID>61514</AD_Column_ID>
+        <Version>0</Version>
+        <Name>% to Decrease</Name>
+        <Description>Percent to decrease the stock maximum by Buffer Management</Description>
+        <Help/>
+        <AD_Val_Rule_ID reference="id"/>
+        <ColumnName>TOC_PctToDecrease</ColumnName>
+        <DefaultValue/>
+        <FieldLength>10</FieldLength>
+        <IsKey>false</IsKey>
+        <IsParent>false</IsParent>
+        <IsMandatory>false</IsMandatory>
+        <IsTranslated>false</IsTranslated>
+        <IsIdentifier>false</IsIdentifier>
+        <SeqNo>0</SeqNo>
+        <IsEncrypted>N</IsEncrypted>
+        <AD_Reference_ID reference="id">22</AD_Reference_ID>
+        <IsActive>true</IsActive>
+        <VFormat/>
+        <Callout/>
+        <AD_Element_ID reference="id">55179</AD_Element_ID>
+        <IsUpdateable>true</IsUpdateable>
+        <AD_Process_ID reference="id"/>
+        <ValueMin/>
+        <ValueMax/>
+        <IsSelectionColumn>false</IsSelectionColumn>
+        <ReadOnlyLogic/>
+        <EntityType>TOC</EntityType>
+        <IsAlwaysUpdateable>false</IsAlwaysUpdateable>
+        <ColumnSQL/>
+        <MandatoryLogic/>
+        <IsAutocomplete>false</IsAutocomplete>
+        <IsAllowLogging>true</IsAllowLogging>
+        <FormatPattern/>
+        <AD_Chart_ID reference="id"/>
+        <IsAllowCopy>true</IsAllowCopy>
+        <SeqNoSelection/>
+        <IsToolbarButton>Y</IsToolbarButton>
+        <IsSecure>false</IsSecure>
+        <FKConstraintName/>
+        <FKConstraintType>N</FKConstraintType>
+    </AD_Column>
+    <AD_Element type="table">
+        <AD_Element_ID>55180</AD_Element_ID>
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <AD_Element_ID>55180</AD_Element_ID>
+        <IsActive>true</IsActive>
+        <ColumnName>TOC_PctToIncrease</ColumnName>
+        <Name>% to Increase</Name>
+        <Description>Percent to increase the stock maximum by Buffer Management</Description>
+        <Help/>
+        <PrintName>% to Increase</PrintName>
+        <PO_Description/>
+        <PO_Help/>
+        <PO_Name/>
+        <PO_PrintName/>
+        <EntityType>TOC</EntityType>
+        <AD_Element_Trl type="translation">
+            <Help/>
+            <PO_Description/>
+            <PO_Help/>
+            <Name>% A Incrementar</Name>
+            <Description>Porcentaje a incrementar las existencias máximas del administrador del amortiguador</Description>
+            <PrintName>% A Incrementar</PrintName>
+            <PO_Name/>
+            <PO_PrintName/>
+            <AD_Language>es_CO</AD_Language>
+            <IsActive>true</IsActive>
+            <IsTranslated>true</IsTranslated>
+        </AD_Element_Trl>
+    </AD_Element>
+    <AD_Column type="table">
+        <AD_Column_ID>61515</AD_Column_ID>
+        <IsSyncDatabase>Y</IsSyncDatabase>
+        <AD_Table_ID reference="id">209</AD_Table_ID>
+        <AD_Reference_Value_ID reference="id"/>
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <AD_Column_ID>61515</AD_Column_ID>
+        <Version>0</Version>
+        <Name>% to Increase</Name>
+        <Description>Percent to increase the stock maximum by Buffer Management</Description>
+        <Help/>
+        <AD_Val_Rule_ID reference="id"/>
+        <ColumnName>TOC_PctToIncrease</ColumnName>
+        <DefaultValue/>
+        <FieldLength>10</FieldLength>
+        <IsKey>false</IsKey>
+        <IsParent>false</IsParent>
+        <IsMandatory>false</IsMandatory>
+        <IsTranslated>false</IsTranslated>
+        <IsIdentifier>false</IsIdentifier>
+        <SeqNo>0</SeqNo>
+        <IsEncrypted>N</IsEncrypted>
+        <AD_Reference_ID reference="id">22</AD_Reference_ID>
+        <IsActive>true</IsActive>
+        <VFormat/>
+        <Callout/>
+        <AD_Element_ID reference="id">55180</AD_Element_ID>
+        <IsUpdateable>true</IsUpdateable>
+        <AD_Process_ID reference="id"/>
+        <ValueMin/>
+        <ValueMax/>
+        <IsSelectionColumn>false</IsSelectionColumn>
+        <ReadOnlyLogic/>
+        <EntityType>TOC</EntityType>
+        <IsAlwaysUpdateable>false</IsAlwaysUpdateable>
+        <ColumnSQL/>
+        <MandatoryLogic/>
+        <IsAutocomplete>false</IsAutocomplete>
+        <IsAllowLogging>true</IsAllowLogging>
+        <FormatPattern/>
+        <AD_Chart_ID reference="id"/>
+        <IsAllowCopy>true</IsAllowCopy>
+        <SeqNoSelection/>
+        <IsToolbarButton>Y</IsToolbarButton>
+        <IsSecure>false</IsSecure>
+        <FKConstraintName/>
+        <FKConstraintType>N</FKConstraintType>
+    </AD_Column>
+    <AD_FieldGroup type="table">
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <IsActive>true</IsActive>
+        <Name>TOC Buffer Management</Name>
+        <EntityType>TOC</EntityType>
+        <FieldGroupType>C</FieldGroupType>
+        <IsCollapsedByDefault>false</IsCollapsedByDefault>
+        <AD_FieldGroup_UU>46cb744d-fb09-4ae8-b818-b6daf9221b58</AD_FieldGroup_UU>
+        <AD_FieldGroup_Trl type="translation">
+            <Name>TOC Buffer Management</Name>
+            <AD_Language>es_CO</AD_Language>
+            <IsActive>true</IsActive>
+            <IsTranslated>false</IsTranslated>
+        </AD_FieldGroup_Trl>
+    </AD_FieldGroup>
+    <AD_Field type="table">
+        <AD_Field_ID>61704</AD_Field_ID>
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <AD_Field_ID>61704</AD_Field_ID>
+        <Name>Frequency Adjustment</Name>
+        <Description>Number of days where buffer management adjust the stock maximum</Description>
+        <Help/>
+        <AD_Tab_ID reference="id">189</AD_Tab_ID>
+        <AD_Column_ID reference="id">61510</AD_Column_ID>
+        <IsDisplayed>true</IsDisplayed>
+        <DisplayLogic/>
+        <DisplayLength>10</DisplayLength>
+        <SeqNo>131</SeqNo>
+        <SortNo>0</SortNo>
+        <IsSameLine>false</IsSameLine>
+        <IsHeading>false</IsHeading>
+        <IsFieldOnly>false</IsFieldOnly>
+        <IsEncrypted>false</IsEncrypted>
+        <IsActive>true</IsActive>
+        <IsReadOnly>false</IsReadOnly>
+        <IsCentrallyMaintained>true</IsCentrallyMaintained>
+        <AD_FieldGroup_ID reference="uuid" reference-key="AD_FieldGroup">46cb744d-fb09-4ae8-b818-b6daf9221b58</AD_FieldGroup_ID>
+        <EntityType>TOC</EntityType>
+        <ObscureType/>
+        <AD_Reference_ID reference="id"/>
+        <IsMandatory/>
+        <DefaultValue/>
+        <AD_Reference_Value_ID reference="id"/>
+        <AD_Val_Rule_ID reference="id"/>
+        <Included_Tab_ID reference="id"/>
+        <IsAllowCopy/>
+        <IsDisplayedGrid>true</IsDisplayedGrid>
+        <SeqNoGrid>131</SeqNoGrid>
+        <XPosition>1</XPosition>
+        <ColumnSpan>1</ColumnSpan>
+        <NumLines>1</NumLines>
+        <IsQuickEntry>false</IsQuickEntry>
+        <IsUpdateable/>
+        <IsAlwaysUpdateable/>
+        <MandatoryLogic/>
+        <ReadOnlyLogic/>
+        <IsToolbarButton/>
+        <IsDefaultFocus>false</IsDefaultFocus>
+        <IsAdvancedField>false</IsAdvancedField>
+        <AD_Field_Trl type="translation">
+            <Help/>
+            <Description>Número de días donde el administrador del amortiguador ajusta las existencias máximas</Description>
+            <Name>Frecuencia de Ajuste</Name>
+            <AD_Language>es_CO</AD_Language>
+            <IsActive>true</IsActive>
+            <IsTranslated>true</IsTranslated>
+        </AD_Field_Trl>
+    </AD_Field>
+    <AD_Field type="table">
+        <AD_Field_ID>61705</AD_Field_ID>
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <AD_Field_ID>61705</AD_Field_ID>
+        <Name>Purchase Adjustment</Name>
+        <Description>Number of days where buffer management process suggest a purchase</Description>
+        <Help/>
+        <AD_Tab_ID reference="id">189</AD_Tab_ID>
+        <AD_Column_ID reference="id">61511</AD_Column_ID>
+        <IsDisplayed>true</IsDisplayed>
+        <DisplayLogic/>
+        <DisplayLength>10</DisplayLength>
+        <SeqNo>132</SeqNo>
+        <SortNo>0</SortNo>
+        <IsSameLine>true</IsSameLine>
+        <IsHeading>false</IsHeading>
+        <IsFieldOnly>false</IsFieldOnly>
+        <IsEncrypted>false</IsEncrypted>
+        <IsActive>true</IsActive>
+        <IsReadOnly>false</IsReadOnly>
+        <IsCentrallyMaintained>true</IsCentrallyMaintained>
+        <AD_FieldGroup_ID reference="uuid" reference-key="AD_FieldGroup">46cb744d-fb09-4ae8-b818-b6daf9221b58</AD_FieldGroup_ID>
+        <EntityType>TOC</EntityType>
+        <ObscureType/>
+        <AD_Reference_ID reference="id"/>
+        <IsMandatory/>
+        <DefaultValue/>
+        <AD_Reference_Value_ID reference="id"/>
+        <AD_Val_Rule_ID reference="id"/>
+        <Included_Tab_ID reference="id"/>
+        <IsAllowCopy/>
+        <IsDisplayedGrid>true</IsDisplayedGrid>
+        <SeqNoGrid>132</SeqNoGrid>
+        <XPosition>3</XPosition>
+        <ColumnSpan>1</ColumnSpan>
+        <NumLines>1</NumLines>
+        <IsQuickEntry>false</IsQuickEntry>
+        <IsUpdateable/>
+        <IsAlwaysUpdateable/>
+        <MandatoryLogic/>
+        <ReadOnlyLogic/>
+        <IsToolbarButton/>
+        <IsDefaultFocus>false</IsDefaultFocus>
+        <IsAdvancedField>false</IsAdvancedField>
+        <AD_Field_Trl type="translation">
+            <Help/>
+            <Description>Número de días donde el administrador del amortiguador sugiere una compra</Description>
+            <Name>Ajuste de Compra</Name>
+            <AD_Language>es_CO</AD_Language>
+            <IsActive>true</IsActive>
+            <IsTranslated>true</IsTranslated>
+        </AD_Field_Trl>
+    </AD_Field>
+    <AD_Field type="table">
+        <AD_Field_ID>61706</AD_Field_ID>
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <AD_Field_ID>61706</AD_Field_ID>
+        <Name>% Red Days to Increase</Name>
+        <Description>Percent of days that must be in red in order Buffer Management increase the stock maximum</Description>
+        <Help/>
+        <AD_Tab_ID reference="id">189</AD_Tab_ID>
+        <AD_Column_ID reference="id">61512</AD_Column_ID>
+        <IsDisplayed>true</IsDisplayed>
+        <DisplayLogic/>
+        <DisplayLength>10</DisplayLength>
+        <SeqNo>133</SeqNo>
+        <SortNo>0</SortNo>
+        <IsSameLine>false</IsSameLine>
+        <IsHeading>false</IsHeading>
+        <IsFieldOnly>false</IsFieldOnly>
+        <IsEncrypted>false</IsEncrypted>
+        <IsActive>true</IsActive>
+        <IsReadOnly>false</IsReadOnly>
+        <IsCentrallyMaintained>true</IsCentrallyMaintained>
+        <AD_FieldGroup_ID reference="uuid" reference-key="AD_FieldGroup">46cb744d-fb09-4ae8-b818-b6daf9221b58</AD_FieldGroup_ID>
+        <EntityType>TOC</EntityType>
+        <ObscureType/>
+        <AD_Reference_ID reference="id"/>
+        <IsMandatory/>
+        <DefaultValue/>
+        <AD_Reference_Value_ID reference="id"/>
+        <AD_Val_Rule_ID reference="id"/>
+        <Included_Tab_ID reference="id"/>
+        <IsAllowCopy/>
+        <IsDisplayedGrid>true</IsDisplayedGrid>
+        <SeqNoGrid>133</SeqNoGrid>
+        <XPosition>1</XPosition>
+        <ColumnSpan>1</ColumnSpan>
+        <NumLines>1</NumLines>
+        <IsQuickEntry>false</IsQuickEntry>
+        <IsUpdateable/>
+        <IsAlwaysUpdateable/>
+        <MandatoryLogic/>
+        <ReadOnlyLogic/>
+        <IsToolbarButton/>
+        <IsDefaultFocus>false</IsDefaultFocus>
+        <IsAdvancedField>false</IsAdvancedField>
+        <AD_Field_Trl type="translation">
+            <Help/>
+            <Description>Porcentaje de días que deben estar en rojo para que el administrador del amortiguador aumente las existencias máximas</Description>
+            <Name>% Días Rojos a Incrementar</Name>
+            <AD_Language>es_CO</AD_Language>
+            <IsActive>true</IsActive>
+            <IsTranslated>true</IsTranslated>
+        </AD_Field_Trl>
+    </AD_Field>
+    <AD_Field type="table">
+        <AD_Field_ID>61707</AD_Field_ID>
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <AD_Field_ID>61707</AD_Field_ID>
+        <Name>% to Increase</Name>
+        <Description>Percent to increase the stock maximum by Buffer Management</Description>
+        <Help/>
+        <AD_Tab_ID reference="id">189</AD_Tab_ID>
+        <AD_Column_ID reference="id">61515</AD_Column_ID>
+        <IsDisplayed>true</IsDisplayed>
+        <DisplayLogic/>
+        <DisplayLength>10</DisplayLength>
+        <SeqNo>134</SeqNo>
+        <SortNo>0</SortNo>
+        <IsSameLine>true</IsSameLine>
+        <IsHeading>false</IsHeading>
+        <IsFieldOnly>false</IsFieldOnly>
+        <IsEncrypted>false</IsEncrypted>
+        <IsActive>true</IsActive>
+        <IsReadOnly>false</IsReadOnly>
+        <IsCentrallyMaintained>true</IsCentrallyMaintained>
+        <AD_FieldGroup_ID reference="uuid" reference-key="AD_FieldGroup">46cb744d-fb09-4ae8-b818-b6daf9221b58</AD_FieldGroup_ID>
+        <EntityType>TOC</EntityType>
+        <ObscureType/>
+        <AD_Reference_ID reference="id"/>
+        <IsMandatory/>
+        <DefaultValue/>
+        <AD_Reference_Value_ID reference="id"/>
+        <AD_Val_Rule_ID reference="id"/>
+        <Included_Tab_ID reference="id"/>
+        <IsAllowCopy/>
+        <IsDisplayedGrid>true</IsDisplayedGrid>
+        <SeqNoGrid>134</SeqNoGrid>
+        <XPosition>3</XPosition>
+        <ColumnSpan>1</ColumnSpan>
+        <NumLines>1</NumLines>
+        <IsQuickEntry>false</IsQuickEntry>
+        <IsUpdateable/>
+        <IsAlwaysUpdateable/>
+        <MandatoryLogic/>
+        <ReadOnlyLogic/>
+        <IsToolbarButton/>
+        <IsDefaultFocus>false</IsDefaultFocus>
+        <IsAdvancedField>false</IsAdvancedField>
+        <AD_Field_Trl type="translation">
+            <Help/>
+            <Description>Porcentaje a incrementar las existencias máximas del administrador del amortiguador</Description>
+            <Name>% A Incrementar</Name>
+            <AD_Language>es_CO</AD_Language>
+            <IsActive>true</IsActive>
+            <IsTranslated>true</IsTranslated>
+        </AD_Field_Trl>
+    </AD_Field>
+    <AD_Field type="table">
+        <AD_Field_ID>61708</AD_Field_ID>
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <AD_Field_ID>61708</AD_Field_ID>
+        <Name>% Green Days to Decrease</Name>
+        <Description>Percent of days that must be in green in order Buffer Management decrease the stock maximum</Description>
+        <Help/>
+        <AD_Tab_ID reference="id">189</AD_Tab_ID>
+        <AD_Column_ID reference="id">61513</AD_Column_ID>
+        <IsDisplayed>true</IsDisplayed>
+        <DisplayLogic/>
+        <DisplayLength>10</DisplayLength>
+        <SeqNo>135</SeqNo>
+        <SortNo>0</SortNo>
+        <IsSameLine>false</IsSameLine>
+        <IsHeading>false</IsHeading>
+        <IsFieldOnly>false</IsFieldOnly>
+        <IsEncrypted>false</IsEncrypted>
+        <IsActive>true</IsActive>
+        <IsReadOnly>false</IsReadOnly>
+        <IsCentrallyMaintained>true</IsCentrallyMaintained>
+        <AD_FieldGroup_ID reference="uuid" reference-key="AD_FieldGroup">46cb744d-fb09-4ae8-b818-b6daf9221b58</AD_FieldGroup_ID>
+        <EntityType>TOC</EntityType>
+        <ObscureType/>
+        <AD_Reference_ID reference="id"/>
+        <IsMandatory/>
+        <DefaultValue/>
+        <AD_Reference_Value_ID reference="id"/>
+        <AD_Val_Rule_ID reference="id"/>
+        <Included_Tab_ID reference="id"/>
+        <IsAllowCopy/>
+        <IsDisplayedGrid>true</IsDisplayedGrid>
+        <SeqNoGrid>135</SeqNoGrid>
+        <XPosition>1</XPosition>
+        <ColumnSpan>1</ColumnSpan>
+        <NumLines>1</NumLines>
+        <IsQuickEntry>false</IsQuickEntry>
+        <IsUpdateable/>
+        <IsAlwaysUpdateable/>
+        <MandatoryLogic/>
+        <ReadOnlyLogic/>
+        <IsToolbarButton/>
+        <IsDefaultFocus>false</IsDefaultFocus>
+        <IsAdvancedField>false</IsAdvancedField>
+        <AD_Field_Trl type="translation">
+            <Help/>
+            <Description>Porcentaje de días que deben estar en verde para que el administrador del amortiguador disminuya las existencias máximas</Description>
+            <Name>% Días Verdes a Disminuir</Name>
+            <AD_Language>es_CO</AD_Language>
+            <IsActive>true</IsActive>
+            <IsTranslated>true</IsTranslated>
+        </AD_Field_Trl>
+    </AD_Field>
+    <AD_Field type="table">
+        <AD_Field_ID>61709</AD_Field_ID>
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <AD_Field_ID>61709</AD_Field_ID>
+        <Name>% to Decrease</Name>
+        <Description>Percent to decrease the stock maximum by Buffer Management</Description>
+        <Help/>
+        <AD_Tab_ID reference="id">189</AD_Tab_ID>
+        <AD_Column_ID reference="id">61514</AD_Column_ID>
+        <IsDisplayed>true</IsDisplayed>
+        <DisplayLogic/>
+        <DisplayLength>10</DisplayLength>
+        <SeqNo>136</SeqNo>
+        <SortNo>0</SortNo>
+        <IsSameLine>true</IsSameLine>
+        <IsHeading>false</IsHeading>
+        <IsFieldOnly>false</IsFieldOnly>
+        <IsEncrypted>false</IsEncrypted>
+        <IsActive>true</IsActive>
+        <IsReadOnly>false</IsReadOnly>
+        <IsCentrallyMaintained>true</IsCentrallyMaintained>
+        <AD_FieldGroup_ID reference="uuid" reference-key="AD_FieldGroup">46cb744d-fb09-4ae8-b818-b6daf9221b58</AD_FieldGroup_ID>
+        <EntityType>TOC</EntityType>
+        <ObscureType/>
+        <AD_Reference_ID reference="id"/>
+        <IsMandatory/>
+        <DefaultValue/>
+        <AD_Reference_Value_ID reference="id"/>
+        <AD_Val_Rule_ID reference="id"/>
+        <Included_Tab_ID reference="id"/>
+        <IsAllowCopy/>
+        <IsDisplayedGrid>true</IsDisplayedGrid>
+        <SeqNoGrid>136</SeqNoGrid>
+        <XPosition>3</XPosition>
+        <ColumnSpan>1</ColumnSpan>
+        <NumLines>1</NumLines>
+        <IsQuickEntry>false</IsQuickEntry>
+        <IsUpdateable/>
+        <IsAlwaysUpdateable/>
+        <MandatoryLogic/>
+        <ReadOnlyLogic/>
+        <IsToolbarButton/>
+        <IsDefaultFocus>false</IsDefaultFocus>
+        <IsAdvancedField>false</IsAdvancedField>
+        <AD_Field_Trl type="translation">
+            <Help/>
+            <Description>Porcentaje a disminuir las existencias máximas por el administrador del amortiguador</Description>
+            <Name>% De Decremento</Name>
+            <AD_Language>es_CO</AD_Language>
+            <IsActive>true</IsActive>
+            <IsTranslated>true</IsTranslated>
+        </AD_Field_Trl>
+    </AD_Field>
+    <AD_Table type="table">
+        <AD_Table_ID>53301</AD_Table_ID>
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <AD_Table_ID>53301</AD_Table_ID>
+        <Name>Replenishment History</Name>
+        <Description/>
+        <Help/>
+        <AD_Window_ID reference="id">139</AD_Window_ID>
+        <AD_Val_Rule_ID reference="id"/>
+        <TableName>TOC_Replenish_History</TableName>
+        <LoadSeq>0</LoadSeq>
+        <AccessLevel>3</AccessLevel>
+        <IsActive>true</IsActive>
+        <IsSecurityEnabled>false</IsSecurityEnabled>
+        <IsDeleteable>true</IsDeleteable>
+        <IsHighVolume>true</IsHighVolume>
+        <IsView>false</IsView>
+        <EntityType>TOC</EntityType>
+        <ImportTable>N</ImportTable>
+        <IsChangeLog>false</IsChangeLog>
+        <ReplicationType>L</ReplicationType>
+        <PO_Window_ID reference="id"/>
+        <CopyColumnsFromTable>N</CopyColumnsFromTable>
+        <IsCentrallyMaintained>true</IsCentrallyMaintained>
+        <Processing/>
+        <DatabaseViewDrop/>
+        <AD_Element type="table">
+            <AD_Element_ID>54417</AD_Element_ID>
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <AD_Element_ID>54417</AD_Element_ID>
+            <IsActive>true</IsActive>
+            <ColumnName>TOC_Replenish_History_ID</ColumnName>
+            <Name>Replenishment History</Name>
+            <Description/>
+            <Help/>
+            <PrintName>Replenishment History</PrintName>
+            <PO_Description/>
+            <PO_Help/>
+            <PO_Name/>
+            <PO_PrintName/>
+            <EntityType>TOC</EntityType>
+            <AD_Element_Trl type="translation">
+                <Help/>
+                <PO_Description/>
+                <PO_Help/>
+                <Name>Replenishment History</Name>
+                <Description/>
+                <PrintName>Replenishment History</PrintName>
+                <PO_Name/>
+                <PO_PrintName/>
+                <AD_Language>es_CO</AD_Language>
+                <IsActive>true</IsActive>
+                <IsTranslated>false</IsTranslated>
+            </AD_Element_Trl>
+        </AD_Element>
+        <AD_Column type="table">
+            <AD_Column_ID>60280</AD_Column_ID>
+            <IsSyncDatabase>Y</IsSyncDatabase>
+            <AD_Table_ID reference="id">53301</AD_Table_ID>
+            <AD_Reference_Value_ID reference="id"/>
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <AD_Column_ID>60280</AD_Column_ID>
+            <Version>0</Version>
+            <Name>Replenishment History</Name>
+            <Description/>
+            <Help/>
+            <AD_Val_Rule_ID reference="id"/>
+            <ColumnName>TOC_Replenish_History_ID</ColumnName>
+            <DefaultValue/>
+            <FieldLength>10</FieldLength>
+            <IsKey>true</IsKey>
+            <IsParent>false</IsParent>
+            <IsMandatory>true</IsMandatory>
+            <IsTranslated>false</IsTranslated>
+            <IsIdentifier>false</IsIdentifier>
+            <SeqNo>0</SeqNo>
+            <IsEncrypted>N</IsEncrypted>
+            <AD_Reference_ID reference="id">13</AD_Reference_ID>
+            <IsActive>true</IsActive>
+            <VFormat/>
+            <Callout/>
+            <AD_Element_ID reference="id">54417</AD_Element_ID>
+            <IsUpdateable>false</IsUpdateable>
+            <AD_Process_ID reference="id"/>
+            <ValueMin/>
+            <ValueMax/>
+            <IsSelectionColumn>false</IsSelectionColumn>
+            <ReadOnlyLogic/>
+            <EntityType>TOC</EntityType>
+            <IsAlwaysUpdateable>false</IsAlwaysUpdateable>
+            <ColumnSQL/>
+            <MandatoryLogic/>
+            <IsAutocomplete>false</IsAutocomplete>
+            <IsAllowLogging>true</IsAllowLogging>
+            <FormatPattern/>
+            <AD_Chart_ID reference="id"/>
+            <IsAllowCopy>true</IsAllowCopy>
+            <SeqNoSelection/>
+            <IsToolbarButton>Y</IsToolbarButton>
+            <IsSecure>false</IsSecure>
+            <FKConstraintName/>
+            <FKConstraintType>N</FKConstraintType>
+        </AD_Column>
+        <AD_Column type="table">
+            <AD_Column_ID>60266</AD_Column_ID>
+            <IsSyncDatabase>Y</IsSyncDatabase>
+            <AD_Table_ID reference="id">53301</AD_Table_ID>
+            <AD_Reference_Value_ID reference="id"/>
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <AD_Column_ID>60266</AD_Column_ID>
+            <Version>0</Version>
+            <Name>Client</Name>
+            <Description>Client/Tenant for this installation.</Description>
+            <Help>A Client is a company or a legal entity. You cannot share data between Clients. Tenant is a synonym for Client.</Help>
+            <AD_Val_Rule_ID reference="id"/>
+            <ColumnName>AD_Client_ID</ColumnName>
+            <DefaultValue>@AD_Client_ID@</DefaultValue>
+            <FieldLength>22</FieldLength>
+            <IsKey>false</IsKey>
+            <IsParent>false</IsParent>
+            <IsMandatory>true</IsMandatory>
+            <IsTranslated>false</IsTranslated>
+            <IsIdentifier>false</IsIdentifier>
+            <SeqNo>0</SeqNo>
+            <IsEncrypted>N</IsEncrypted>
+            <AD_Reference_ID reference="id">19</AD_Reference_ID>
+            <IsActive>true</IsActive>
+            <VFormat/>
+            <Callout/>
+            <AD_Element_ID reference="id">102</AD_Element_ID>
+            <IsUpdateable>false</IsUpdateable>
+            <AD_Process_ID reference="id"/>
+            <ValueMin/>
+            <ValueMax/>
+            <IsSelectionColumn>false</IsSelectionColumn>
+            <ReadOnlyLogic/>
+            <EntityType>TOC</EntityType>
+            <IsAlwaysUpdateable>false</IsAlwaysUpdateable>
+            <ColumnSQL/>
+            <MandatoryLogic/>
+            <IsAutocomplete>false</IsAutocomplete>
+            <IsAllowLogging>true</IsAllowLogging>
+            <FormatPattern/>
+            <AD_Chart_ID reference="id"/>
+            <IsAllowCopy>false</IsAllowCopy>
+            <SeqNoSelection/>
+            <IsToolbarButton>N</IsToolbarButton>
+            <IsSecure>false</IsSecure>
+            <FKConstraintName>ADClient_TOCReplenishHistory</FKConstraintName>
+            <FKConstraintType>N</FKConstraintType>
+        </AD_Column>
+        <AD_Column type="table">
+            <AD_Column_ID>60267</AD_Column_ID>
+            <IsSyncDatabase>Y</IsSyncDatabase>
+            <AD_Table_ID reference="id">53301</AD_Table_ID>
+            <AD_Reference_Value_ID reference="id"/>
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <AD_Column_ID>60267</AD_Column_ID>
+            <Version>0</Version>
+            <Name>Organization</Name>
+            <Description>Organizational entity within client</Description>
+            <Help>An organization is a unit of your client or legal entity - examples are store, department. You can share data between organizations.</Help>
+            <AD_Val_Rule_ID reference="id">104</AD_Val_Rule_ID>
+            <ColumnName>AD_Org_ID</ColumnName>
+            <DefaultValue>@AD_Org_ID@</DefaultValue>
+            <FieldLength>22</FieldLength>
+            <IsKey>false</IsKey>
+            <IsParent>false</IsParent>
+            <IsMandatory>true</IsMandatory>
+            <IsTranslated>false</IsTranslated>
+            <IsIdentifier>false</IsIdentifier>
+            <SeqNo>0</SeqNo>
+            <IsEncrypted>N</IsEncrypted>
+            <AD_Reference_ID reference="id">19</AD_Reference_ID>
+            <IsActive>true</IsActive>
+            <VFormat/>
+            <Callout/>
+            <AD_Element_ID reference="id">113</AD_Element_ID>
+            <IsUpdateable>false</IsUpdateable>
+            <AD_Process_ID reference="id"/>
+            <ValueMin/>
+            <ValueMax/>
+            <IsSelectionColumn>false</IsSelectionColumn>
+            <ReadOnlyLogic/>
+            <EntityType>TOC</EntityType>
+            <IsAlwaysUpdateable>false</IsAlwaysUpdateable>
+            <ColumnSQL/>
+            <MandatoryLogic/>
+            <IsAutocomplete>false</IsAutocomplete>
+            <IsAllowLogging>true</IsAllowLogging>
+            <FormatPattern/>
+            <AD_Chart_ID reference="id"/>
+            <IsAllowCopy>false</IsAllowCopy>
+            <SeqNoSelection/>
+            <IsToolbarButton>N</IsToolbarButton>
+            <IsSecure>false</IsSecure>
+            <FKConstraintName>ADOrg_TOCReplenishHistory</FKConstraintName>
+            <FKConstraintType>N</FKConstraintType>
+        </AD_Column>
+        <AD_Column type="table">
+            <AD_Column_ID>60268</AD_Column_ID>
+            <IsSyncDatabase>Y</IsSyncDatabase>
+            <AD_Table_ID reference="id">53301</AD_Table_ID>
+            <AD_Reference_Value_ID reference="id"/>
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <AD_Column_ID>60268</AD_Column_ID>
+            <Version>0</Version>
+            <Name>Created</Name>
+            <Description>Date this record was created</Description>
+            <Help>The Created field indicates the date that this record was created.</Help>
+            <AD_Val_Rule_ID reference="id"/>
+            <ColumnName>Created</ColumnName>
+            <DefaultValue/>
+            <FieldLength>7</FieldLength>
+            <IsKey>false</IsKey>
+            <IsParent>false</IsParent>
+            <IsMandatory>true</IsMandatory>
+            <IsTranslated>false</IsTranslated>
+            <IsIdentifier>false</IsIdentifier>
+            <SeqNo>0</SeqNo>
+            <IsEncrypted>N</IsEncrypted>
+            <AD_Reference_ID reference="id">16</AD_Reference_ID>
+            <IsActive>true</IsActive>
+            <VFormat/>
+            <Callout/>
+            <AD_Element_ID reference="id">245</AD_Element_ID>
+            <IsUpdateable>false</IsUpdateable>
+            <AD_Process_ID reference="id"/>
+            <ValueMin/>
+            <ValueMax/>
+            <IsSelectionColumn>false</IsSelectionColumn>
+            <ReadOnlyLogic/>
+            <EntityType>TOC</EntityType>
+            <IsAlwaysUpdateable>false</IsAlwaysUpdateable>
+            <ColumnSQL/>
+            <MandatoryLogic/>
+            <IsAutocomplete>false</IsAutocomplete>
+            <IsAllowLogging>true</IsAllowLogging>
+            <FormatPattern/>
+            <AD_Chart_ID reference="id"/>
+            <IsAllowCopy>true</IsAllowCopy>
+            <SeqNoSelection/>
+            <IsToolbarButton>Y</IsToolbarButton>
+            <IsSecure>false</IsSecure>
+            <FKConstraintName/>
+            <FKConstraintType>N</FKConstraintType>
+        </AD_Column>
+        <AD_Column type="table">
+            <AD_Column_ID>60269</AD_Column_ID>
+            <IsSyncDatabase>Y</IsSyncDatabase>
+            <AD_Table_ID reference="id">53301</AD_Table_ID>
+            <AD_Reference_Value_ID reference="id">110</AD_Reference_Value_ID>
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <AD_Column_ID>60269</AD_Column_ID>
+            <Version>0</Version>
+            <Name>Created By</Name>
+            <Description>User who created this records</Description>
+            <Help>The Created By field indicates the user who created this record.</Help>
+            <AD_Val_Rule_ID reference="id"/>
+            <ColumnName>CreatedBy</ColumnName>
+            <DefaultValue/>
+            <FieldLength>22</FieldLength>
+            <IsKey>false</IsKey>
+            <IsParent>false</IsParent>
+            <IsMandatory>true</IsMandatory>
+            <IsTranslated>false</IsTranslated>
+            <IsIdentifier>false</IsIdentifier>
+            <SeqNo>0</SeqNo>
+            <IsEncrypted>N</IsEncrypted>
+            <AD_Reference_ID reference="id">18</AD_Reference_ID>
+            <IsActive>true</IsActive>
+            <VFormat/>
+            <Callout/>
+            <AD_Element_ID reference="id">246</AD_Element_ID>
+            <IsUpdateable>false</IsUpdateable>
+            <AD_Process_ID reference="id"/>
+            <ValueMin/>
+            <ValueMax/>
+            <IsSelectionColumn>false</IsSelectionColumn>
+            <ReadOnlyLogic/>
+            <EntityType>TOC</EntityType>
+            <IsAlwaysUpdateable>false</IsAlwaysUpdateable>
+            <ColumnSQL/>
+            <MandatoryLogic/>
+            <IsAutocomplete>false</IsAutocomplete>
+            <IsAllowLogging>true</IsAllowLogging>
+            <FormatPattern/>
+            <AD_Chart_ID reference="id"/>
+            <IsAllowCopy>false</IsAllowCopy>
+            <SeqNoSelection/>
+            <IsToolbarButton>N</IsToolbarButton>
+            <IsSecure>false</IsSecure>
+            <FKConstraintName>CreatedBy_TOCReplenishHistory</FKConstraintName>
+            <FKConstraintType>N</FKConstraintType>
+        </AD_Column>
+        <AD_Column type="table">
+            <AD_Column_ID>60270</AD_Column_ID>
+            <IsSyncDatabase>Y</IsSyncDatabase>
+            <AD_Table_ID reference="id">53301</AD_Table_ID>
+            <AD_Reference_Value_ID reference="id"/>
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <AD_Column_ID>60270</AD_Column_ID>
+            <Version>0</Version>
+            <Name>Active</Name>
+            <Description>The record is active in the system</Description>
+            <Help>There are two methods of making records unavailable in the system: One is to delete the record, the other is to de-activate the record. A de-activated record is not available for selection, but available for reports.
+There are two reasons for de-activating and not deleting records:
+(1) The system requires the record for audit purposes.
+(2) The record is referenced by other records. E.g., you cannot delete a Business Partner, if there are invoices for this partner record existing. You de-activate the Business Partner and prevent that this record is used for future entries.</Help>
+            <AD_Val_Rule_ID reference="id"/>
+            <ColumnName>IsActive</ColumnName>
+            <DefaultValue>Y</DefaultValue>
+            <FieldLength>1</FieldLength>
+            <IsKey>false</IsKey>
+            <IsParent>false</IsParent>
+            <IsMandatory>true</IsMandatory>
+            <IsTranslated>false</IsTranslated>
+            <IsIdentifier>false</IsIdentifier>
+            <SeqNo>0</SeqNo>
+            <IsEncrypted>N</IsEncrypted>
+            <AD_Reference_ID reference="id">20</AD_Reference_ID>
+            <IsActive>true</IsActive>
+            <VFormat/>
+            <Callout/>
+            <AD_Element_ID reference="id">348</AD_Element_ID>
+            <IsUpdateable>true</IsUpdateable>
+            <AD_Process_ID reference="id"/>
+            <ValueMin/>
+            <ValueMax/>
+            <IsSelectionColumn>false</IsSelectionColumn>
+            <ReadOnlyLogic/>
+            <EntityType>TOC</EntityType>
+            <IsAlwaysUpdateable>false</IsAlwaysUpdateable>
+            <ColumnSQL/>
+            <MandatoryLogic/>
+            <IsAutocomplete>false</IsAutocomplete>
+            <IsAllowLogging>true</IsAllowLogging>
+            <FormatPattern/>
+            <AD_Chart_ID reference="id"/>
+            <IsAllowCopy>true</IsAllowCopy>
+            <SeqNoSelection/>
+            <IsToolbarButton>Y</IsToolbarButton>
+            <IsSecure>false</IsSecure>
+            <FKConstraintName/>
+            <FKConstraintType>N</FKConstraintType>
+        </AD_Column>
+        <AD_Column type="table">
+            <AD_Column_ID>60271</AD_Column_ID>
+            <IsSyncDatabase>Y</IsSyncDatabase>
+            <AD_Table_ID reference="id">53301</AD_Table_ID>
+            <AD_Reference_Value_ID reference="id"/>
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <AD_Column_ID>60271</AD_Column_ID>
+            <Version>0</Version>
+            <Name>Maximum Level</Name>
+            <Description>Maximum Inventory level for this product</Description>
+            <Help>Indicates the maximum quantity of this product to be stocked in inventory.</Help>
+            <AD_Val_Rule_ID reference="id"/>
+            <ColumnName>Level_Max</ColumnName>
+            <DefaultValue/>
+            <FieldLength>22</FieldLength>
+            <IsKey>false</IsKey>
+            <IsParent>false</IsParent>
+            <IsMandatory>true</IsMandatory>
+            <IsTranslated>false</IsTranslated>
+            <IsIdentifier>false</IsIdentifier>
+            <SeqNo>0</SeqNo>
+            <IsEncrypted>N</IsEncrypted>
+            <AD_Reference_ID reference="id">12</AD_Reference_ID>
+            <IsActive>true</IsActive>
+            <VFormat/>
+            <Callout/>
+            <AD_Element_ID reference="id">434</AD_Element_ID>
+            <IsUpdateable>true</IsUpdateable>
+            <AD_Process_ID reference="id"/>
+            <ValueMin/>
+            <ValueMax/>
+            <IsSelectionColumn>false</IsSelectionColumn>
+            <ReadOnlyLogic/>
+            <EntityType>TOC</EntityType>
+            <IsAlwaysUpdateable>false</IsAlwaysUpdateable>
+            <ColumnSQL/>
+            <MandatoryLogic/>
+            <IsAutocomplete>false</IsAutocomplete>
+            <IsAllowLogging>true</IsAllowLogging>
+            <FormatPattern/>
+            <AD_Chart_ID reference="id"/>
+            <IsAllowCopy>true</IsAllowCopy>
+            <SeqNoSelection/>
+            <IsToolbarButton>Y</IsToolbarButton>
+            <IsSecure>false</IsSecure>
+            <FKConstraintName/>
+            <FKConstraintType>N</FKConstraintType>
+        </AD_Column>
+        <AD_Column type="table">
+            <AD_Column_ID>60272</AD_Column_ID>
+            <IsSyncDatabase>Y</IsSyncDatabase>
+            <AD_Table_ID reference="id">53301</AD_Table_ID>
+            <AD_Reference_Value_ID reference="id"/>
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <AD_Column_ID>60272</AD_Column_ID>
+            <Version>0</Version>
+            <Name>On Hand Quantity</Name>
+            <Description>On Hand Quantity</Description>
+            <Help>The On Hand Quantity indicates the quantity of a product that is on hand in a warehouse.</Help>
+            <AD_Val_Rule_ID reference="id"/>
+            <ColumnName>QtyOnHand</ColumnName>
+            <DefaultValue/>
+            <FieldLength>22</FieldLength>
+            <IsKey>false</IsKey>
+            <IsParent>false</IsParent>
+            <IsMandatory>true</IsMandatory>
+            <IsTranslated>false</IsTranslated>
+            <IsIdentifier>false</IsIdentifier>
+            <SeqNo>0</SeqNo>
+            <IsEncrypted>N</IsEncrypted>
+            <AD_Reference_ID reference="id">29</AD_Reference_ID>
+            <IsActive>true</IsActive>
+            <VFormat/>
+            <Callout/>
+            <AD_Element_ID reference="id">530</AD_Element_ID>
+            <IsUpdateable>true</IsUpdateable>
+            <AD_Process_ID reference="id"/>
+            <ValueMin/>
+            <ValueMax/>
+            <IsSelectionColumn>false</IsSelectionColumn>
+            <ReadOnlyLogic/>
+            <EntityType>TOC</EntityType>
+            <IsAlwaysUpdateable>false</IsAlwaysUpdateable>
+            <ColumnSQL/>
+            <MandatoryLogic/>
+            <IsAutocomplete>false</IsAutocomplete>
+            <IsAllowLogging>true</IsAllowLogging>
+            <FormatPattern/>
+            <AD_Chart_ID reference="id"/>
+            <IsAllowCopy>true</IsAllowCopy>
+            <SeqNoSelection/>
+            <IsToolbarButton>Y</IsToolbarButton>
+            <IsSecure>false</IsSecure>
+            <FKConstraintName/>
+            <FKConstraintType>N</FKConstraintType>
+        </AD_Column>
+        <AD_Column type="table">
+            <AD_Column_ID>60273</AD_Column_ID>
+            <IsSyncDatabase>Y</IsSyncDatabase>
+            <AD_Table_ID reference="id">53301</AD_Table_ID>
+            <AD_Reference_Value_ID reference="id"/>
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <AD_Column_ID>60273</AD_Column_ID>
+            <Version>0</Version>
+            <Name>Reserved Quantity</Name>
+            <Description>Reserved Quantity</Description>
+            <Help>The Reserved Quantity indicates the quantity of a product that is currently reserved.</Help>
+            <AD_Val_Rule_ID reference="id">127</AD_Val_Rule_ID>
+            <ColumnName>QtyReserved</ColumnName>
+            <DefaultValue/>
+            <FieldLength>22</FieldLength>
+            <IsKey>false</IsKey>
+            <IsParent>false</IsParent>
+            <IsMandatory>true</IsMandatory>
+            <IsTranslated>false</IsTranslated>
+            <IsIdentifier>false</IsIdentifier>
+            <SeqNo>0</SeqNo>
+            <IsEncrypted>N</IsEncrypted>
+            <AD_Reference_ID reference="id">29</AD_Reference_ID>
+            <IsActive>true</IsActive>
+            <VFormat/>
+            <Callout/>
+            <AD_Element_ID reference="id">532</AD_Element_ID>
+            <IsUpdateable>true</IsUpdateable>
+            <AD_Process_ID reference="id"/>
+            <ValueMin/>
+            <ValueMax/>
+            <IsSelectionColumn>false</IsSelectionColumn>
+            <ReadOnlyLogic/>
+            <EntityType>TOC</EntityType>
+            <IsAlwaysUpdateable>false</IsAlwaysUpdateable>
+            <ColumnSQL/>
+            <MandatoryLogic/>
+            <IsAutocomplete>false</IsAutocomplete>
+            <IsAllowLogging>true</IsAllowLogging>
+            <FormatPattern/>
+            <AD_Chart_ID reference="id"/>
+            <IsAllowCopy>true</IsAllowCopy>
+            <SeqNoSelection/>
+            <IsToolbarButton>Y</IsToolbarButton>
+            <IsSecure>false</IsSecure>
+            <FKConstraintName/>
+            <FKConstraintType>N</FKConstraintType>
+        </AD_Column>
+        <AD_Column type="table">
+            <AD_Column_ID>60274</AD_Column_ID>
+            <IsSyncDatabase>Y</IsSyncDatabase>
+            <AD_Table_ID reference="id">53301</AD_Table_ID>
+            <AD_Reference_Value_ID reference="id"/>
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <AD_Column_ID>60274</AD_Column_ID>
+            <Version>0</Version>
+            <Name>Product</Name>
+            <Description>Product, Service, Item</Description>
+            <Help>Identifies an item which is either purchased or sold in this organization.</Help>
+            <AD_Val_Rule_ID reference="id">231</AD_Val_Rule_ID>
+            <ColumnName>M_Product_ID</ColumnName>
+            <DefaultValue/>
+            <FieldLength>22</FieldLength>
+            <IsKey>false</IsKey>
+            <IsParent>true</IsParent>
+            <IsMandatory>true</IsMandatory>
+            <IsTranslated>false</IsTranslated>
+            <IsIdentifier>true</IsIdentifier>
+            <SeqNo>2</SeqNo>
+            <IsEncrypted>N</IsEncrypted>
+            <AD_Reference_ID reference="id">30</AD_Reference_ID>
+            <IsActive>true</IsActive>
+            <VFormat/>
+            <Callout/>
+            <AD_Element_ID reference="id">454</AD_Element_ID>
+            <IsUpdateable>false</IsUpdateable>
+            <AD_Process_ID reference="id"/>
+            <ValueMin/>
+            <ValueMax/>
+            <IsSelectionColumn>false</IsSelectionColumn>
+            <ReadOnlyLogic/>
+            <EntityType>TOC</EntityType>
+            <IsAlwaysUpdateable>false</IsAlwaysUpdateable>
+            <ColumnSQL/>
+            <MandatoryLogic/>
+            <IsAutocomplete>false</IsAutocomplete>
+            <IsAllowLogging>true</IsAllowLogging>
+            <FormatPattern/>
+            <AD_Chart_ID reference="id"/>
+            <IsAllowCopy>true</IsAllowCopy>
+            <SeqNoSelection/>
+            <IsToolbarButton>N</IsToolbarButton>
+            <IsSecure>false</IsSecure>
+            <FKConstraintName>MProduct_TOCReplenishHistory</FKConstraintName>
+            <FKConstraintType>N</FKConstraintType>
+        </AD_Column>
+        <AD_Column type="table">
+            <AD_Column_ID>60275</AD_Column_ID>
+            <IsSyncDatabase>Y</IsSyncDatabase>
+            <AD_Table_ID reference="id">53301</AD_Table_ID>
+            <AD_Reference_Value_ID reference="id"/>
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <AD_Column_ID>60275</AD_Column_ID>
+            <Version>0</Version>
+            <Name>Warehouse</Name>
+            <Description>Storage Warehouse and Service Point</Description>
+            <Help>The Warehouse identifies a unique Warehouse where products are stored or Services are provided.</Help>
+            <AD_Val_Rule_ID reference="id"/>
+            <ColumnName>M_Warehouse_ID</ColumnName>
+            <DefaultValue/>
+            <FieldLength>22</FieldLength>
+            <IsKey>false</IsKey>
+            <IsParent>true</IsParent>
+            <IsMandatory>true</IsMandatory>
+            <IsTranslated>false</IsTranslated>
+            <IsIdentifier>true</IsIdentifier>
+            <SeqNo>1</SeqNo>
+            <IsEncrypted>N</IsEncrypted>
+            <AD_Reference_ID reference="id">19</AD_Reference_ID>
+            <IsActive>true</IsActive>
+            <VFormat/>
+            <Callout/>
+            <AD_Element_ID reference="id">459</AD_Element_ID>
+            <IsUpdateable>false</IsUpdateable>
+            <AD_Process_ID reference="id"/>
+            <ValueMin/>
+            <ValueMax/>
+            <IsSelectionColumn>false</IsSelectionColumn>
+            <ReadOnlyLogic/>
+            <EntityType>TOC</EntityType>
+            <IsAlwaysUpdateable>false</IsAlwaysUpdateable>
+            <ColumnSQL/>
+            <MandatoryLogic/>
+            <IsAutocomplete>false</IsAutocomplete>
+            <IsAllowLogging>true</IsAllowLogging>
+            <FormatPattern/>
+            <AD_Chart_ID reference="id"/>
+            <IsAllowCopy>true</IsAllowCopy>
+            <SeqNoSelection/>
+            <IsToolbarButton>N</IsToolbarButton>
+            <IsSecure>false</IsSecure>
+            <FKConstraintName>MWarehouse_TOCReplenishHistory</FKConstraintName>
+            <FKConstraintType>N</FKConstraintType>
+        </AD_Column>
+        <AD_Column type="table">
+            <AD_Column_ID>60276</AD_Column_ID>
+            <IsSyncDatabase>Y</IsSyncDatabase>
+            <AD_Table_ID reference="id">53301</AD_Table_ID>
+            <AD_Reference_Value_ID reference="id"/>
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <AD_Column_ID>60276</AD_Column_ID>
+            <Version>0</Version>
+            <Name>Transaction Date</Name>
+            <Description>Transaction Date</Description>
+            <Help>The Transaction Date indicates the date of the transaction.</Help>
+            <AD_Val_Rule_ID reference="id"/>
+            <ColumnName>DateTrx</ColumnName>
+            <DefaultValue/>
+            <FieldLength>10</FieldLength>
+            <IsKey>false</IsKey>
+            <IsParent>false</IsParent>
+            <IsMandatory>true</IsMandatory>
+            <IsTranslated>false</IsTranslated>
+            <IsIdentifier>true</IsIdentifier>
+            <SeqNo>3</SeqNo>
+            <IsEncrypted>N</IsEncrypted>
+            <AD_Reference_ID reference="id">15</AD_Reference_ID>
+            <IsActive>true</IsActive>
+            <VFormat/>
+            <Callout/>
+            <AD_Element_ID reference="id">1297</AD_Element_ID>
+            <IsUpdateable>true</IsUpdateable>
+            <AD_Process_ID reference="id"/>
+            <ValueMin/>
+            <ValueMax/>
+            <IsSelectionColumn>false</IsSelectionColumn>
+            <ReadOnlyLogic/>
+            <EntityType>TOC</EntityType>
+            <IsAlwaysUpdateable>false</IsAlwaysUpdateable>
+            <ColumnSQL/>
+            <MandatoryLogic/>
+            <IsAutocomplete>false</IsAutocomplete>
+            <IsAllowLogging>true</IsAllowLogging>
+            <FormatPattern/>
+            <AD_Chart_ID reference="id"/>
+            <IsAllowCopy>true</IsAllowCopy>
+            <SeqNoSelection/>
+            <IsToolbarButton>Y</IsToolbarButton>
+            <IsSecure>false</IsSecure>
+            <FKConstraintName/>
+            <FKConstraintType>N</FKConstraintType>
+        </AD_Column>
+        <AD_Reference type="table">
+            <AD_Reference_ID>53388</AD_Reference_ID>
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <AD_Reference_ID>53388</AD_Reference_ID>
+            <Name>TOC - AD_PrintColor - WGYRB</Name>
+            <Description>List of Print Colors - just White, Green, Yellow, Red, Black</Description>
+            <Help/>
+            <ValidationType>T</ValidationType>
+            <IsActive>true</IsActive>
+            <VFormat/>
+            <EntityType>TOC</EntityType>
+            <IsOrderByValue>false</IsOrderByValue>
+            <AD_Reference_Trl type="translation">
+                <Help/>
+                <Name>TOC - AD_PrintColor - WGYRB</Name>
+                <Description>List of Print Colors - just White, Green, Yellow, Red, Black</Description>
+                <AD_Language>es_CO</AD_Language>
+                <IsActive>true</IsActive>
+                <IsTranslated>false</IsTranslated>
+            </AD_Reference_Trl>
+            <AD_Ref_Table type="table">
+                <AD_Reference_ID>53388</AD_Reference_ID>
+                <AD_Client_ID>0</AD_Client_ID>
+                <AD_Org_ID>0</AD_Org_ID>
+                <AD_Reference_ID reference="id">53388</AD_Reference_ID>
+                <AD_Table_ID reference="id">490</AD_Table_ID>
+                <WhereClause>AD_PrintColor.AD_PrintColor_id in (100,102,103,108,113)</WhereClause>
+                <OrderByClause/>
+                <IsActive>true</IsActive>
+                <IsValueDisplayed>false</IsValueDisplayed>
+                <EntityType>TOC</EntityType>
+                <AD_Window_ID reference="id"/>
+                <AD_InfoWindow_ID reference="id"/>
+                <AD_Display reference="id">6979</AD_Display>
+                <AD_Key reference="id">6975</AD_Key>
+            </AD_Ref_Table>
+        </AD_Reference>
+        <AD_Column type="table">
+            <AD_Column_ID>60277</AD_Column_ID>
+            <IsSyncDatabase>Y</IsSyncDatabase>
+            <AD_Table_ID reference="id">53301</AD_Table_ID>
+            <AD_Reference_Value_ID reference="id">53388</AD_Reference_Value_ID>
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <AD_Column_ID>60277</AD_Column_ID>
+            <Version>0</Version>
+            <Name>Print Color</Name>
+            <Description>Color used for printing and display</Description>
+            <Help>Colors used for printing and display</Help>
+            <AD_Val_Rule_ID reference="id"/>
+            <ColumnName>AD_PrintColor_ID</ColumnName>
+            <DefaultValue/>
+            <FieldLength>10</FieldLength>
+            <IsKey>false</IsKey>
+            <IsParent>false</IsParent>
+            <IsMandatory>true</IsMandatory>
+            <IsTranslated>false</IsTranslated>
+            <IsIdentifier>false</IsIdentifier>
+            <SeqNo>0</SeqNo>
+            <IsEncrypted>N</IsEncrypted>
+            <AD_Reference_ID reference="id">18</AD_Reference_ID>
+            <IsActive>true</IsActive>
+            <VFormat/>
+            <Callout/>
+            <AD_Element_ID reference="id">1788</AD_Element_ID>
+            <IsUpdateable>true</IsUpdateable>
+            <AD_Process_ID reference="id"/>
+            <ValueMin/>
+            <ValueMax/>
+            <IsSelectionColumn>false</IsSelectionColumn>
+            <ReadOnlyLogic/>
+            <EntityType>TOC</EntityType>
+            <IsAlwaysUpdateable>false</IsAlwaysUpdateable>
+            <ColumnSQL/>
+            <MandatoryLogic/>
+            <IsAutocomplete>false</IsAutocomplete>
+            <IsAllowLogging>true</IsAllowLogging>
+            <FormatPattern/>
+            <AD_Chart_ID reference="id"/>
+            <IsAllowCopy>true</IsAllowCopy>
+            <SeqNoSelection/>
+            <IsToolbarButton>N</IsToolbarButton>
+            <IsSecure>false</IsSecure>
+            <FKConstraintName>ADPrintColor_TOCReplenishHisto</FKConstraintName>
+            <FKConstraintType>N</FKConstraintType>
+        </AD_Column>
+        <AD_Column type="table">
+            <AD_Column_ID>60278</AD_Column_ID>
+            <IsSyncDatabase>Y</IsSyncDatabase>
+            <AD_Table_ID reference="id">53301</AD_Table_ID>
+            <AD_Reference_Value_ID reference="id"/>
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <AD_Column_ID>60278</AD_Column_ID>
+            <Version>0</Version>
+            <Name>Updated</Name>
+            <Description>Date this record was updated</Description>
+            <Help>The Updated field indicates the date that this record was updated.</Help>
+            <AD_Val_Rule_ID reference="id"/>
+            <ColumnName>Updated</ColumnName>
+            <DefaultValue/>
+            <FieldLength>7</FieldLength>
+            <IsKey>false</IsKey>
+            <IsParent>false</IsParent>
+            <IsMandatory>true</IsMandatory>
+            <IsTranslated>false</IsTranslated>
+            <IsIdentifier>false</IsIdentifier>
+            <SeqNo>0</SeqNo>
+            <IsEncrypted>N</IsEncrypted>
+            <AD_Reference_ID reference="id">16</AD_Reference_ID>
+            <IsActive>true</IsActive>
+            <VFormat/>
+            <Callout/>
+            <AD_Element_ID reference="id">607</AD_Element_ID>
+            <IsUpdateable>false</IsUpdateable>
+            <AD_Process_ID reference="id"/>
+            <ValueMin/>
+            <ValueMax/>
+            <IsSelectionColumn>false</IsSelectionColumn>
+            <ReadOnlyLogic/>
+            <EntityType>TOC</EntityType>
+            <IsAlwaysUpdateable>false</IsAlwaysUpdateable>
+            <ColumnSQL/>
+            <MandatoryLogic/>
+            <IsAutocomplete>false</IsAutocomplete>
+            <IsAllowLogging>true</IsAllowLogging>
+            <FormatPattern/>
+            <AD_Chart_ID reference="id"/>
+            <IsAllowCopy>true</IsAllowCopy>
+            <SeqNoSelection/>
+            <IsToolbarButton>Y</IsToolbarButton>
+            <IsSecure>false</IsSecure>
+            <FKConstraintName/>
+            <FKConstraintType>N</FKConstraintType>
+        </AD_Column>
+        <AD_Column type="table">
+            <AD_Column_ID>60279</AD_Column_ID>
+            <IsSyncDatabase>Y</IsSyncDatabase>
+            <AD_Table_ID reference="id">53301</AD_Table_ID>
+            <AD_Reference_Value_ID reference="id">110</AD_Reference_Value_ID>
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <AD_Column_ID>60279</AD_Column_ID>
+            <Version>0</Version>
+            <Name>Updated By</Name>
+            <Description>User who updated this records</Description>
+            <Help>The Updated By field indicates the user who updated this record.</Help>
+            <AD_Val_Rule_ID reference="id"/>
+            <ColumnName>UpdatedBy</ColumnName>
+            <DefaultValue/>
+            <FieldLength>22</FieldLength>
+            <IsKey>false</IsKey>
+            <IsParent>false</IsParent>
+            <IsMandatory>true</IsMandatory>
+            <IsTranslated>false</IsTranslated>
+            <IsIdentifier>false</IsIdentifier>
+            <SeqNo>0</SeqNo>
+            <IsEncrypted>N</IsEncrypted>
+            <AD_Reference_ID reference="id">18</AD_Reference_ID>
+            <IsActive>true</IsActive>
+            <VFormat/>
+            <Callout/>
+            <AD_Element_ID reference="id">608</AD_Element_ID>
+            <IsUpdateable>false</IsUpdateable>
+            <AD_Process_ID reference="id"/>
+            <ValueMin/>
+            <ValueMax/>
+            <IsSelectionColumn>false</IsSelectionColumn>
+            <ReadOnlyLogic/>
+            <EntityType>TOC</EntityType>
+            <IsAlwaysUpdateable>false</IsAlwaysUpdateable>
+            <ColumnSQL/>
+            <MandatoryLogic/>
+            <IsAutocomplete>false</IsAutocomplete>
+            <IsAllowLogging>true</IsAllowLogging>
+            <FormatPattern/>
+            <AD_Chart_ID reference="id"/>
+            <IsAllowCopy>false</IsAllowCopy>
+            <SeqNoSelection/>
+            <IsToolbarButton>N</IsToolbarButton>
+            <IsSecure>false</IsSecure>
+            <FKConstraintName>UpdatedBy_TOCReplenishHistory</FKConstraintName>
+            <FKConstraintType>N</FKConstraintType>
+        </AD_Column>
+        <AD_Column type="table">
+            <AD_Column_ID>60281</AD_Column_ID>
+            <IsSyncDatabase>Y</IsSyncDatabase>
+            <AD_Table_ID reference="id">53301</AD_Table_ID>
+            <AD_Reference_Value_ID reference="id"/>
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <AD_Column_ID>60281</AD_Column_ID>
+            <Version>0</Version>
+            <Name>Ordered Quantity</Name>
+            <Description>Ordered Quantity</Description>
+            <Help>The Ordered Quantity indicates the quantity of a product that was ordered.</Help>
+            <AD_Val_Rule_ID reference="id">127</AD_Val_Rule_ID>
+            <ColumnName>QtyOrdered</ColumnName>
+            <DefaultValue/>
+            <FieldLength>22</FieldLength>
+            <IsKey>false</IsKey>
+            <IsParent>false</IsParent>
+            <IsMandatory>true</IsMandatory>
+            <IsTranslated>false</IsTranslated>
+            <IsIdentifier>false</IsIdentifier>
+            <SeqNo>0</SeqNo>
+            <IsEncrypted>N</IsEncrypted>
+            <AD_Reference_ID reference="id">29</AD_Reference_ID>
+            <IsActive>true</IsActive>
+            <VFormat/>
+            <Callout/>
+            <AD_Element_ID reference="id">531</AD_Element_ID>
+            <IsUpdateable>true</IsUpdateable>
+            <AD_Process_ID reference="id"/>
+            <ValueMin/>
+            <ValueMax/>
+            <IsSelectionColumn>false</IsSelectionColumn>
+            <ReadOnlyLogic/>
+            <EntityType>TOC</EntityType>
+            <IsAlwaysUpdateable>false</IsAlwaysUpdateable>
+            <ColumnSQL/>
+            <MandatoryLogic/>
+            <IsAutocomplete>false</IsAutocomplete>
+            <IsAllowLogging>true</IsAllowLogging>
+            <FormatPattern/>
+            <AD_Chart_ID reference="id"/>
+            <IsAllowCopy>true</IsAllowCopy>
+            <SeqNoSelection/>
+            <IsToolbarButton>Y</IsToolbarButton>
+            <IsSecure>false</IsSecure>
+            <FKConstraintName/>
+            <FKConstraintType>N</FKConstraintType>
+        </AD_Column>
+        <AD_Element type="table">
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsActive>true</IsActive>
+            <ColumnName>TOC_Replenish_History_UU</ColumnName>
+            <Name>TOC_Replenish_History_UU</Name>
+            <Description/>
+            <Help/>
+            <PrintName>TOC_Replenish_History_UU</PrintName>
+            <PO_Description/>
+            <PO_Help/>
+            <PO_Name/>
+            <PO_PrintName/>
+            <EntityType>TOC</EntityType>
+            <AD_Element_UU>52014e98-0ade-4cd2-bb5d-e09099ffa599</AD_Element_UU>
+            <AD_Element_Trl type="translation">
+                <Help/>
+                <PO_Description/>
+                <PO_Help/>
+                <Name>TOC_Replenish_History_UU</Name>
+                <Description/>
+                <PrintName>TOC_Replenish_History_UU</PrintName>
+                <PO_Name/>
+                <PO_PrintName/>
+                <AD_Language>es_CO</AD_Language>
+                <IsActive>true</IsActive>
+                <IsTranslated>false</IsTranslated>
+            </AD_Element_Trl>
+        </AD_Element>
+        <AD_Column type="table">
+            <IsSyncDatabase>Y</IsSyncDatabase>
+            <AD_Table_ID reference="id">53301</AD_Table_ID>
+            <AD_Reference_Value_ID reference="id"/>
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <Version>1.0</Version>
+            <Name>TOC_Replenish_History_UU</Name>
+            <Description/>
+            <Help/>
+            <AD_Val_Rule_ID reference="id"/>
+            <ColumnName>TOC_Replenish_History_UU</ColumnName>
+            <DefaultValue/>
+            <FieldLength>36</FieldLength>
+            <IsKey>false</IsKey>
+            <IsParent>false</IsParent>
+            <IsMandatory>false</IsMandatory>
+            <IsTranslated>false</IsTranslated>
+            <IsIdentifier>false</IsIdentifier>
+            <SeqNo/>
+            <IsEncrypted>N</IsEncrypted>
+            <AD_Reference_ID reference="id">10</AD_Reference_ID>
+            <IsActive>true</IsActive>
+            <VFormat/>
+            <Callout/>
+            <AD_Element_ID reference="uuid" reference-key="AD_Element">52014e98-0ade-4cd2-bb5d-e09099ffa599</AD_Element_ID>
+            <IsUpdateable>true</IsUpdateable>
+            <AD_Process_ID reference="id"/>
+            <ValueMin/>
+            <ValueMax/>
+            <IsSelectionColumn>false</IsSelectionColumn>
+            <ReadOnlyLogic/>
+            <EntityType>TOC</EntityType>
+            <IsAlwaysUpdateable>false</IsAlwaysUpdateable>
+            <ColumnSQL/>
+            <MandatoryLogic/>
+            <IsAutocomplete>false</IsAutocomplete>
+            <IsAllowLogging>true</IsAllowLogging>
+            <FormatPattern/>
+            <AD_Chart_ID reference="id"/>
+            <AD_Column_UU>02fe3315-5886-476e-b75d-5d3ff2f54116</AD_Column_UU>
+            <IsAllowCopy>true</IsAllowCopy>
+            <SeqNoSelection/>
+            <IsToolbarButton>N</IsToolbarButton>
+            <IsSecure>false</IsSecure>
+            <FKConstraintName/>
+            <FKConstraintType>N</FKConstraintType>
+        </AD_Column>
+        <AD_TableIndex type="table">
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <AD_TableIndex_UU>22c98ed9-6f65-4a84-8b4e-d98684540b01</AD_TableIndex_UU>
+            <Description/>
+            <EntityType>TOC</EntityType>
+            <IsActive>true</IsActive>
+            <Name>toc_replenish_history_uu_idx</Name>
+            <AD_Table_ID reference="id">53301</AD_Table_ID>
+            <Help/>
+            <IsCreateConstraint>false</IsCreateConstraint>
+            <IsUnique>true</IsUnique>
+            <Processing>false</Processing>
+            <AD_Message_ID reference="id"/>
+            <TableIndexDrop/>
+            <IsKey>false</IsKey>
+            <AD_IndexColumn type="table">
+                <AD_Client_ID>0</AD_Client_ID>
+                <AD_Org_ID>0</AD_Org_ID>
+                <AD_IndexColumn_UU>d7b10cb6-1b56-4e15-b37b-005daa8ccd70</AD_IndexColumn_UU>
+                <EntityType>TOC</EntityType>
+                <IsActive>true</IsActive>
+                <AD_Column_ID reference="uuid" reference-key="AD_Column">02fe3315-5886-476e-b75d-5d3ff2f54116</AD_Column_ID>
+                <AD_TableIndex_ID reference="uuid" reference-key="AD_TableIndex">22c98ed9-6f65-4a84-8b4e-d98684540b01</AD_TableIndex_ID>
+                <ColumnSQL/>
+                <SeqNo>1</SeqNo>
+            </AD_IndexColumn>
+        </AD_TableIndex>
+    </AD_Table>
+    <AD_Tab type="table">
+        <AD_Tab_ID>53378</AD_Tab_ID>
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <AD_Tab_ID>53378</AD_Tab_ID>
+        <Name>Replenishment History</Name>
+        <Description/>
+        <Help/>
+        <AD_Window_ID reference="id">139</AD_Window_ID>
+        <SeqNo>75</SeqNo>
+        <IsSingleRow>false</IsSingleRow>
+        <AD_Table_ID reference="id">53301</AD_Table_ID>
+        <IsActive>true</IsActive>
+        <HasTree>false</HasTree>
+        <IsInfoTab>false</IsInfoTab>
+        <IsTranslationTab>false</IsTranslationTab>
+        <IsReadOnly>false</IsReadOnly>
+        <AD_Column_ID reference="id">60275</AD_Column_ID>
+        <WhereClause/>
+        <OrderByClause/>
+        <CommitWarning/>
+        <AD_Process_ID reference="id"/>
+        <Processing>false</Processing>
+        <AD_Image_ID reference="id"/>
+        <ImportFields>N</ImportFields>
+        <TabLevel>1</TabLevel>
+        <IsSortTab>false</IsSortTab>
+        <AD_ColumnSortYesNo_ID reference="id"/>
+        <AD_ColumnSortOrder_ID reference="id"/>
+        <EntityType>TOC</EntityType>
+        <Included_Tab_ID reference="id"/>
+        <ReadOnlyLogic/>
+        <DisplayLogic/>
+        <IsInsertRecord>true</IsInsertRecord>
+        <IsAdvancedTab>false</IsAdvancedTab>
+        <Parent_Column_ID reference="id"/>
+        <AD_CtxHelp_ID reference="id"/>
+        <TreeDisplayedOn>B</TreeDisplayedOn>
+        <AD_Tab_Trl type="translation">
+            <Help/>
+            <CommitWarning/>
+            <Name>Replenishment History</Name>
+            <Description/>
+            <AD_Language>es_CO</AD_Language>
+            <IsActive>true</IsActive>
+            <IsTranslated>false</IsTranslated>
+        </AD_Tab_Trl>
+        <AD_Field type="table">
+            <AD_Field_ID>61000</AD_Field_ID>
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <AD_Field_ID>61000</AD_Field_ID>
+            <Name>Replenishment History</Name>
+            <Description/>
+            <Help/>
+            <AD_Tab_ID reference="id">53378</AD_Tab_ID>
+            <AD_Column_ID reference="id">60280</AD_Column_ID>
+            <IsDisplayed>false</IsDisplayed>
+            <DisplayLogic/>
+            <DisplayLength>10</DisplayLength>
+            <SeqNo>0</SeqNo>
+            <SortNo/>
+            <IsSameLine>false</IsSameLine>
+            <IsHeading>false</IsHeading>
+            <IsFieldOnly>false</IsFieldOnly>
+            <IsEncrypted>false</IsEncrypted>
+            <IsActive>true</IsActive>
+            <IsReadOnly>false</IsReadOnly>
+            <IsCentrallyMaintained>true</IsCentrallyMaintained>
+            <AD_FieldGroup_ID reference="id"/>
+            <EntityType>TOC</EntityType>
+            <ObscureType/>
+            <AD_Reference_ID reference="id"/>
+            <IsMandatory/>
+            <DefaultValue/>
+            <AD_Reference_Value_ID reference="id"/>
+            <AD_Val_Rule_ID reference="id"/>
+            <Included_Tab_ID reference="id"/>
+            <IsAllowCopy/>
+            <IsDisplayedGrid>true</IsDisplayedGrid>
+            <SeqNoGrid/>
+            <XPosition>1</XPosition>
+            <ColumnSpan>1</ColumnSpan>
+            <NumLines>1</NumLines>
+            <IsQuickEntry>false</IsQuickEntry>
+            <IsUpdateable/>
+            <IsAlwaysUpdateable/>
+            <MandatoryLogic/>
+            <ReadOnlyLogic/>
+            <IsToolbarButton/>
+            <IsDefaultFocus>false</IsDefaultFocus>
+            <IsAdvancedField>false</IsAdvancedField>
+            <AD_Field_Trl type="translation">
+                <Help/>
+                <Description/>
+                <Name>Replenishment History</Name>
+                <AD_Language>es_CO</AD_Language>
+                <IsActive>true</IsActive>
+                <IsTranslated>false</IsTranslated>
+            </AD_Field_Trl>
+        </AD_Field>
+        <AD_Field type="table">
+            <AD_Field_ID>60994</AD_Field_ID>
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <AD_Field_ID>60994</AD_Field_ID>
+            <Name>Client</Name>
+            <Description>Client/Tenant for this installation.</Description>
+            <Help>A Client is a company or a legal entity. You cannot share data between Clients. Tenant is a synonym for Client.</Help>
+            <AD_Tab_ID reference="id">53378</AD_Tab_ID>
+            <AD_Column_ID reference="id">60266</AD_Column_ID>
+            <IsDisplayed>true</IsDisplayed>
+            <DisplayLogic/>
+            <DisplayLength>22</DisplayLength>
+            <SeqNo>10</SeqNo>
+            <SortNo/>
+            <IsSameLine>false</IsSameLine>
+            <IsHeading>false</IsHeading>
+            <IsFieldOnly>false</IsFieldOnly>
+            <IsEncrypted>false</IsEncrypted>
+            <IsActive>true</IsActive>
+            <IsReadOnly>false</IsReadOnly>
+            <IsCentrallyMaintained>true</IsCentrallyMaintained>
+            <AD_FieldGroup_ID reference="id"/>
+            <EntityType>TOC</EntityType>
+            <ObscureType/>
+            <AD_Reference_ID reference="id"/>
+            <IsMandatory/>
+            <DefaultValue/>
+            <AD_Reference_Value_ID reference="id"/>
+            <AD_Val_Rule_ID reference="id"/>
+            <Included_Tab_ID reference="id"/>
+            <IsAllowCopy/>
+            <IsDisplayedGrid>true</IsDisplayedGrid>
+            <SeqNoGrid/>
+            <XPosition>1</XPosition>
+            <ColumnSpan>2</ColumnSpan>
+            <NumLines>1</NumLines>
+            <IsQuickEntry>false</IsQuickEntry>
+            <IsUpdateable/>
+            <IsAlwaysUpdateable/>
+            <MandatoryLogic/>
+            <ReadOnlyLogic/>
+            <IsToolbarButton/>
+            <IsDefaultFocus>false</IsDefaultFocus>
+            <IsAdvancedField>false</IsAdvancedField>
+            <AD_Field_Trl type="translation">
+                <Help>Grupo Empresarial. No se pueden compartir datos entre diferentes grupos empresariales.</Help>
+                <Description>Grupo Empresarial para esta instalación</Description>
+                <Name>Grupo Empresarial</Name>
+                <AD_Language>es_CO</AD_Language>
+                <IsActive>true</IsActive>
+                <IsTranslated>true</IsTranslated>
+            </AD_Field_Trl>
+        </AD_Field>
+        <AD_Field type="table">
+            <AD_Field_ID>60997</AD_Field_ID>
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <AD_Field_ID>60997</AD_Field_ID>
+            <Name>Organization</Name>
+            <Description>Organizational entity within client</Description>
+            <Help>An organization is a unit of your client or legal entity - examples are store, department. You can share data between organizations.</Help>
+            <AD_Tab_ID reference="id">53378</AD_Tab_ID>
+            <AD_Column_ID reference="id">60267</AD_Column_ID>
+            <IsDisplayed>true</IsDisplayed>
+            <DisplayLogic/>
+            <DisplayLength>22</DisplayLength>
+            <SeqNo>20</SeqNo>
+            <SortNo/>
+            <IsSameLine>true</IsSameLine>
+            <IsHeading>false</IsHeading>
+            <IsFieldOnly>false</IsFieldOnly>
+            <IsEncrypted>false</IsEncrypted>
+            <IsActive>true</IsActive>
+            <IsReadOnly>false</IsReadOnly>
+            <IsCentrallyMaintained>true</IsCentrallyMaintained>
+            <AD_FieldGroup_ID reference="id"/>
+            <EntityType>TOC</EntityType>
+            <ObscureType/>
+            <AD_Reference_ID reference="id"/>
+            <IsMandatory/>
+            <DefaultValue/>
+            <AD_Reference_Value_ID reference="id"/>
+            <AD_Val_Rule_ID reference="id"/>
+            <Included_Tab_ID reference="id"/>
+            <IsAllowCopy>Y</IsAllowCopy>
+            <IsDisplayedGrid>true</IsDisplayedGrid>
+            <SeqNoGrid/>
+            <XPosition>4</XPosition>
+            <ColumnSpan>2</ColumnSpan>
+            <NumLines>1</NumLines>
+            <IsQuickEntry>false</IsQuickEntry>
+            <IsUpdateable/>
+            <IsAlwaysUpdateable/>
+            <MandatoryLogic/>
+            <ReadOnlyLogic/>
+            <IsToolbarButton/>
+            <IsDefaultFocus>false</IsDefaultFocus>
+            <IsAdvancedField>false</IsAdvancedField>
+            <AD_Field_Trl type="translation">
+                <Help>Una organización es una unidad del grupo empresarial o entidad legal - Ej. Tiendas y departamentos. Es posible compartir datos entre organizaciones.</Help>
+                <Description>Entidad organizacional dentro del grupo empresarial</Description>
+                <Name>Organización</Name>
+                <AD_Language>es_CO</AD_Language>
+                <IsActive>true</IsActive>
+                <IsTranslated>true</IsTranslated>
+            </AD_Field_Trl>
+        </AD_Field>
+        <AD_Field type="table">
+            <AD_Field_ID>61003</AD_Field_ID>
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <AD_Field_ID>61003</AD_Field_ID>
+            <Name>Warehouse</Name>
+            <Description>Storage Warehouse and Service Point</Description>
+            <Help>The Warehouse identifies a unique Warehouse where products are stored or Services are provided.</Help>
+            <AD_Tab_ID reference="id">53378</AD_Tab_ID>
+            <AD_Column_ID reference="id">60275</AD_Column_ID>
+            <IsDisplayed>true</IsDisplayed>
+            <DisplayLogic/>
+            <DisplayLength>22</DisplayLength>
+            <SeqNo>30</SeqNo>
+            <SortNo/>
+            <IsSameLine>false</IsSameLine>
+            <IsHeading>false</IsHeading>
+            <IsFieldOnly>false</IsFieldOnly>
+            <IsEncrypted>false</IsEncrypted>
+            <IsActive>true</IsActive>
+            <IsReadOnly>false</IsReadOnly>
+            <IsCentrallyMaintained>true</IsCentrallyMaintained>
+            <AD_FieldGroup_ID reference="id"/>
+            <EntityType>TOC</EntityType>
+            <ObscureType/>
+            <AD_Reference_ID reference="id"/>
+            <IsMandatory/>
+            <DefaultValue/>
+            <AD_Reference_Value_ID reference="id"/>
+            <AD_Val_Rule_ID reference="id"/>
+            <Included_Tab_ID reference="id"/>
+            <IsAllowCopy/>
+            <IsDisplayedGrid>true</IsDisplayedGrid>
+            <SeqNoGrid/>
+            <XPosition>1</XPosition>
+            <ColumnSpan>2</ColumnSpan>
+            <NumLines>1</NumLines>
+            <IsQuickEntry>false</IsQuickEntry>
+            <IsUpdateable/>
+            <IsAlwaysUpdateable/>
+            <MandatoryLogic/>
+            <ReadOnlyLogic/>
+            <IsToolbarButton/>
+            <IsDefaultFocus>false</IsDefaultFocus>
+            <IsAdvancedField>false</IsAdvancedField>
+            <AD_Field_Trl type="translation">
+                <Help>El almacén identifica un punto único donde los productos son almacenados</Help>
+                <Description>Almacén y punto de servicio</Description>
+                <Name>Almacén</Name>
+                <AD_Language>es_CO</AD_Language>
+                <IsActive>true</IsActive>
+                <IsTranslated>true</IsTranslated>
+            </AD_Field_Trl>
+        </AD_Field>
+        <AD_Field type="table">
+            <AD_Field_ID>60999</AD_Field_ID>
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <AD_Field_ID>60999</AD_Field_ID>
+            <Name>Product</Name>
+            <Description>Product, Service, Item</Description>
+            <Help>Identifies an item which is either purchased or sold in this organization.</Help>
+            <AD_Tab_ID reference="id">53378</AD_Tab_ID>
+            <AD_Column_ID reference="id">60274</AD_Column_ID>
+            <IsDisplayed>true</IsDisplayed>
+            <DisplayLogic/>
+            <DisplayLength>22</DisplayLength>
+            <SeqNo>40</SeqNo>
+            <SortNo/>
+            <IsSameLine>false</IsSameLine>
+            <IsHeading>false</IsHeading>
+            <IsFieldOnly>false</IsFieldOnly>
+            <IsEncrypted>false</IsEncrypted>
+            <IsActive>true</IsActive>
+            <IsReadOnly>false</IsReadOnly>
+            <IsCentrallyMaintained>true</IsCentrallyMaintained>
+            <AD_FieldGroup_ID reference="id"/>
+            <EntityType>TOC</EntityType>
+            <ObscureType/>
+            <AD_Reference_ID reference="id"/>
+            <IsMandatory/>
+            <DefaultValue/>
+            <AD_Reference_Value_ID reference="id"/>
+            <AD_Val_Rule_ID reference="id"/>
+            <Included_Tab_ID reference="id"/>
+            <IsAllowCopy/>
+            <IsDisplayedGrid>true</IsDisplayedGrid>
+            <SeqNoGrid/>
+            <XPosition>1</XPosition>
+            <ColumnSpan>2</ColumnSpan>
+            <NumLines>1</NumLines>
+            <IsQuickEntry>false</IsQuickEntry>
+            <IsUpdateable/>
+            <IsAlwaysUpdateable/>
+            <MandatoryLogic/>
+            <ReadOnlyLogic/>
+            <IsToolbarButton/>
+            <IsDefaultFocus>false</IsDefaultFocus>
+            <IsAdvancedField>false</IsAdvancedField>
+            <AD_Field_Trl type="translation">
+                <Help>Identifica un artículo que puede ser comprado o vendido es esta organización.</Help>
+                <Description>Producto; servicio o artículo.</Description>
+                <Name>Producto</Name>
+                <AD_Language>es_CO</AD_Language>
+                <IsActive>true</IsActive>
+                <IsTranslated>true</IsTranslated>
+            </AD_Field_Trl>
+        </AD_Field>
+        <AD_Field type="table">
+            <AD_Field_ID>61002</AD_Field_ID>
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <AD_Field_ID>61002</AD_Field_ID>
+            <Name>Transaction Date</Name>
+            <Description>Transaction Date</Description>
+            <Help>The Transaction Date indicates the date of the transaction.</Help>
+            <AD_Tab_ID reference="id">53378</AD_Tab_ID>
+            <AD_Column_ID reference="id">60276</AD_Column_ID>
+            <IsDisplayed>true</IsDisplayed>
+            <DisplayLogic/>
+            <DisplayLength>10</DisplayLength>
+            <SeqNo>50</SeqNo>
+            <SortNo/>
+            <IsSameLine>false</IsSameLine>
+            <IsHeading>false</IsHeading>
+            <IsFieldOnly>false</IsFieldOnly>
+            <IsEncrypted>false</IsEncrypted>
+            <IsActive>true</IsActive>
+            <IsReadOnly>false</IsReadOnly>
+            <IsCentrallyMaintained>true</IsCentrallyMaintained>
+            <AD_FieldGroup_ID reference="id"/>
+            <EntityType>TOC</EntityType>
+            <ObscureType/>
+            <AD_Reference_ID reference="id"/>
+            <IsMandatory/>
+            <DefaultValue/>
+            <AD_Reference_Value_ID reference="id"/>
+            <AD_Val_Rule_ID reference="id"/>
+            <Included_Tab_ID reference="id"/>
+            <IsAllowCopy/>
+            <IsDisplayedGrid>true</IsDisplayedGrid>
+            <SeqNoGrid/>
+            <XPosition>1</XPosition>
+            <ColumnSpan>1</ColumnSpan>
+            <NumLines>1</NumLines>
+            <IsQuickEntry>false</IsQuickEntry>
+            <IsUpdateable/>
+            <IsAlwaysUpdateable/>
+            <MandatoryLogic/>
+            <ReadOnlyLogic/>
+            <IsToolbarButton/>
+            <IsDefaultFocus>false</IsDefaultFocus>
+            <IsAdvancedField>false</IsAdvancedField>
+            <AD_Field_Trl type="translation">
+                <Help>La fecha de transacción indica la fecha en que se ejecutó la transacción</Help>
+                <Description>Fecha de la transacción</Description>
+                <Name>Fecha Transacción</Name>
+                <AD_Language>es_CO</AD_Language>
+                <IsActive>true</IsActive>
+                <IsTranslated>true</IsTranslated>
+            </AD_Field_Trl>
+        </AD_Field>
+        <AD_Field type="table">
+            <AD_Field_ID>60996</AD_Field_ID>
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <AD_Field_ID>60996</AD_Field_ID>
+            <Name>On Hand Quantity</Name>
+            <Description>On Hand Quantity</Description>
+            <Help>The On Hand Quantity indicates the quantity of a product that is on hand in a warehouse.</Help>
+            <AD_Tab_ID reference="id">53378</AD_Tab_ID>
+            <AD_Column_ID reference="id">60272</AD_Column_ID>
+            <IsDisplayed>true</IsDisplayed>
+            <DisplayLogic/>
+            <DisplayLength>22</DisplayLength>
+            <SeqNo>60</SeqNo>
+            <SortNo/>
+            <IsSameLine>false</IsSameLine>
+            <IsHeading>false</IsHeading>
+            <IsFieldOnly>false</IsFieldOnly>
+            <IsEncrypted>false</IsEncrypted>
+            <IsActive>true</IsActive>
+            <IsReadOnly>false</IsReadOnly>
+            <IsCentrallyMaintained>true</IsCentrallyMaintained>
+            <AD_FieldGroup_ID reference="id"/>
+            <EntityType>TOC</EntityType>
+            <ObscureType/>
+            <AD_Reference_ID reference="id"/>
+            <IsMandatory/>
+            <DefaultValue/>
+            <AD_Reference_Value_ID reference="id"/>
+            <AD_Val_Rule_ID reference="id"/>
+            <Included_Tab_ID reference="id"/>
+            <IsAllowCopy/>
+            <IsDisplayedGrid>true</IsDisplayedGrid>
+            <SeqNoGrid/>
+            <XPosition>1</XPosition>
+            <ColumnSpan>1</ColumnSpan>
+            <NumLines>1</NumLines>
+            <IsQuickEntry>false</IsQuickEntry>
+            <IsUpdateable/>
+            <IsAlwaysUpdateable/>
+            <MandatoryLogic/>
+            <ReadOnlyLogic/>
+            <IsToolbarButton/>
+            <IsDefaultFocus>false</IsDefaultFocus>
+            <IsAdvancedField>false</IsAdvancedField>
+            <AD_Field_Trl type="translation">
+                <Help>La cantidad en existencia indica la cantidad de un producto que se encuentra en inventario</Help>
+                <Description>Cantidad en existencia</Description>
+                <Name>Cantidad en Existencia</Name>
+                <AD_Language>es_CO</AD_Language>
+                <IsActive>true</IsActive>
+                <IsTranslated>true</IsTranslated>
+            </AD_Field_Trl>
+        </AD_Field>
+        <AD_Field type="table">
+            <AD_Field_ID>61001</AD_Field_ID>
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <AD_Field_ID>61001</AD_Field_ID>
+            <Name>Reserved Quantity</Name>
+            <Description>Reserved Quantity</Description>
+            <Help>The Reserved Quantity indicates the quantity of a product that is currently reserved.</Help>
+            <AD_Tab_ID reference="id">53378</AD_Tab_ID>
+            <AD_Column_ID reference="id">60273</AD_Column_ID>
+            <IsDisplayed>true</IsDisplayed>
+            <DisplayLogic/>
+            <DisplayLength>22</DisplayLength>
+            <SeqNo>70</SeqNo>
+            <SortNo/>
+            <IsSameLine>false</IsSameLine>
+            <IsHeading>false</IsHeading>
+            <IsFieldOnly>false</IsFieldOnly>
+            <IsEncrypted>false</IsEncrypted>
+            <IsActive>true</IsActive>
+            <IsReadOnly>false</IsReadOnly>
+            <IsCentrallyMaintained>true</IsCentrallyMaintained>
+            <AD_FieldGroup_ID reference="id"/>
+            <EntityType>TOC</EntityType>
+            <ObscureType/>
+            <AD_Reference_ID reference="id"/>
+            <IsMandatory/>
+            <DefaultValue/>
+            <AD_Reference_Value_ID reference="id"/>
+            <AD_Val_Rule_ID reference="id"/>
+            <Included_Tab_ID reference="id"/>
+            <IsAllowCopy/>
+            <IsDisplayedGrid>true</IsDisplayedGrid>
+            <SeqNoGrid/>
+            <XPosition>3</XPosition>
+            <ColumnSpan>1</ColumnSpan>
+            <NumLines>1</NumLines>
+            <IsQuickEntry>false</IsQuickEntry>
+            <IsUpdateable/>
+            <IsAlwaysUpdateable/>
+            <MandatoryLogic/>
+            <ReadOnlyLogic/>
+            <IsToolbarButton/>
+            <IsDefaultFocus>false</IsDefaultFocus>
+            <IsAdvancedField>false</IsAdvancedField>
+            <AD_Field_Trl type="translation">
+                <Help>La cantidad reservada indica la cantidad de un producto que se encuentra reservada para otras órdenes</Help>
+                <Description>Cantidad reservada</Description>
+                <Name>Cantidad Reservada</Name>
+                <AD_Language>es_CO</AD_Language>
+                <IsActive>true</IsActive>
+                <IsTranslated>true</IsTranslated>
+            </AD_Field_Trl>
+        </AD_Field>
+        <AD_Field type="table">
+            <AD_Field_ID>61004</AD_Field_ID>
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <AD_Field_ID>61004</AD_Field_ID>
+            <Name>Ordered Quantity</Name>
+            <Description>Ordered Quantity</Description>
+            <Help>The Ordered Quantity indicates the quantity of a product that was ordered.</Help>
+            <AD_Tab_ID reference="id">53378</AD_Tab_ID>
+            <AD_Column_ID reference="id">60281</AD_Column_ID>
+            <IsDisplayed>true</IsDisplayed>
+            <DisplayLogic/>
+            <DisplayLength>10</DisplayLength>
+            <SeqNo>80</SeqNo>
+            <SortNo>0</SortNo>
+            <IsSameLine>true</IsSameLine>
+            <IsHeading>false</IsHeading>
+            <IsFieldOnly>false</IsFieldOnly>
+            <IsEncrypted>false</IsEncrypted>
+            <IsActive>true</IsActive>
+            <IsReadOnly>false</IsReadOnly>
+            <IsCentrallyMaintained>true</IsCentrallyMaintained>
+            <AD_FieldGroup_ID reference="id"/>
+            <EntityType>TOC</EntityType>
+            <ObscureType/>
+            <AD_Reference_ID reference="id"/>
+            <IsMandatory/>
+            <DefaultValue/>
+            <AD_Reference_Value_ID reference="id"/>
+            <AD_Val_Rule_ID reference="id"/>
+            <Included_Tab_ID reference="id"/>
+            <IsAllowCopy/>
+            <IsDisplayedGrid>true</IsDisplayedGrid>
+            <SeqNoGrid/>
+            <XPosition>5</XPosition>
+            <ColumnSpan>1</ColumnSpan>
+            <NumLines>1</NumLines>
+            <IsQuickEntry>false</IsQuickEntry>
+            <IsUpdateable/>
+            <IsAlwaysUpdateable/>
+            <MandatoryLogic/>
+            <ReadOnlyLogic/>
+            <IsToolbarButton/>
+            <IsDefaultFocus>false</IsDefaultFocus>
+            <IsAdvancedField>false</IsAdvancedField>
+            <AD_Field_Trl type="translation">
+                <Help>La Cantidad Ordenada indica la cantidad de un producto que fue ordenada</Help>
+                <Description>Cantidad ordenada</Description>
+                <Name>Cantidad Ordenada</Name>
+                <AD_Language>es_CO</AD_Language>
+                <IsActive>true</IsActive>
+                <IsTranslated>true</IsTranslated>
+            </AD_Field_Trl>
+        </AD_Field>
+        <AD_Field type="table">
+            <AD_Field_ID>60995</AD_Field_ID>
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <AD_Field_ID>60995</AD_Field_ID>
+            <Name>Maximum Level</Name>
+            <Description>Maximum Inventory level for this product</Description>
+            <Help>Indicates the maximum quantity of this product to be stocked in inventory.</Help>
+            <AD_Tab_ID reference="id">53378</AD_Tab_ID>
+            <AD_Column_ID reference="id">60271</AD_Column_ID>
+            <IsDisplayed>true</IsDisplayed>
+            <DisplayLogic/>
+            <DisplayLength>22</DisplayLength>
+            <SeqNo>90</SeqNo>
+            <SortNo/>
+            <IsSameLine>false</IsSameLine>
+            <IsHeading>false</IsHeading>
+            <IsFieldOnly>false</IsFieldOnly>
+            <IsEncrypted>false</IsEncrypted>
+            <IsActive>true</IsActive>
+            <IsReadOnly>false</IsReadOnly>
+            <IsCentrallyMaintained>true</IsCentrallyMaintained>
+            <AD_FieldGroup_ID reference="id"/>
+            <EntityType>TOC</EntityType>
+            <ObscureType/>
+            <AD_Reference_ID reference="id"/>
+            <IsMandatory/>
+            <DefaultValue/>
+            <AD_Reference_Value_ID reference="id"/>
+            <AD_Val_Rule_ID reference="id"/>
+            <Included_Tab_ID reference="id"/>
+            <IsAllowCopy/>
+            <IsDisplayedGrid>true</IsDisplayedGrid>
+            <SeqNoGrid/>
+            <XPosition>1</XPosition>
+            <ColumnSpan>1</ColumnSpan>
+            <NumLines>1</NumLines>
+            <IsQuickEntry>false</IsQuickEntry>
+            <IsUpdateable/>
+            <IsAlwaysUpdateable/>
+            <MandatoryLogic/>
+            <ReadOnlyLogic/>
+            <IsToolbarButton/>
+            <IsDefaultFocus>false</IsDefaultFocus>
+            <IsAdvancedField>false</IsAdvancedField>
+            <AD_Field_Trl type="translation">
+                <Help>Indica la cantidad máxima de este producto a ser almacenada en inventario</Help>
+                <Description>Nivel máximo de inventario para este producto</Description>
+                <Name>Nivel Máximo</Name>
+                <AD_Language>es_CO</AD_Language>
+                <IsActive>true</IsActive>
+                <IsTranslated>true</IsTranslated>
+            </AD_Field_Trl>
+        </AD_Field>
+        <AD_Field type="table">
+            <AD_Field_ID>60998</AD_Field_ID>
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <AD_Field_ID>60998</AD_Field_ID>
+            <Name>Print Color</Name>
+            <Description>Color used for printing and display</Description>
+            <Help>Colors used for printing and display</Help>
+            <AD_Tab_ID reference="id">53378</AD_Tab_ID>
+            <AD_Column_ID reference="id">60277</AD_Column_ID>
+            <IsDisplayed>true</IsDisplayed>
+            <DisplayLogic/>
+            <DisplayLength>10</DisplayLength>
+            <SeqNo>100</SeqNo>
+            <SortNo/>
+            <IsSameLine>true</IsSameLine>
+            <IsHeading>false</IsHeading>
+            <IsFieldOnly>false</IsFieldOnly>
+            <IsEncrypted>false</IsEncrypted>
+            <IsActive>true</IsActive>
+            <IsReadOnly>false</IsReadOnly>
+            <IsCentrallyMaintained>true</IsCentrallyMaintained>
+            <AD_FieldGroup_ID reference="id"/>
+            <EntityType>TOC</EntityType>
+            <ObscureType/>
+            <AD_Reference_ID reference="id"/>
+            <IsMandatory/>
+            <DefaultValue/>
+            <AD_Reference_Value_ID reference="id"/>
+            <AD_Val_Rule_ID reference="id"/>
+            <Included_Tab_ID reference="id"/>
+            <IsAllowCopy/>
+            <IsDisplayedGrid>true</IsDisplayedGrid>
+            <SeqNoGrid/>
+            <XPosition>3</XPosition>
+            <ColumnSpan>2</ColumnSpan>
+            <NumLines>1</NumLines>
+            <IsQuickEntry>false</IsQuickEntry>
+            <IsUpdateable/>
+            <IsAlwaysUpdateable/>
+            <MandatoryLogic/>
+            <ReadOnlyLogic/>
+            <IsToolbarButton/>
+            <IsDefaultFocus>false</IsDefaultFocus>
+            <IsAdvancedField>false</IsAdvancedField>
+            <AD_Field_Trl type="translation">
+                <Help>Color usado para imprimir</Help>
+                <Description>Color usado para imprimir</Description>
+                <Name>Impresión a Color</Name>
+                <AD_Language>es_CO</AD_Language>
+                <IsActive>true</IsActive>
+                <IsTranslated>true</IsTranslated>
+            </AD_Field_Trl>
+        </AD_Field>
+        <AD_Field type="table">
+            <AD_Field_ID>60993</AD_Field_ID>
+            <AD_Client_ID>0</AD_Client_ID>
+            <AD_Org_ID>0</AD_Org_ID>
+            <AD_Field_ID>60993</AD_Field_ID>
+            <Name>Active</Name>
+            <Description>The record is active in the system</Description>
+            <Help>There are two methods of making records unavailable in the system: One is to delete the record, the other is to de-activate the record. A de-activated record is not available for selection, but available for reports.
+There are two reasons for de-activating and not deleting records:
+(1) The system requires the record for audit purposes.
+(2) The record is referenced by other records. E.g., you cannot delete a Business Partner, if there are invoices for this partner record existing. You de-activate the Business Partner and prevent that this record is used for future entries.</Help>
+            <AD_Tab_ID reference="id">53378</AD_Tab_ID>
+            <AD_Column_ID reference="id">60270</AD_Column_ID>
+            <IsDisplayed>true</IsDisplayed>
+            <DisplayLogic/>
+            <DisplayLength>1</DisplayLength>
+            <SeqNo>110</SeqNo>
+            <SortNo/>
+            <IsSameLine>false</IsSameLine>
+            <IsHeading>false</IsHeading>
+            <IsFieldOnly>false</IsFieldOnly>
+            <IsEncrypted>false</IsEncrypted>
+            <IsActive>true</IsActive>
+            <IsReadOnly>false</IsReadOnly>
+            <IsCentrallyMaintained>true</IsCentrallyMaintained>
+            <AD_FieldGroup_ID reference="id"/>
+            <EntityType>TOC</EntityType>
+            <ObscureType/>
+            <AD_Reference_ID reference="id"/>
+            <IsMandatory/>
+            <DefaultValue/>
+            <AD_Reference_Value_ID reference="id"/>
+            <AD_Val_Rule_ID reference="id"/>
+            <Included_Tab_ID reference="id"/>
+            <IsAllowCopy/>
+            <IsDisplayedGrid>true</IsDisplayedGrid>
+            <SeqNoGrid/>
+            <XPosition>6</XPosition>
+            <ColumnSpan>1</ColumnSpan>
+            <NumLines>1</NumLines>
+            <IsQuickEntry>false</IsQuickEntry>
+            <IsUpdateable/>
+            <IsAlwaysUpdateable/>
+            <MandatoryLogic/>
+            <ReadOnlyLogic/>
+            <IsToolbarButton/>
+            <IsDefaultFocus>false</IsDefaultFocus>
+            <IsAdvancedField>false</IsAdvancedField>
+            <AD_Field_Trl type="translation">
+                <Help>Hay dos métodos para que los registros no estén disponibles en el sistema: Uno es eliminar el registro; el otro es desactivarlo. Un registro desactivado no está disponible para selección; pero está disponible para Informes</Help>
+                <Description>El registro está activo en el sistema</Description>
+                <Name>Activo</Name>
+                <AD_Language>es_CO</AD_Language>
+                <IsActive>true</IsActive>
+                <IsTranslated>true</IsTranslated>
+            </AD_Field_Trl>
+        </AD_Field>
+    </AD_Tab>
+    <AD_Message type="table">
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <MsgType>I</MsgType>
+        <MsgText>Black Level - [{0}] Product
+</MsgText>
+        <MsgTip/>
+        <IsActive>true</IsActive>
+        <Value>TOC_BlackLevelProduct</Value>
+        <EntityType>TOC</EntityType>
+        <AD_Message_UU>a7bb2bf2-cee0-44b2-8c8b-5cb946fedecb</AD_Message_UU>
+        <AD_Message_Trl type="translation">
+            <MsgText>Nivel Negro - Producto [{0}]
+</MsgText>
+            <MsgTip/>
+            <AD_Language>es_CO</AD_Language>
+            <IsActive>true</IsActive>
+            <IsTranslated>true</IsTranslated>
+        </AD_Message_Trl>
+    </AD_Message>
+    <AD_Message type="table">
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <MsgType>I</MsgType>
+        <MsgText>Red Level - [{0}] Product
+</MsgText>
+        <MsgTip/>
+        <IsActive>true</IsActive>
+        <Value>TOC_RedLevelProduct</Value>
+        <EntityType>TOC</EntityType>
+        <AD_Message_UU>7d29e778-8519-49fd-9cee-96103b7a177e</AD_Message_UU>
+        <AD_Message_Trl type="translation">
+            <MsgText>Nivel Rojo - Producto [{0}]</MsgText>
+            <MsgTip/>
+            <AD_Language>es_CO</AD_Language>
+            <IsActive>true</IsActive>
+            <IsTranslated>true</IsTranslated>
+        </AD_Message_Trl>
+    </AD_Message>
+    <AD_Message type="table">
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <MsgType>I</MsgType>
+        <MsgText>Error Org - {0} doesn't have supervisor configured
+</MsgText>
+        <MsgTip/>
+        <IsActive>true</IsActive>
+        <Value>TOC_UnconfiguredSupervisor</Value>
+        <EntityType>TOC</EntityType>
+        <AD_Message_UU>7fcf3d41-a322-46af-94f2-cc3dabe56d24</AD_Message_UU>
+        <AD_Message_Trl type="translation">
+            <MsgText>Error Org - {0} doesn't have supervisor configured
+</MsgText>
+            <MsgTip/>
+            <AD_Language>es_CO</AD_Language>
+            <IsActive>true</IsActive>
+            <IsTranslated>false</IsTranslated>
+        </AD_Message_Trl>
+    </AD_Message>
+    <AD_Message type="table">
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <MsgType>I</MsgType>
+        <MsgText>[{0}] in Warehouse  =  {1}
+Quantity On Hand   = {2}
+Quantity Ordered    = {3}
+Quantity Reserved  = {4}
+Max Stock               = {5}
+Min Stock                = {6}
+Quantity to Order    = {7}</MsgText>
+        <MsgTip/>
+        <IsActive>true</IsActive>
+        <Value>TOC_NotificationText</Value>
+        <EntityType>TOC</EntityType>
+        <AD_Message_UU>e7077e24-9a07-4e99-929c-ef012ff83b6f</AD_Message_UU>
+        <AD_Message_Trl type="translation">
+            <MsgText>[{0}] en Bodega = {1}
+Cantidad en Existencia   = {2}
+Cantidad Ordenada        = {3}
+Cantidad reservada        = {4}
+Stock Maximo                 = {5} 
+Stock Minimo                  = {6}
+Sugerido                         = {7}</MsgText>
+            <MsgTip/>
+            <AD_Language>es_CO</AD_Language>
+            <IsActive>true</IsActive>
+            <IsTranslated>true</IsTranslated>
+        </AD_Message_Trl>
+    </AD_Message>
+    <AD_Message type="table">
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <MsgType>I</MsgType>
+        <MsgText>Error Prod - Product {0} has no adjustment frequency configured
+</MsgText>
+        <MsgTip/>
+        <IsActive>true</IsActive>
+        <Value>TOC_UnconfiguredFqAdjustment</Value>
+        <EntityType>TOC</EntityType>
+        <AD_Message_UU>5b4fb148-2784-4eba-8e38-236c9432c580</AD_Message_UU>
+        <AD_Message_Trl type="translation">
+            <MsgText>Error Prod - Producto [{0}] no se ha configurado frecuencia ajuste
+</MsgText>
+            <MsgTip/>
+            <AD_Language>es_CO</AD_Language>
+            <IsActive>true</IsActive>
+            <IsTranslated>true</IsTranslated>
+        </AD_Message_Trl>
+    </AD_Message>
+    <AD_Message type="table">
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <MsgType>I</MsgType>
+        <MsgText>Increase - Product [{0}] - Previous = {1} New = {2}</MsgText>
+        <MsgTip/>
+        <IsActive>true</IsActive>
+        <Value>TOC_IncreaseNotification</Value>
+        <EntityType>TOC</EntityType>
+        <AD_Message_UU>f1b252cc-b07e-461c-81dc-19aada79aa7a</AD_Message_UU>
+        <AD_Message_Trl type="translation">
+            <MsgText>Incremento - Producto [{0}] - Anterior = {1} Nuevo = {2}</MsgText>
+            <MsgTip/>
+            <AD_Language>es_CO</AD_Language>
+            <IsActive>true</IsActive>
+            <IsTranslated>true</IsTranslated>
+        </AD_Message_Trl>
+    </AD_Message>
+    <AD_Message type="table">
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <MsgType>I</MsgType>
+        <MsgText>Decrease - Product [{0}] - Previous = {1} New = {2}</MsgText>
+        <MsgTip/>
+        <IsActive>true</IsActive>
+        <Value>TOC_DecreaseNotification</Value>
+        <EntityType>TOC</EntityType>
+        <AD_Message_UU>6ded2ab6-a3a7-4968-ba5c-efd59bebc6d1</AD_Message_UU>
+        <AD_Message_Trl type="translation">
+            <MsgText>Decremento - Producto [{0}] - Anterior = {1} Nuevo = {2}</MsgText>
+            <MsgTip/>
+            <AD_Language>es_CO</AD_Language>
+            <IsActive>true</IsActive>
+            <IsTranslated>true</IsTranslated>
+        </AD_Message_Trl>
+    </AD_Message>
+    <AD_Message type="table">
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <MsgType>I</MsgType>
+        <MsgText>Product [{0}] has changed the buffer value
+Warehouse                     = {1}
+Maximum Stock Above   = {2}
+Maximum Stock Current = {3}</MsgText>
+        <MsgTip/>
+        <IsActive>true</IsActive>
+        <Value>TOC_BufferChangedNotification</Value>
+        <EntityType>TOC</EntityType>
+        <AD_Message_UU>334d675a-3aeb-47e6-b30b-6c82d1412a2a</AD_Message_UU>
+        <AD_Message_Trl type="translation">
+            <MsgText>Producto [{0}] se ha cambiado el valor del amortiguador
+Bodega                           = {1}
+Maximo Stock Anterior   = {2}
+Maximo Stock Actual      = {3}</MsgText>
+            <MsgTip/>
+            <AD_Language>es_CO</AD_Language>
+            <IsActive>true</IsActive>
+            <IsTranslated>true</IsTranslated>
+        </AD_Message_Trl>
+    </AD_Message>
+    <AD_Message type="table">
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <MsgType>I</MsgType>
+        <MsgText>Error Prod - Product [{0}] has no Purchase Adjustment configured</MsgText>
+        <MsgTip/>
+        <IsActive>true</IsActive>
+        <Value>TOC_UnconfiguredPurchaseAdjustment</Value>
+        <EntityType>TOC</EntityType>
+        <AD_Message_UU>17734ebf-a0c9-4d15-939e-3c5eea1929f3</AD_Message_UU>
+        <AD_Message_Trl type="translation">
+            <MsgText>Error Prod - Producto [{0}] no tiene configurado ajuste compra</MsgText>
+            <MsgTip/>
+            <AD_Language>es_CO</AD_Language>
+            <IsActive>true</IsActive>
+            <IsTranslated>false</IsTranslated>
+        </AD_Message_Trl>
+    </AD_Message>
+    <AD_Message type="table">
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <MsgType>I</MsgType>
+        <MsgText>Replenish - Product [{0}] Quantity={1}</MsgText>
+        <MsgTip/>
+        <IsActive>true</IsActive>
+        <Value>TOC_ReplenishMessage</Value>
+        <EntityType>TOC</EntityType>
+        <AD_Message_UU>ce549103-7691-4c4b-8a5a-f0d43c79ee7f</AD_Message_UU>
+        <AD_Message_Trl type="translation">
+            <MsgText>Abastecer - Producto [{0}] Cantidad={1}</MsgText>
+            <MsgTip/>
+            <AD_Language>es_CO</AD_Language>
+            <IsActive>true</IsActive>
+            <IsTranslated>true</IsTranslated>
+        </AD_Message_Trl>
+    </AD_Message>
+</idempiere>
