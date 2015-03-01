@@ -2,6 +2,8 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: TOC Buffer Management
 Bundle-SymbolicName: org.globalqss.TOC_BM
-Bundle-Version: 2.1.0.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Fragment-Host: org.adempiere.base.process;bundle-version="2.1.0"
+Require-Bundle: org.adempiere.base;bundle-version="2.1.0",
+ org.adempiere.plugin.utils;bundle-version="2.1.0"
+Bundle-Activator: org.adempiere.plugin.utils.Incremental2PackActivator
