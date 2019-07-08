@@ -3,9 +3,11 @@ Bundle-ManifestVersion: 2
 Bundle-Name: TOC Buffer Management
 Bundle-SymbolicName: org.globalqss.TOC_BM
 Bundle-Version: 1.0.0.qualifier
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: org.adempiere.base;bundle-version="2.1.0",
- org.adempiere.plugin.utils;bundle-version="2.1.0"
+Require-Bundle: org.adempiere.base;bundle-version="6.2.0",
+ org.adempiere.plugin.utils;bundle-version="6.2.0"
 Bundle-Activator: org.adempiere.plugin.utils.Incremental2PackActivator
 Export-Package: org.globalqss.model
 Service-Component: OSGI-INF/TOC_BM_ReplenishmentFactory.xml
+Bundle-ActivationPolicy: lazy
+Automatic-Module-Name: org.globalqss.TOC_BM
+Comment: Bundle-RequiredExecutionEnvironment: JavaSE-11
