@@ -35,7 +35,7 @@ public class ProcessFactoryMG implements IProcessFactory {
 		ProcessCall process = null;
 		if ("org.globalqss.process.GenerateManual".equals(className)) {
 			try {
-				process =  GenerateManual.class.newInstance();
+				process =  GenerateManual.class.getDeclaredConstructor().newInstance();
 			} catch (Exception e) {}
 		}
 

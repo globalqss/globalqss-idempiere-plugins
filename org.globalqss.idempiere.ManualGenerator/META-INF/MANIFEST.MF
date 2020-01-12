@@ -2,12 +2,13 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Manual Generator
 Bundle-SymbolicName: org.globalqss.idempiere.ManualGenerator;singleton:=true
-Bundle-Version: 2.0.0.qualifier
+Bundle-Version: 7.1.0.qualifier
 Bundle-Activator: org.adempiere.plugin.utils.AdempiereActivator
 Bundle-Vendor: GlobalQSS
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: org.adempiere.base;bundle-version="2.0.0",
- org.adempiere.plugin.utils;bundle-version="2.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version>=11))"
+Require-Bundle: org.adempiere.base;bundle-version="7.1.0",
+ org.adempiere.plugin.utils;bundle-version="7.1.0"
 Export-Package: org.globalqss.process
 Service-Component: OSGI-INF/processfactorymg.xml
 Import-Package: org.apache.xerces.dom,
@@ -46,3 +47,5 @@ Import-Package: org.apache.xerces.dom,
  org.osgi.service.event
 Bundle-ClassPath: .,
  lib/jOpenDocument-1.3.jar
+Automatic-Module-Name: org.globalqss.idempiere.ManualGenerator
+Bundle-ActivationPolicy: lazy

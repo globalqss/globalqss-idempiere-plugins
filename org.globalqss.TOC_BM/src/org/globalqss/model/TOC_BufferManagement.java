@@ -26,6 +26,7 @@
 package org.globalqss.model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
@@ -75,8 +76,8 @@ public class TOC_BufferManagement implements ReplenishInterface {
 			return qtyToOrder;
 
 		BigDecimal range = replenish.getLevel_Max().subtract(replenish.getLevel_Min());
-		BigDecimal redLevel = range.divide(THREE, SCALE_FOR_LEVELS, BigDecimal.ROUND_DOWN).add(replenish.getLevel_Min());
-		BigDecimal yellowLevel = range.multiply(TWO).divide(THREE, SCALE_FOR_LEVELS, BigDecimal.ROUND_DOWN).add(replenish.getLevel_Min());
+		BigDecimal redLevel = range.divide(THREE, SCALE_FOR_LEVELS, RoundingMode.DOWN).add(replenish.getLevel_Min());
+		BigDecimal yellowLevel = range.multiply(TWO).divide(THREE, SCALE_FOR_LEVELS, RoundingMode.DOWN).add(replenish.getLevel_Min());
 		BigDecimal qtyOnHand = replenish.getQtyOnHand();
 
 		Properties ctx = replenish.getCtx();
@@ -261,11 +262,11 @@ public class TOC_BufferManagement implements ReplenishInterface {
 						BigDecimal newLevelMax = Env.ZERO;
 						if (percentRed > pctRedDaysToIncrease.doubleValue()) {
 							// increase level max by 1/3
-							BigDecimal increment = range.multiply(pctToIncrease).divide(Env.ONEHUNDRED, 0, BigDecimal.ROUND_HALF_UP);
+							BigDecimal increment = range.multiply(pctToIncrease).divide(Env.ONEHUNDRED, 0, RoundingMode.HALF_UP);
 							newLevelMax = replenish.getLevel_Max().add(increment);
 						} else if (percentGreen > pctGreenDaysToDecrease.doubleValue()) {
 							// decrease level max by 1/3
-							BigDecimal decrement = range.multiply(pctToDecrease).divide(Env.ONEHUNDRED, 0, BigDecimal.ROUND_HALF_UP);
+							BigDecimal decrement = range.multiply(pctToDecrease).divide(Env.ONEHUNDRED, 0, RoundingMode.HALF_UP);
 							newLevelMax = replenish.getLevel_Max().subtract(decrement);
 						}
 
