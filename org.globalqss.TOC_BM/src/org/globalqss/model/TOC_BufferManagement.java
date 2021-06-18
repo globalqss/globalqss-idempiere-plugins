@@ -353,7 +353,8 @@ public class TOC_BufferManagement implements ReplenishInterface {
 		DB.executeUpdate("INSERT INTO AD_PInstance_Log (ad_pinstance_id,log_id,p_date,p_msg,p_id,p_number) VALUES (?,?,SYSDATE,?,?,?)", 
 				new Object[] {pi.getAD_PInstance_ID(), seq.getNextID(), message, p_id, p_number}, 
 				false,
-				pi.get_TrxName());
+				pi.get_TrxName());		
+		seq.saveEx();
 	}
 	
 	public BigDecimal minimumOrderQuantity (MProduct product, BigDecimal qtytoorder, String trxname)
