@@ -1,0 +1,15 @@
+Bundle-ManifestVersion: 2
+Bundle-Name: AttachCleaner
+Bundle-SymbolicName: AttachCleaner
+Bundle-Version: 8.2.1.qualifier
+Bundle-Activator: org.adempiere.plugin.utils.Incremental2PackActivator
+Bundle-Vendor: GlobalQSS
+Require-Bundle: org.adempiere.base;bundle-version="8.2.0",
+ org.adempiere.plugin.utils;bundle-version="8.2.0"
+Export-Package: org.globalqss.process
+Service-Component: OSGI-INF/*.xml
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Automatic-Module-Name: AttachCleaner
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version>=11))"
