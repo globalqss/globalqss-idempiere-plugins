@@ -31,6 +31,7 @@ package org.globalqss.process;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.logging.Level;
 
 import org.adempiere.exceptions.AdempiereException;
@@ -135,9 +136,19 @@ public class AttachCleaner extends SvrProcess{
 		int noEntries = 0;
 		int nodel = 0;
 		int totdel = 0;
-		while (rs.next ())
+		
+		// To prevent This ResultSet is closed
+		ArrayList<Integer> listResult = new ArrayList<>();
+		while (rs.next ()) {
+			listResult.add(rs.getInt(1));
+		}
+		pstmt.close();
+		rs.close();
+		
+		addLog("@Count@ " + listResult.size());
+		for (Integer list_id : listResult)	// while (rs.next ())
 		{
-			record_id = rs.getInt(1);
+			record_id = list_id; // rs.getInt(1);
 			
 			MAttachment attach =  MAttachment.get(getCtx(), ad_table_id, record_id);
 			if (attach == null)
