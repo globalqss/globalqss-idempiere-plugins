@@ -38,6 +38,7 @@ import org.adempiere.exceptions.AdempiereException;
 import org.compiere.model.MAttachment;
 import org.compiere.model.MAttachmentEntry;
 import org.compiere.model.MTable;
+import org.compiere.process.ProcessInfo;
 import org.compiere.process.ProcessInfoParameter;
 import org.compiere.process.SvrProcess;
 import org.compiere.util.DB;
@@ -103,6 +104,8 @@ public class AttachCleaner extends SvrProcess{
 			return "Nothing To Do";
 		
 		MTable table = new MTable(getCtx(), p_AD_Table_ID, get_TrxName());
+		
+		ProcessInfo pi = getProcessInfo();
 
 		int ad_table_id = table.getAD_Table_ID();
 		String tableName = table.getTableName();
@@ -145,7 +148,8 @@ public class AttachCleaner extends SvrProcess{
 		pstmt.close();
 		rs.close();
 		
-		addLog("@Count@ " + listResult.size());
+		int cnt = listResult.size();
+		addLog("@Count@ " + cnt);
 		for (Integer list_id : listResult)	// while (rs.next ())
 		{
 			record_id = list_id; // rs.getInt(1);
@@ -153,6 +157,12 @@ public class AttachCleaner extends SvrProcess{
 			MAttachment attach =  MAttachment.get(getCtx(), ad_table_id, record_id);
 			if (attach == null)
 				continue;
+			
+			if (pi != null && pi.getProcessUI() != null) {
+				int percent =  Double.valueOf(totdel * 100 / (cnt + 1d)).intValue();
+				pi.getProcessUI().statusUpdate("Procesando Attachment_ID: " + attach.get_ID() + " (" + (cnt + 1) + "/" + totdel + ") " + percent + "%");
+			}
+
 			nodel = 0;
 			String filename = null;
 			p_Pattern = p_Pattern.toLowerCase();
@@ -164,13 +174,26 @@ public class AttachCleaner extends SvrProcess{
 						|| (p_Pattern.endsWith("%") && filename.startsWith(p_Pattern.replaceAll("%", "")))
 						|| filename.contains(p_Pattern.replace("%", ""))
 					    || p_Pattern.replace("%", "").equals("*") )
-					{ if (attach.deleteEntry(idx))
-						nodel++;
+					try	{
+						if (attach.deleteEntry(idx))
+							nodel++;
+					}
+					catch (Throwable e)	// AdempiereException
+					{
+						log.log(Level.WARNING, ("Attachment_ID: " + attach.get_ID()), e.getLocalizedMessage());
+						continue;
 					}
 			}
 			if (nodel > 0) {
-				attach.save(null);
-				totdel = totdel + nodel;
+				try	{
+					if (attach.save(null))
+						totdel = totdel + nodel;
+				}
+				catch (Throwable e)
+				{
+					log.log(Level.WARNING, ("Attachment_ID: " + attach.get_ID()), e.getLocalizedMessage());
+					continue;
+				}
 			}
 		}
 		
